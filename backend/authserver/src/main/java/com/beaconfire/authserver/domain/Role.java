@@ -13,25 +13,22 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="User")
-public class User implements Serializable {
+@Table(name = "`Role`")
+public class Role implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(name = "roleName")
+    private String roleName;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
-    private String password;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "createDate")
     private String createDate;
 
-    @Column(name = "modificationDate")
-    private String modificationDate;
+    @Column(name = "lastModificationDate")
+    private String lastModificationDate;
 }
