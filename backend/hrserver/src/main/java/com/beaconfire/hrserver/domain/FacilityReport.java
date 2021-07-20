@@ -35,5 +35,5 @@ public class FacilityReport {
     private String status;
 
     @Column(name = "houseId")
-    private int house;
+    private int houseId;
 }
