@@ -2,7 +2,11 @@ package com.beaconfire.hrserver.controller;
 
 import com.beaconfire.hrserver.common.ResponseStatus;
 import com.beaconfire.hrserver.domain.House;
+import com.beaconfire.hrserver.request.CommentPostRequest;
+import com.beaconfire.hrserver.request.CommentUpdateRequest;
 import com.beaconfire.hrserver.request.FacilityReportRequest;
+import com.beaconfire.hrserver.response.CommentResponse;
+import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.response.FacilityReportResponse;
 import com.beaconfire.hrserver.response.HouseDetailResponse;
 import com.beaconfire.hrserver.service.FacilityService;
@@ -31,18 +35,34 @@ public class HouseController {
     }
 
     @PostMapping(value = "/facilityReport", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public FacilityReportResponse postFacilityReport(@RequestBody FacilityReportRequest request){
+    public FacilityReportResponse postFacilityReport(@RequestBody FacilityReportRequest request) {
         FacilityReportResponse response = new FacilityReportResponse();
         Integer facilityReportId = facilityService.postFacilityReport(request.getId(), request.getTitle(), request.getEmployeeId(), request.getDescription());
         response.setStatus(new ResponseStatus(true, facilityReportId != null ? "Success!" : "Fail!"));
         return response;
     }
 
-//    @GetMapping("/facilityReportDetail/{id}")
-//    public FacilityReportDetailResponse getFacilityReportDetail(@PathVariable String id){
-//        FacilityReportDetailResponse response = new FacilityReportDetailResponse();
-//        response.setFacilityReport(facilityService.getFacilityReportById(id));
-//        response.setFacilityReportDetail(facilityService.getFacilityReportDetailByFacilityReportId(id));
-//        return response;
-//    }
+    @GetMapping("/facilityReportDetail/{id}")
+    public FacilityReportDetailResponse getFacilityReportDetail(@PathVariable String id) {
+        FacilityReportDetailResponse response = new FacilityReportDetailResponse();
+        response.setFacilityReport(facilityService.getFacilityReportById(Integer.parseInt(id)));
+        response.setFacilityReportDetails(facilityService.getFacilityReportDetailByFacilityReportId(Integer.parseInt(id)));
+        return response;
+    }
+
+    @PostMapping(value = "/postComment", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public CommentResponse postComment(@RequestBody CommentPostRequest request) {
+        CommentResponse response = new CommentResponse();
+        Integer detailId = facilityService.postComment(request.getReportId(), request.getEmployeeId(), request.getComments());
+        response.setStatus(new ResponseStatus(detailId != null, detailId != null ? "Success!" : "Fail!"));
+        return response;
+    }
+
+    @PostMapping(value = "/updateComment", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public CommentResponse updateComment(@RequestBody CommentUpdateRequest request){
+        CommentResponse response = new CommentResponse();
+        facilityService.updateComment(request.getDetailId(), request.getComments());
+        response.setStatus(new ResponseStatus(true, "Success!"));
+        return response;
+    }
 }
