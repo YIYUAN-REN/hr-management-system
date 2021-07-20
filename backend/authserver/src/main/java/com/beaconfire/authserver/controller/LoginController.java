@@ -24,13 +24,13 @@ public class LoginController {
     RoleService roleService;
 
     @GetMapping("/login")
-    public LoginResponse login(){
+    public LoginResponse login() {
         LoginResponse response = new LoginResponse();
         return response;
     }
 
     @PostMapping(value="/login", consumes={MediaType.APPLICATION_JSON_VALUE})
-    public LoginResponse login(HttpServletResponse httpServletResponse, @RequestBody LoginRequest request){
+    public LoginResponse login(HttpServletResponse httpServletResponse, @RequestBody LoginRequest request) {
         LoginResponse response = new LoginResponse();
         String userName = request.getUserName();
         String email = request.getEmail();
