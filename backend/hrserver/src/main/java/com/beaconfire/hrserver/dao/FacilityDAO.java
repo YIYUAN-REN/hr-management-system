@@ -60,8 +60,9 @@ public class FacilityDAO {
 
     public void updateComment(int detailId, String comment, String lastModificationDate){
         Session session = sessionFactory.getCurrentSession();
-        FacilityReportDetail facilityReportDetail = session.get(FacilityReportDetail.class, detailId);
-        facilityReportDetail.setComments(comment);
-        facilityReportDetail.setLastModificationDate(lastModificationDate);
+        FacilityReportDetail detail = session.get(FacilityReportDetail.class, detailId);
+        detail.setComments(comment);
+        detail.setLastModificationDate(lastModificationDate);
+        session.saveOrUpdate(detail);
     }
 }
