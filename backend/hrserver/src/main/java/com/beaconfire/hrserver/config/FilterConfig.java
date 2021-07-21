@@ -20,10 +20,10 @@ public class FilterConfig {
     public FilterRegistrationBean<JwtFilter> jwtFilter(){
         final FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new JwtFilter());
-        // set parameter named "services.auth" with value "http://localhost:9999/auth/login"
+        // set parameter named "services.auth" with value "http://localhost:4200/auth/login"
         registrationBean.setInitParameters(Collections.singletonMap("services.auth", authService));
         // add filter in which endpoint
-        // registrationBean.addUrlPatterns("/");
+        registrationBean.addUrlPatterns("/*");
         return registrationBean;
     }
 }

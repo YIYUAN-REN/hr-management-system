@@ -23,12 +23,14 @@ public class LoginController {
     @Autowired
     RoleService roleService;
 
-    @GetMapping("/login")
-    public LoginResponse login() {
-        LoginResponse response = new LoginResponse();
-        return response;
-    }
+//    @CrossOrigin(origins="http://localhost:4200")
+//    @GetMapping("/login")
+//    public LoginResponse login() {
+//        LoginResponse response = new LoginResponse();
+//        return response;
+//    }
 
+    @CrossOrigin(origins="http://localhost:4200")
     @PostMapping(value="/login", consumes={MediaType.APPLICATION_JSON_VALUE})
     public LoginResponse login(HttpServletResponse httpServletResponse, @RequestBody LoginRequest request) {
         LoginResponse response = new LoginResponse();
@@ -38,7 +40,7 @@ public class LoginController {
 
         // if not valid user, go back to login page
         if (!userService.isUser(userName, email, password)){
-            response.setMessage("invalid credential");
+            response.setMessage("Fail!");
             return response;
         }
 
@@ -48,7 +50,7 @@ public class LoginController {
         String token = JwtUtil.generateToken(Constant.SIGNING_KEY, userByUserName == null ? email : userName);
         CookieUtil.create(httpServletResponse, Constant.JWT_TOKEN_COOKIE_NAME, token, false, -1, "localhost");
 
-        response.setMessage("success");
+        response.setMessage("Success!");
         response.setId(String.valueOf(user.getId()));
         response.setEmail(user.getEmail());
         response.setRole(String.valueOf(roleService.getRoleByUserId(user.getId())));
