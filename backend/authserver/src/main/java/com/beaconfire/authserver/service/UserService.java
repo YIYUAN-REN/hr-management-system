@@ -18,7 +18,7 @@ public class UserService {
 
     @Transactional
     public boolean isUser(String userName, String email, String password){
-        if (userDAO.getUserByUserName(userName, password) != null && userDAO.getUserByEmail(email, password) != null) {
+        if (userDAO.getUserByUserName(userName, password) != null || userDAO.getUserByEmail(email, password) != null) {
             return true;
         }
         return false;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class UserDAO {
@@ -23,7 +24,8 @@ public class UserDAO {
         Query query = session.createQuery(statement);
         query.setParameter("userName", userName);
         query.setParameter("password", password);
-        return (User)query.getResultList().get(0);
+        List<User> list = query.getResultList();
+        return list.isEmpty() ? null : list.get(0);
     }
 
     public User getUserByEmail(String email, String password){
@@ -32,7 +34,8 @@ public class UserDAO {
         Query query = session.createQuery(statement);
         query.setParameter("email", email);
         query.setParameter("password", password);
-        return (User)query.getResultList().get(0);
+        List<User> list = query.getResultList();
+        return list.isEmpty() ? null : list.get(0);
     }
 
 

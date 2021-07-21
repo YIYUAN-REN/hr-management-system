@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../service/http.service';
+import { HttpService } from '../../service/http.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -22,7 +22,7 @@ export class LoginComponent {
   }
 
   onSubmit(form: FormGroup) {
-    this.httpService.postData("/auth/login", form.value["userName"], "", form.value["password"]).subscribe(
+    this.httpService.postData(form.value["userName"], "", form.value["password"]).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
         if (jsonObject.message != "Success!") {

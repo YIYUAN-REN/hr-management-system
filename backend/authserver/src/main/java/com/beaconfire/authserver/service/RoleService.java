@@ -17,7 +17,7 @@ public class RoleService {
 
     @Transactional
     public Role getRoleByUserId(int userId) {
-        int roleId = userRoleDAO.getRoleIdByUserId(userId);
+        Integer roleId = userRoleDAO.getRoleIdByUserId(userId);
         Role role = roleDAO.getRoleById(roleId);
         return role;
     }

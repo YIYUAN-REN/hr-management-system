@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './component/login.component';
+import { LoginComponent } from './component/auth/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from './service/http.service';
-import { LoginEmailComponent } from './component/login-email.component';
+import { LoginEmailComponent } from './component/auth/login-email.component';
 
 @NgModule({
   declarations: [
