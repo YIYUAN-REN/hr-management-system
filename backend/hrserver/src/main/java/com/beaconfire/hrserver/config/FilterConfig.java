@@ -9,21 +9,21 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Collections;
 
 // use annotation rather than XML to config filter
-@Configuration
-public class FilterConfig {
-
-    // from application.properties
-    @Value("${services.auth}")
-    private String authService;
-
-    @Bean
-    public FilterRegistrationBean<JwtFilter> jwtFilter(){
-        final FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new JwtFilter());
-        // set parameter named "services.auth" with value "http://localhost:9999/auth/login"
-        registrationBean.setInitParameters(Collections.singletonMap("services.auth", authService));
-        // add filter in which endpoint
-        // registrationBean.addUrlPatterns("/");
-        return registrationBean;
-    }
-}
+//@Configuration
+//public class FilterConfig {
+//
+//    // from application.properties
+//    @Value("${services.auth}")
+//    private String authService;
+//
+//    @Bean
+//    public FilterRegistrationBean<JwtFilter> jwtFilter(){
+//        final FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
+//        registrationBean.setFilter(new JwtFilter());
+//        // set parameter named "services.auth" with value "http://localhost:9999/auth/login"
+//        registrationBean.setInitParameters(Collections.singletonMap("services.auth", authService));
+//        // add filter in which endpoint
+//        // registrationBean.addUrlPatterns("/");
+//        return registrationBean;
+//    }
+//}

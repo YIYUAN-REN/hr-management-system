@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/backend/authserver/authserver.iml" filepath="$PROJECT_DIR$/backend/authserver/authserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hr-management-system.iml" filepath="$PROJECT_DIR$/.idea/hr-management-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/hrserver/hrserver.iml" filepath="$PROJECT_DIR$/backend/hrserver/hrserver.iml" />
+    </modules>
+  </component>
+</project>
