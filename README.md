@@ -27,19 +27,19 @@ maven:
   
   controller:  
   
-'''
-@RestController
-@RequestMapping("/")
-public class AngularController {
-    private String rt = "Hello World!";
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/boarding")
-    public void GetName(@RequestBody String test){
-        System.out.println("Get Here!");
-        System.out.println(test);
-        JSONObject obj = new JSONObject(test);
-        String pageName = obj.getJSONObject("name").getString("firstName");
-        System.out.println(pageName);
+      @RestController
+    @RequestMapping("/")
+    public class AngularController {
+        private String rt = "Hello World!";
+        @CrossOrigin(origins = "http://localhost:4200")
+        @PostMapping("/boarding")
+        public void GetName(@RequestBody String test){
+            System.out.println("Get Here!");
+            System.out.println(test);
+            JSONObject obj = new JSONObject(test);
+            String pageName = obj.getJSONObject("name").getString("firstName");
+            System.out.println(pageName);
+        }
     }
-}
-'''
+        
+        
