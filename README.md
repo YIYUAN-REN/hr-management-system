@@ -29,11 +29,9 @@ maven:
     
       
       
-  @RestController
+@RestController
 @RequestMapping("/")
 public class AngularController {
-    private String rt = "Hello World!";
-
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/boarding")
     public void GetName(@RequestBody String test){
