@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpServiceService } from '../http-service.service';
 import { Name } from '../Name';
 
 @Component({
@@ -13,6 +14,7 @@ export class NameComponent implements OnInit {
 
   nameObj: Name = new Name('', '', '', '');
 
+
   constructor(private formBuilder: FormBuilder) {
     this.nameForm = this.formBuilder.group(
       {
@@ -24,11 +26,11 @@ export class NameComponent implements OnInit {
     );
   }
 
+  
   ngOnInit(): void {
   }
 
   onSubmit(){
       this.nameObj = <Name>this.nameForm.value;
-      console.log(this.nameObj);
   }
 }

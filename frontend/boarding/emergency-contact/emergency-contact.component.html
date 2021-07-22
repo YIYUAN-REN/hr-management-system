@@ -1,0 +1,18 @@
+<form [formGroup]="emergencyForms" >
+
+    <p>Emergency Info</p>
+    <button type="button" (click)="addEmergency()">+</button>
+    <div formArrayName="emergencyArray">
+        <div *ngFor="let p of emergencyArray.controls; let i=index">
+          <div [formGroupName]="i">
+            <label>First Name: <input type="text" formControlName="firstName"></label>
+            <label>Middle Name: <input type="text" formControlName="middleName"></label>
+            <label>Last Name: <input type="text" formControlName="lastName"></label><br>
+            <label>Phone: <input type="text" formControlName="phone"></label>
+            <label>Email: <input type="text" formControlName="email"></label>
+            <label>Relationship: <input type="text" formControlName="relation"></label>
+          </div><br>
+        </div>
+    </div>
+    <!-- <button type="submit" (click)="onSubmit()" [disabled]="!referForm.valid">Next</button> -->
+</form>
