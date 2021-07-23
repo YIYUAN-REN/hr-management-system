@@ -54,8 +54,8 @@ public class VisaController {
 
     @GetMapping("main")
     public VisaStartResponse visaMainPage(){
-        //hardcode:
-        String visaType = "I-20";
+        //hardcode for now
+        String visaType = "OPT Receipt";
         boolean I983Submitted = false;
         boolean OptStemReceiptReceived = false;
 
@@ -64,7 +64,7 @@ public class VisaController {
         response.setI983Submitted(false);
         response.setOptStemReceiptReceived(true);
 
-        System.out.println("hello main response");
+//        System.out.println("hello main response");
         return response;
 
     }
