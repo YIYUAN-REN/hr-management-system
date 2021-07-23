@@ -5,8 +5,8 @@ import com.example.w6d4q3.domain.VisaStatus;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VisaDAO extends AbstractHibernateDAO{
-    public VisaDAO(){setClazz(Address.class);}
+public class visaDAO extends AbstractHibernateDAO{
+    public visaDAO(){setClazz(Address.class);}
 
     public void addVisa(VisaStatus visaToAdd){save(visaToAdd);}
 }

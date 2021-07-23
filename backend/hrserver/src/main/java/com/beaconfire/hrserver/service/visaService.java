@@ -1,15 +1,15 @@
 package com.example.w6d4q3.service;
 
-import com.example.w6d4q3.dao.VisaDAO;
+import com.example.w6d4q3.dao.visaDAO;
 import com.example.w6d4q3.domain.VisaStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class visaService {
-    private VisaDAO visaDAO;
+    private visaDAO visaDAO;
     @Autowired
-    public void setVisaDAO(VisaDAO visaDAO){this.visaDAO = visaDAO;}
+    public void setVisaDAO(visaDAO visaDAO){this.visaDAO = visaDAO;}
 
     public void addVisa(VisaStatus visaStatus){this.visaDAO.addVisa(visaStatus);}
 }
