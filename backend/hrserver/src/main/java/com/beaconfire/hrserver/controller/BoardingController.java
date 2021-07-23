@@ -21,7 +21,7 @@ import com.beaconfire.hrserver.domain.VisaStatus;
 
 @RestController
 @RequestMapping("/")
-public class AngularController {
+public class BoardingController {
     private employeeService employeeService;
     private addressService addressService;
     private visaService visaService;
