@@ -57,7 +57,7 @@ public class BoardingController {
     public Employee generateEmployee(JSONObject objPack){
         Employee employee = new Employee();
         //hardcode
-        employee.setUserId(123);
+        employee.setUserId(1);
         employee.setTitle("tbd");
         employee.setManagerId(1);
         employee.setStartDate("tbd");
