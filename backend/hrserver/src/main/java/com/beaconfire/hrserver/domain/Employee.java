@@ -1,5 +1,6 @@
 package com.beaconfire.hrserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,13 +8,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="employee")
+@Table(name="Employee")
 public class Employee implements Serializable {
 
     @Id
@@ -21,7 +23,7 @@ public class Employee implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "UserId")
+    @Column(name = "userId")
     private int userId;
 
     @Column(name = "firstName")
@@ -80,4 +82,8 @@ public class Employee implements Serializable {
 
     @Column(name = "houseId")
     private int houseId;
+
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "employeeId")
+//    private List<FacilityReportDetail> facilityReportDetails;
 }

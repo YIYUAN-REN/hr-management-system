@@ -27,8 +27,9 @@ public class FacilityService {
     private FacilityDAO facilityDAO;
 
     @Transactional
-    public Integer postFacilityReport(int id, String title, int employeeId, String description){
-        House house = houseDAO.getHouseById(id);
+    public Integer postFacilityReport(int houseId, String title, int employeeId, String description){
+        System.out.println(houseId);
+        House house = houseDAO.getHouseById(houseId);
         Employee employee = employeeDAO.getEmployeeById(employeeId);
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         Integer facilityReportId = facilityDAO.postFacilityReport(house, title, employee, time, description, "Open");

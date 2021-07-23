@@ -24,24 +24,28 @@ public class HouseController {
     @Autowired
     private FacilityService facilityService;
 
-    @GetMapping("/houseDetail/{employeeId}")
+//    @CrossOrigin(origins="http://localhost:4200")
+    @GetMapping(value="/houseDetail/{employeeId}")
     public HouseDetailResponse getHouseDetail(@PathVariable String employeeId) {
-        HouseDetailResponse response = new HouseDetailResponse();
-        House house = houseService.getHouseByEmployeeId(Integer.parseInt(employeeId));
-        response.setId(house.getId());
-        response.setAddress(house.getAddress());
-        response.setEmployees(houseService.getEmployeesByHouse(house));
-        return response;
+            HouseDetailResponse response = new HouseDetailResponse();
+            House house = houseService.getHouseByEmployeeId(Integer.parseInt(employeeId));
+            response.setId(house.getId());
+            response.setAddress(house.getAddress());
+            response.setEmployees(houseService.getEmployeesByHouse(house));
+            response.setReports(houseService.getFacilityReportByHouse(house));
+            return response;
     }
 
-    @PostMapping(value = "/facilityReport", consumes = {MediaType.APPLICATION_JSON_VALUE})
+//    @CrossOrigin(origins="http://localhost:4200")
+    @PostMapping(value = "/facilityReport")
     public FacilityReportResponse postFacilityReport(@RequestBody FacilityReportRequest request) {
         FacilityReportResponse response = new FacilityReportResponse();
-        Integer facilityReportId = facilityService.postFacilityReport(request.getId(), request.getTitle(), request.getEmployeeId(), request.getDescription());
+        Integer facilityReportId = facilityService.postFacilityReport(request.getHouseId(), request.getTitle(), request.getEmployeeId(), request.getDescription());
         response.setStatus(new ResponseStatus(true, facilityReportId != null ? "Success!" : "Fail!"));
         return response;
     }
 
+//    @CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/facilityReportDetail/{id}")
     public FacilityReportDetailResponse getFacilityReportDetail(@PathVariable String id) {
         FacilityReportDetailResponse response = new FacilityReportDetailResponse();
@@ -50,16 +54,21 @@ public class HouseController {
         return response;
     }
 
-    @PostMapping(value = "/postComment", consumes = {MediaType.APPLICATION_JSON_VALUE})
+//    @CrossOrigin(origins="http://localhost:4200")
+    @PostMapping(value = "/postComment")
     public CommentResponse postComment(@RequestBody CommentPostRequest request) {
+        System.out.println("11111111111111111111111111111111111111111");
         CommentResponse response = new CommentResponse();
         Integer detailId = facilityService.postComment(request.getReportId(), request.getEmployeeId(), request.getComments());
         response.setStatus(new ResponseStatus(detailId != null, detailId != null ? "Success!" : "Fail!"));
         return response;
     }
 
-    @PostMapping(value = "/updateComment", consumes = {MediaType.APPLICATION_JSON_VALUE})
+//    @CrossOrigin(origins="http://localhost:4200")
+    @PostMapping(value = "/updateComment")
     public CommentResponse updateComment(@RequestBody CommentUpdateRequest request){
+        System.out.println("22222222222222222222222222222222222");
+        System.out.println(request.getDetailId());
         CommentResponse response = new CommentResponse();
         facilityService.updateComment(request.getDetailId(), request.getComments());
         response.setStatus(new ResponseStatus(true, "Success!"));

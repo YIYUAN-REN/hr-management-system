@@ -14,9 +14,9 @@ import java.io.IOException;
 public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        String username = JwtUtil.getSubject(httpServletRequest, Constant.JWT_TOKEN_COOKIE_NAME, Constant.SIGNING_KEY);
+        String userName = JwtUtil.getSubject(httpServletRequest, Constant.JWT_TOKEN_COOKIE_NAME, Constant.SIGNING_KEY);
         // if not login, redirect to auth server
-        if (username == null){
+        if (userName == null){
             // get parameter set in FilterConfig
             String authService = this.getFilterConfig().getInitParameter("services.auth");
             // redirect attribute sent to auth server (LoginController login())
@@ -25,7 +25,7 @@ public class JwtFilter extends OncePerRequestFilter {
             /*
             should check username with more logic
              */
-            httpServletRequest.setAttribute("username", username);
+            httpServletRequest.setAttribute("userName", userName);
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
     }

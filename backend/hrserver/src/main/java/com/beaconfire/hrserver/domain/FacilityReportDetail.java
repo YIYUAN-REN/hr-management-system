@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "facilityReportDetail")
+@Table(name = "FacilityReportDetail")
 public class FacilityReportDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,8 @@ public class FacilityReportDetail {
     @Column(name = "reportId")
     private int reportId;
 
+//    @ManyToOne
+//    @JoinColumn(name = "employeeId")
     @Column(name = "employeeId")
     private int employeeId;
 

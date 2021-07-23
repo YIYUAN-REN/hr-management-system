@@ -1,0 +1,36 @@
+<h1>Housing</h1><br>
+
+<h2>House Detail</h2>
+<b>Address:</b><br>
+{{address}}<br><br>
+<!-- hardcode -->
+<!-- LA downtown<br><br> -->
+<b>Employees:</b><br>
+<!-- hardcode -->
+<!-- RyanRen
+1234567890 -->
+<ng-container *ngFor="let employee of employees">
+    <tr>
+        <td>{{employee.preferedName != null ? employee.preferedName : employee.firstName}}</td>
+        <td>{{employee.cellPhone}}</td>
+    </tr>
+    <br>
+</ng-container><br><br>
+
+<h2>Facility Report</h2>
+<h3>Create Report</h3>
+<form [formGroup]="reportForm" (ngSubmit)="onSubmit(reportForm)">
+    <input type="text" formControlName="title" placeholder="Title" required><br><br>
+    <input type="text" formControlName="description" placeholder="Description" required><br><br>
+    <button type="submit" [disabled]="!reportForm.valid">Submit</button>
+</form>
+{{message}}<br><br>
+
+<h3>Existing Report</h3>
+<ng-container *ngFor="let report of reports">
+    <tr>
+        <td>{{report.title}}</td>
+        <td><button routerLink="/report-detail/{{report.id}}">Detail</button></td>
+    </tr>
+    <br>
+</ng-container>

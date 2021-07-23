@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "auth-client": {
+    "hr-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/auth-client",
+            "outputPath": "dist/hr-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -66,12 +67,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hr-client:build",
+            "proxyConfig" : "proxy.conf.json"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "auth-client:build:production"
+              "browserTarget": "hr-client:build:production"
             },
             "development": {
-              "browserTarget": "auth-client:build:development"
+              "browserTarget": "hr-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "auth-client:build"
+            "browserTarget": "hr-client:build"
           }
         },
         "test": {
@@ -102,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "auth-client"
+  "defaultProject": "hr-client"
 }

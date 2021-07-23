@@ -22,18 +22,24 @@ export class LoginComponent {
   }
 
   onSubmit(form: FormGroup) {
-    this.httpService.postData(form.value["userName"], "", form.value["password"]).subscribe(
+    this.httpService.postData("/auth/login", {
+      userName: form.value["userName"], 
+      email: null,
+      password: form.value["password"]
+    }).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
+        // console.log("111111111");
+        // console.log(jsonObject);
         if (jsonObject.message != "Success!") {
           this.message = jsonObject.message;
           this.loginForm.setValue({userName:"", password:""});
         } else {
-          sessionStorage.setItem("id", jsonObject.id);
+          sessionStorage.setItem("userId", jsonObject.id);
           sessionStorage.setItem("email", jsonObject.email);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate(["housing"]);
+          this.router.navigate(["housing"]);  
 
           // need HR coding
 
