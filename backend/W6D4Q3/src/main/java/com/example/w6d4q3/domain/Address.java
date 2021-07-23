@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Address", schema = "team", catalog = "")
-public class AddressEntity implements Serializable {
+public class Address implements Serializable {
     private int id;
     private int employeeId;
     private String addressLine1;
@@ -101,7 +101,7 @@ public class AddressEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AddressEntity that = (AddressEntity) o;
+        Address that = (Address) o;
         return id == that.id && employeeId == that.employeeId && Objects.equals(addressLine1, that.addressLine1) && Objects.equals(addressLine2, that.addressLine2) && Objects.equals(city, that.city) && Objects.equals(zipcode, that.zipcode) && Objects.equals(stateName, that.stateName) && Objects.equals(stateAbbr, that.stateAbbr);
     }
 

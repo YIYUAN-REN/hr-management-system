@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "VisaStatus", schema = "team", catalog = "")
-public class VisaStatusEntity implements Serializable {
+public class VisaStatus implements Serializable {
     private int id;
     private int employeeId;
     private String visaType;
@@ -90,7 +90,7 @@ public class VisaStatusEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VisaStatusEntity that = (VisaStatusEntity) o;
+        VisaStatus that = (VisaStatus) o;
         return id == that.id && employeeId == that.employeeId && Objects.equals(visaType, that.visaType) && Objects.equals(active, that.active) && Objects.equals(modificationDate, that.modificationDate) && Objects.equals(visaStartDate, that.visaStartDate) && Objects.equals(visaEndDate, that.visaEndDate);
     }
 

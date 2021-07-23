@@ -1,9 +1,9 @@
 package com.example.w6d4q3.controller;
 
-import com.example.w6d4q3.domain.AddressEntity;
-import com.example.w6d4q3.domain.ContactEntity;
-import com.example.w6d4q3.domain.EmployeeEntity;
-import com.example.w6d4q3.domain.VisaStatusEntity;
+import com.example.w6d4q3.domain.Address;
+import com.example.w6d4q3.domain.Contact;
+import com.example.w6d4q3.domain.Employee;
+import com.example.w6d4q3.domain.VisaStatus;
 import com.example.w6d4q3.service.addressService;
 import com.example.w6d4q3.service.contactService;
 import com.example.w6d4q3.service.employeeService;
@@ -11,14 +11,11 @@ import com.example.w6d4q3.service.visaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
-import sun.lwawt.macosx.CSystemTray;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -41,9 +38,9 @@ public class AngularController {
     public void Boarding(@RequestBody String JsonPack){
 //        System.out.println(JsonPack);
         JSONObject objPack = new JSONObject(JsonPack);
-        EmployeeEntity employee = generateEmployee(objPack);
+        Employee employee = generateEmployee(objPack);
         int employeeId = this.employeeService.addEmployee(employee);
-        AddressEntity address = generateAddress(objPack.getJSONObject("address"), employeeId);
+        Address address = generateAddress(objPack.getJSONObject("address"), employeeId);
         this.addressService.addAddress(address);
         this.visaService.addVisa(generateVisa(objPack.getJSONObject("visa"), employeeId));
         //normal contact of employee
@@ -55,8 +52,8 @@ public class AngularController {
         }
     }
 
-    public EmployeeEntity generateEmployee(JSONObject objPack){
-        EmployeeEntity employee = new EmployeeEntity();
+    public Employee generateEmployee(JSONObject objPack){
+        Employee employee = new Employee();
         //hardcode
         employee.setUserId(123);
         employee.setTitle("tbd");
@@ -88,8 +85,8 @@ public class AngularController {
 
         return employee;
     }
-    public AddressEntity generateAddress(JSONObject address, int employeeId){
-        AddressEntity addressEntity = new AddressEntity();
+    public Address generateAddress(JSONObject address, int employeeId){
+        Address addressEntity = new Address();
         addressEntity.setEmployeeId(employeeId);
         addressEntity.setAddressLine1(address.getString("addressLine1"));
         addressEntity.setAddressLine2(address.getString("addressLine2"));
@@ -99,28 +96,28 @@ public class AngularController {
         addressEntity.setStateAbbr(address.getString("stateAbbr"));
         return addressEntity;
     }
-    public VisaStatusEntity generateVisa(JSONObject visa, int employeeId){
-        VisaStatusEntity visaStatusEntity = new VisaStatusEntity();
-        visaStatusEntity.setEmployeeId(employeeId);
+    public VisaStatus generateVisa(JSONObject visa, int employeeId){
+        VisaStatus visaStatus = new VisaStatus();
+        visaStatus.setEmployeeId(employeeId);
         if(visa.getString("citizen").equals("yes")) {
-            visaStatusEntity.setVisaType("citizen");
-            return visaStatusEntity;
+            visaStatus.setVisaType("citizen");
+            return visaStatus;
         }
         if(visa.getString("visaType").equals("other")){
-            visaStatusEntity.setVisaType(visa.getString("otherVisaType"));
+            visaStatus.setVisaType(visa.getString("otherVisaType"));
         }
-        else visaStatusEntity.setVisaType(visa.getString("visaType"));
-        visaStatusEntity.setVisaStartDate(visa.getString("startDate"));
-        visaStatusEntity.setVisaEndDate(visa.getString("endDate"));
-        visaStatusEntity.setModificationDate(new Date().toString());
+        else visaStatus.setVisaType(visa.getString("visaType"));
+        visaStatus.setVisaStartDate(visa.getString("startDate"));
+        visaStatus.setVisaEndDate(visa.getString("endDate"));
+        visaStatus.setModificationDate(new Date().toString());
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            visaStatusEntity.setActive((byte) (new Date().compareTo(format.parse(visaStatusEntity.getVisaEndDate())) < 0 ? 1 : 0));
+            visaStatus.setActive((byte) (new Date().compareTo(format.parse(visaStatus.getVisaEndDate())) < 0 ? 1 : 0));
         }catch (ParseException e){e.printStackTrace();}
-        return visaStatusEntity;
+        return visaStatus;
     }
-    public ContactEntity generateNormalContact(JSONObject objPack, int employeeId){
-        ContactEntity contactEntity = new ContactEntity();
+    public Contact generateNormalContact(JSONObject objPack, int employeeId){
+        Contact contactEntity = new Contact();
         contactEntity.setEmployeeId(employeeId);
         contactEntity.setIsEmergency((byte)0);
         contactEntity.setRelationship("self");
@@ -133,8 +130,8 @@ public class AngularController {
         contactEntity.setCellPhone(contact.getString("cellPhone"));
         return contactEntity;
     }
-    public ContactEntity generateEmergencyContact(JSONObject contact, int employeeId){
-        ContactEntity contactEntity = new ContactEntity();
+    public Contact generateEmergencyContact(JSONObject contact, int employeeId){
+        Contact contactEntity = new Contact();
         contactEntity.setEmployeeId(employeeId);
         contactEntity.setIsEmergency((byte)1);
         contactEntity.setFirstName(contact.getString("firstName"));

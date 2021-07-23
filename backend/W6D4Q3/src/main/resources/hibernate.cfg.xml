@@ -6,11 +6,11 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-      <mapping class="com.example.w6d4q3.domain.AddressEntity"/>
+      <mapping class="com.example.w6d4q3.domain.Address"/>
       <mapping class="com.example.w6d4q3.domain.ApplicationWorkFlowEntity"/>
-      <mapping class="com.example.w6d4q3.domain.ContactEntity"/>
+      <mapping class="com.example.w6d4q3.domain.Contact"/>
       <mapping class="com.example.w6d4q3.domain.DigitalDocumentEntity"/>
-      <mapping class="com.example.w6d4q3.domain.EmployeeEntity"/>
+      <mapping class="com.example.w6d4q3.domain.Employee"/>
       <mapping class="com.example.w6d4q3.domain.FacilityEntity"/>
       <mapping class="com.example.w6d4q3.domain.FacilityReportEntity"/>
       <mapping class="com.example.w6d4q3.domain.FacilityReportDetailEntity"/>
@@ -20,7 +20,7 @@
       <mapping class="com.example.w6d4q3.domain.RoleEntity"/>
       <mapping class="com.example.w6d4q3.domain.UserEntity"/>
       <mapping class="com.example.w6d4q3.domain.UserRoleEntity"/>
-      <mapping class="com.example.w6d4q3.domain.VisaStatusEntity"/>
+      <mapping class="com.example.w6d4q3.domain.VisaStatus"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

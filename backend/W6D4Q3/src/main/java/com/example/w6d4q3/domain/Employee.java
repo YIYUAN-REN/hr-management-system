@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Employee", schema = "team", catalog = "")
-public class EmployeeEntity implements Serializable {
+public class Employee implements Serializable {
     private int id;
     private int userId;
     private String firstName;
@@ -244,7 +244,7 @@ public class EmployeeEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EmployeeEntity that = (EmployeeEntity) o;
+        Employee that = (Employee) o;
         return id == that.id && userId == that.userId && managerId == that.managerId && houseId == that.houseId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(middleName, that.middleName) && Objects.equals(preferedName, that.preferedName) && Objects.equals(email, that.email) && Objects.equals(cellPhone, that.cellPhone) && Objects.equals(alternatePhone, that.alternatePhone) && Objects.equals(gender, that.gender) && Objects.equals(ssn, that.ssn) && Objects.equals(dob, that.dob) && Objects.equals(title, that.title) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(avatar, that.avatar) && Objects.equals(car, that.car) && Objects.equals(driverLicense, that.driverLicense) && Objects.equals(driverLicenseExpirationDate, that.driverLicenseExpirationDate);
     }
 

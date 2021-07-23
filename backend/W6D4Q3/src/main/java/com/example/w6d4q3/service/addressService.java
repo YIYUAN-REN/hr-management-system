@@ -1,7 +1,7 @@
 package com.example.w6d4q3.service;
 
 import com.example.w6d4q3.dao.addressDAO;
-import com.example.w6d4q3.domain.AddressEntity;
+import com.example.w6d4q3.domain.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +11,5 @@ public class addressService {
     @Autowired
     public void setAddressEntity(addressDAO addressDAO){this.addressDAO = addressDAO;}
 
-    public void addAddress(AddressEntity addressToAdd){this.addressDAO.addAddress(addressToAdd);}
+    public void addAddress(Address addressToAdd){this.addressDAO.addAddress(addressToAdd);}
 }
