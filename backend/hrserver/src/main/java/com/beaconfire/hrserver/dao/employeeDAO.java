@@ -1,6 +1,6 @@
-package com.example.w6d4q3.dao;
+package com.beaconfire.hrserver.dao;
 
-import com.example.w6d4q3.domain.Employee;
+import com.beaconfire.hrserver.domain.Employee;
 import org.springframework.stereotype.Repository;
 
 @Repository

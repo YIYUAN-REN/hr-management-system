@@ -1,4 +1,4 @@
-package com.example.w6d4q3.domain;
+package com.beaconfire.hrserver.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;

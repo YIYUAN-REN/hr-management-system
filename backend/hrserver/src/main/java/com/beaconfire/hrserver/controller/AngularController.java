@@ -1,12 +1,4 @@
 package com.beaconfire.hrserver.controller;
-import com.example.w6d4q3.domain.Address;
-import com.example.w6d4q3.domain.Contact;
-import com.example.w6d4q3.domain.Employee;
-import com.example.w6d4q3.domain.VisaStatus;
-import com.example.w6d4q3.service.addressService;
-import com.example.w6d4q3.service.contactService;
-import com.example.w6d4q3.service.employeeService;
-import com.example.w6d4q3.service.visaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
@@ -15,6 +7,17 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.beaconfire.hrserver.service.addressService;
+import com.beaconfire.hrserver.service.contactService;
+import com.beaconfire.hrserver.service.employeeService;
+import com.beaconfire.hrserver.service.visaService;
+
+import com.beaconfire.hrserver.domain.Address;
+import com.beaconfire.hrserver.domain.Contact;
+import com.beaconfire.hrserver.domain.Employee;
+import com.beaconfire.hrserver.domain.VisaStatus;
+
 
 @RestController
 @RequestMapping("/")

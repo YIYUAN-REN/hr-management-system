@@ -1,7 +1,7 @@
-package com.example.w6d4q3.service;
+package com.beaconfire.hrserver.service;
 
-import com.example.w6d4q3.dao.contactDAO;
-import com.example.w6d4q3.domain.Contact;
+import com.beaconfire.hrserver.domain.Contact;
+import com.beaconfire.hrserver.dao.contactDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

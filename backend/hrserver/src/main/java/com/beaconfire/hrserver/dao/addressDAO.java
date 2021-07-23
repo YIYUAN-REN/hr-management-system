@@ -1,7 +1,7 @@
 package com.beaconfire.hrserver.dao;
 
 
-import com.example.w6d4q3.domain.Address;
+import com.beaconfire.hrserver.domain.Address;
 import org.springframework.stereotype.Repository;
 
 @Repository
