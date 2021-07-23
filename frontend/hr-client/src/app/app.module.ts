@@ -10,6 +10,11 @@ import { HttpService } from './service/http.service';
 import { LoginEmailComponent } from './component/auth/login-email.component';
 import { HousingComponent } from './component/housing/housing.component';
 import { ReportDetailComponent } from './component/housing/report-detail.component';
+// import { AngularFileUploaderModule } from "angular-file-uploader";
+import { OptreceiptService } from './services/optreceipt.service';
+import { VisastartComponent } from './visa/visastart/visastart.component';
+import { UploadComponent } from './visa/upload/upload.component';
+
 
 @NgModule({
   declarations: [
@@ -17,16 +22,23 @@ import { ReportDetailComponent } from './component/housing/report-detail.compone
     LoginComponent,
     LoginEmailComponent,
     HousingComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    VisastartComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // AngularFileUploaderModule
   ],
-  providers: [HttpService],
+  providers: [
+    HttpService,
+    OptreceiptService
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,7 +23,7 @@ public class FilterConfig {
         // set parameter named "services.auth" with value "http://localhost:4200/login"
         registrationBean.setInitParameters(Collections.singletonMap("services.auth", authService));
         // add filter in which endpoint
-        registrationBean.addUrlPatterns("/hrs/*");
+        registrationBean.addUrlPatterns("/hrs/*");//fake
         return registrationBean;
     }
 
@@ -38,3 +38,4 @@ public class FilterConfig {
 //        return registrationBean;
 //    }
 }
+

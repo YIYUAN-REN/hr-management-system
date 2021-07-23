@@ -39,7 +39,7 @@ export class ReportDetailComponent implements OnInit {
   }
 
   getReportAndComments() {
-    this.httpService.getData("/hr/facilityReportDetail/" + this.reportId).subscribe(
+    this.httpService.getData("/hr/housing/facilityReportDetail/" + this.reportId).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
         this.report = jsonObject.facilityReport;
@@ -49,7 +49,7 @@ export class ReportDetailComponent implements OnInit {
   }
 
   onCreate(form: FormGroup){
-    this.httpService.postData("/hr/postComment", {
+    this.httpService.postData("/hr/housing/postComment", {
       // change from userId to employeeId later
       userId: sessionStorage.getItem("employeeId"),
       reportId: this.reportId,
@@ -65,7 +65,7 @@ export class ReportDetailComponent implements OnInit {
   }
 
   onUpdate(id:number, comments:string) {
-    this.httpService.postData("/hr/updateComment", {
+    this.httpService.postData("/hr/housing/updateComment", {
       detailId: id,
       comments: comments
     }).subscribe(

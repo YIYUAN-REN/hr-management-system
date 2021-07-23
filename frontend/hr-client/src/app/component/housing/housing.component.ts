@@ -32,7 +32,7 @@ export class HousingComponent implements OnInit {
 
   getHousingDetail() {
     // change from userId to employeeId later
-    this.httpService.getData("/hr/houseDetail/" + sessionStorage.getItem("userId")).subscribe(
+    this.httpService.getData("/hr/housing/houseDetail/" + sessionStorage.getItem("userId")).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
         // console.log(jsonObject);
@@ -46,7 +46,7 @@ export class HousingComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     console.log(this.houseId);
-    this.httpService.postData("/hr/facilityReport", {
+    this.httpService.postData("/hr/housing/facilityReport", {
       houseId: this.houseId,
       title: form.value["title"],
       // change from userId to employeeId later
