@@ -1,0 +1,125 @@
+
+
+<div>
+    <thead>
+        <tr>
+            <th><h2>Addresses</h2></th>
+        </tr>
+    </thead>
+    <tbody>
+        <div *ngIf = "!editorEnabled">
+            <div>
+                <tr>Primary Address</tr>
+                <tr>
+                    <th>Line One</th>
+                    <th> &nbsp;{{addressInfo?.primaryAddress.lineOne}}</th>
+                </tr>
+                <tr>
+                    <th>Line Two</th>
+                    <th> &nbsp;{{addressInfo?.primaryAddress.lineTwo}}</th>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <th> &nbsp;{{addressInfo?.primaryAddress.city}}</th>
+                </tr>
+                <tr>
+                    <th>State</th>
+                    <th> &nbsp;{{addressInfo?.primaryAddress.state}}</th>
+                </tr>
+                <tr>
+                    <th>Zip</th>
+                    <th> &nbsp;{{addressInfo?.primaryAddress.zip}}</th>
+                </tr>
+            </div>
+
+            <div>
+                <tr>Secondary Address</tr>
+                <tr>
+                    <th>Line One</th>
+                    <th> &nbsp;{{addressInfo?.secondaryAddress.lineOne}}</th>
+                </tr>
+                <tr>
+                    <th>Line Two</th>
+                    <th> &nbsp;{{addressInfo?.secondaryAddress.lineTwo}}</th>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <th> &nbsp;{{addressInfo?.secondaryAddress.city}}</th>
+                </tr>
+                <tr>
+                    <th>State</th>
+                    <th> &nbsp;{{addressInfo?.secondaryAddress.state}}</th>
+                </tr>
+                <tr>
+                    <th>Zip</th>
+                    <th> &nbsp;{{addressInfo?.secondaryAddress.zip}}</th>
+                </tr>
+            </div>
+            
+            
+            <button (click)="enableEditor()">Edit</button>
+        </div>
+    
+        <div *ngIf = "editorEnabled">
+            
+            <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+                <div #nameControl="ngModelGroup" ngModelGroup="user">
+                    <div>
+                        <tr>Primary Address</tr>
+                        <tr>
+                            <th>Line One</th>
+                            <th><input type="text" name="pAdLineOne" [(ngModel)]="addressInfo.primaryAddress.lineOne"><br></th>
+                        </tr>
+                        <tr>
+                            <th>Line Two</th>
+                            <th><input type="text" name="pAdLineTwo" [(ngModel)]="addressInfo.primaryAddress.lineTwo"><br></th>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <th><input type="text" name="pAdCity" [(ngModel)]="addressInfo.primaryAddress.city"><br></th>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <th><input type="text" name="pAdState" [(ngModel)]="addressInfo.primaryAddress.state"><br></th>
+                        </tr>
+                        <tr>
+                            <th>Zip</th>
+                            <th><input type="text" name="pAdZip" [(ngModel)]="addressInfo.primaryAddress.zip"><br></th>
+                        </tr>
+                    </div>
+        
+                    <div>
+                        <tr>Secondary Address</tr>
+                        <tr>
+                            <th>Line One</th>
+                            <th><input type="text" name="sAdLineOne" [(ngModel)]="addressInfo.secondaryAddress.lineOne"><br></th>
+                        </tr>
+                        <tr>
+                            <th>Line Two</th>
+                            <th><input type="text" name="sAdLineTwo" [(ngModel)]="addressInfo.secondaryAddress.lineTwo"><br></th>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <th><input type="text" name="sAdCity" [(ngModel)]="addressInfo.secondaryAddress.city"><br></th>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <th><input type="text" name="sAdState" [(ngModel)]="addressInfo.secondaryAddress.state"><br></th>
+                        </tr>
+                        <tr>
+                            <th>Zip</th>
+                            <th><input type="text" name="sAdZip" [(ngModel)]="addressInfo.secondaryAddress.zip"><br></th>
+                        </tr>
+                    </div>
+                    
+                </div>
+                <button type="submit">Save</button>
+            </form><br>
+            <button (click)="discardChanges()">Cancel</button>
+        </div>
+        
+    </tbody>
+
+
+</div>
+
