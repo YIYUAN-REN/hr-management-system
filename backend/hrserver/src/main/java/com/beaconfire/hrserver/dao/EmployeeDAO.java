@@ -11,9 +11,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class EmployeeDAO {
+public class EmployeeDAO extends AbstractHibernateDAO{
     @Autowired
     private SessionFactory sessionFactory;
+
+    public EmployeeDAO(){ setClazz(Employee.class);}
+
+    public int addEmployee(Employee employee){ return save(employee);}
 
     public Employee getEmployeeById(Integer id){
         Session session = sessionFactory.getCurrentSession();

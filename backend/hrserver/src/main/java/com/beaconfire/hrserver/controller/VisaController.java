@@ -1,7 +1,7 @@
 package com.beaconfire.hrserver.controller;
 
 import com.beaconfire.hrserver.domain.Employee;
-import com.beaconfire.hrserver.domain.Visa;
+import com.beaconfire.hrserver.domain.VisaStatus;
 import com.beaconfire.hrserver.response.VisaMessageResponse;
 import com.beaconfire.hrserver.response.VisaStartResponse;
 import com.beaconfire.hrserver.service.VisaService;
@@ -26,7 +26,7 @@ public class VisaController {
     // This function is for redirecting based on employee visa status
     @GetMapping("/{wadawdabawda}")
     public void visaHomePage(HttpServletResponse response, @PathVariable String employeeId) throws IOException {
-        Visa visa = visaService.getVisaByEmployeeId(Integer.parseInt(employeeId));
+        VisaStatus visa = visaService.getVisaByEmployeeId(Integer.parseInt(employeeId));
         visaService.preProcessVisa(visa);
         String visaType = visa.getVisaType();
         boolean I983Submitted = visa.getI983Submitted();

@@ -14,7 +14,16 @@ import { ReportDetailComponent } from './component/housing/report-detail.compone
 import { OptreceiptService } from './services/optreceipt.service';
 import { VisastartComponent } from './visa/visastart/visastart.component';
 import { UploadComponent } from './visa/upload/upload.component';
-
+import { AddressComponent } from './component/boarding/address/address.component';
+import { BoardingFormComponent } from './component/boarding/boarding-form/boarding-form.component';
+import { CarComponent } from './component/boarding/car/car.component';
+import { ContactComponent } from './component/boarding/contact/contact.component';
+import { EmergencyContactComponent } from './component/boarding/emergency-contact/emergency-contact.component';
+import { HttpServiceService } from './component/boarding/http-service.service';
+import { NameComponent } from './component/boarding/name/name.component';
+import { OtherIdentityInfoComponent } from './component/boarding/other-identity-info/other-identity-info.component';
+import { ReferenceComponent } from './component/boarding/reference/reference.component';
+import { VisaStatusComponent } from './component/boarding/visa-status/visa-status.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +33,16 @@ import { UploadComponent } from './visa/upload/upload.component';
     HousingComponent,
     ReportDetailComponent,
     VisastartComponent,
-    UploadComponent
+    UploadComponent,
+    NameComponent,
+    BoardingFormComponent,
+    AddressComponent,
+    ContactComponent,
+    OtherIdentityInfoComponent,
+    CarComponent,
+    VisaStatusComponent,
+    ReferenceComponent,
+    EmergencyContactComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +54,7 @@ import { UploadComponent } from './visa/upload/upload.component';
   ],
   providers: [
     HttpService,
+    HttpServiceService,
     OptreceiptService
   ],
 
