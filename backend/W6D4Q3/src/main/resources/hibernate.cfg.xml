@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+      <mapping class="com.example.w6d4q3.domain.AddressEntity"/>
+      <mapping class="com.example.w6d4q3.domain.ApplicationWorkFlowEntity"/>
+      <mapping class="com.example.w6d4q3.domain.ContactEntity"/>
+      <mapping class="com.example.w6d4q3.domain.DigitalDocumentEntity"/>
+      <mapping class="com.example.w6d4q3.domain.EmployeeEntity"/>
+      <mapping class="com.example.w6d4q3.domain.FacilityEntity"/>
+      <mapping class="com.example.w6d4q3.domain.FacilityReportEntity"/>
+      <mapping class="com.example.w6d4q3.domain.FacilityReportDetailEntity"/>
+      <mapping class="com.example.w6d4q3.domain.HouseEntity"/>
+      <mapping class="com.example.w6d4q3.domain.PersonalDocumentEntity"/>
+      <mapping class="com.example.w6d4q3.domain.RegistrationTokenEntity"/>
+      <mapping class="com.example.w6d4q3.domain.RoleEntity"/>
+      <mapping class="com.example.w6d4q3.domain.UserEntity"/>
+      <mapping class="com.example.w6d4q3.domain.UserRoleEntity"/>
+      <mapping class="com.example.w6d4q3.domain.VisaStatusEntity"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
