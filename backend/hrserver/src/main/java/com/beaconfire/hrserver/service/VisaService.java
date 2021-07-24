@@ -25,7 +25,6 @@ public class VisaService {
     public void preProcessVisa(Visa visa){
         // config employee visa type
         // user visaType, Today's date, user visaEndDate,
-        // I983Submitted, HrUploaded
         String visaType = visa.getVisaType();
         LocalDate todayDate = LocalDate.now();
         String visaEndDatetmp = visa.getVisaEndDate();
@@ -36,7 +35,22 @@ public class VisaService {
             visa.setVisaType("I-983");
             visaDAO.updateVisaType(visa);
         }
+
+        // add a new entity to table-workflow
+        int employeeId = visa.getEmployeeId();
+        boolean isIn = visaDAO.isInSystem(employeeId);
+        if (!isIn){
+            String todayDateS = todayDate.toString();
+            visaDAO.insertNewWorkFlow(employeeId,todayDateS,todayDateS);
+        }
     }
+
+    @Transactional
+    public String getStatus(int employeeId){
+        String status = visaDAO.getStatus(employeeId);
+        return status;
+    }
+
 
 
 }

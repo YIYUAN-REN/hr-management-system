@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { HttpClientModule } from '@angular/common/http';
-import { OptreceiptService } from './services/optreceipt.service';
-import { VisastartComponent } from './visa/visastart/visastart.component';
-import { UploadComponent } from './visa/upload/upload.component';
+import { OptreceiptService } from './service/visaService/optreceipt.service';
+import { VisastartComponent } from './component/visa/visastart/visastart.component';
+import { UploadComponent } from './component/visa/upload/upload.component';
 
 @NgModule({
   declarations: [

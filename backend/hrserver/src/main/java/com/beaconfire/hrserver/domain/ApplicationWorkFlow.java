@@ -13,8 +13,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="VisaStatus")
-public class Visa implements Serializable {
+@Table(name = "ApplicationWorkFlow")
+public class ApplicationWorkFlow implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,20 +23,15 @@ public class Visa implements Serializable {
     @Column(name = "employeeId")
     private int employeeId;
 
-    @Column(name = "visaType")
-    private String visaType;
-
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "createDate")
+    private String createDate;
 
     @Column(name = "modificationDate")
     private String modificationDate;
 
-    @Column(name = "visaStartDate")
-    private String visaStartDate;
+    @Column(name = "status")
+    private String status;
 
-    @Column(name = "visaEndDate")
-    private String visaEndDate;
-
-
+    @Column(name = "comments")
+    private String comments;
 }

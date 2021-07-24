@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OptreceiptService } from '../../services/optreceipt.service';
+import { OptreceiptService } from '../../../service/visaService/optreceipt.service';
 
 
 @Component({
