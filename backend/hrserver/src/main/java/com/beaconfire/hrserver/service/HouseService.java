@@ -37,4 +37,9 @@ public class HouseService {
         List<FacilityReport> reports = houseDAO.getFacilityReportByHouse(house);
         return reports;
     }
+
+    @Transactional
+    public List<House> getAllHouse(){
+        return houseDAO.getAllHouse();
+    }
 }
