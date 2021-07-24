@@ -29,8 +29,8 @@ public class VisaController {
         VisaStatus visa = visaService.getVisaByEmployeeId(Integer.parseInt(employeeId));
         visaService.preProcessVisa(visa);
         String visaType = visa.getVisaType();
-        boolean I983Submitted = visa.getI983Submitted();
-        boolean OptStemReceiptReceived = visa.getOptStemReceiptReceived();
+//        boolean I983Submitted = visa.getI983Submitted();
+//        boolean OptStemReceiptReceived = visa.getOptStemReceiptReceived();
 
         response.sendRedirect("/hr/visa/optreceipt");
 //        if (visaType.equals("OPT Receipt")){

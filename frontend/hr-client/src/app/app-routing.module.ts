@@ -14,6 +14,7 @@ import { UploadStemReceiptComponent } from './visa/upload-stem-receipt/upload-st
 import { WaitforhrComponent } from './visa/waitforhr/waitforhr.component';
 import { VisastartComponent } from './visa/visastart/visastart.component';
 import { UploadComponent } from './visa/upload/upload.component';
+import { BoardingFormComponent } from './component/boarding/boarding-form/boarding-form.component';
 
 const routes: Routes = [
   { path:"login", component:LoginComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path:'hr/visa/i20' ,component:I20Component},
   {path:'hr/visa/uploadStemReceipt',component:UploadStemReceiptComponent},
   {path:'hr/visa/optstemreceipt',component:OptstemreceiptComponent},
-  {path:'hr/visa/optstemead',component:OptstemeadComponent}
+  {path:'hr/visa/optstemead',component:OptstemeadComponent},
+  {path: 'boarding', component: BoardingFormComponent}
 ];
 
 @NgModule({

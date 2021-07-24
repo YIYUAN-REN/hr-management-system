@@ -42,7 +42,6 @@ export class LoginComponent {
           this.router.navigate(["housing"]);  
 
           // need HR coding
-
         }
       }
     );
