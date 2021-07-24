@@ -29,4 +29,12 @@ public class HouseDAO {
         List<FacilityReport> reports = query.getResultList();
         return reports;
     }
+
+    public List<House> getAllHouse(){
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from House";
+        Query query = session.createQuery(statement);
+        List<House> houses = query.getResultList();
+        return houses;
+    }
 }
