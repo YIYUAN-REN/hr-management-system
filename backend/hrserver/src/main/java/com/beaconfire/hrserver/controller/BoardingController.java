@@ -1,7 +1,9 @@
 package com.beaconfire.hrserver.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
-import org.json.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -37,7 +39,7 @@ public class BoardingController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/boarding")
-    public void Boarding(@RequestBody String JsonPack){
+    public void Boarding(@RequestBody String JsonPack) throws JSONException {
 //        System.out.println(JsonPack);
         JSONObject objPack = new JSONObject(JsonPack);
         Employee employee = generateEmployee(objPack);
@@ -54,7 +56,7 @@ public class BoardingController {
         }
     }
 
-    public Employee generateEmployee(JSONObject objPack){
+    public Employee generateEmployee(JSONObject objPack) throws JSONException {
         Employee employee = new Employee();
         //hardcode
         employee.setUserId(1);
@@ -87,7 +89,7 @@ public class BoardingController {
 
         return employee;
     }
-    public Address generateAddress(JSONObject address, int employeeId){
+    public Address generateAddress(JSONObject address, int employeeId) throws JSONException {
         Address addressEntity = new Address();
         addressEntity.setEmployeeId(employeeId);
         addressEntity.setAddressLine1(address.getString("addressLine1"));
@@ -98,7 +100,7 @@ public class BoardingController {
         addressEntity.setStateAbbr(address.getString("stateAbbr"));
         return addressEntity;
     }
-    public VisaStatus generateVisa(JSONObject visa, int employeeId){
+    public VisaStatus generateVisa(JSONObject visa, int employeeId) throws JSONException {
         VisaStatus visaStatus = new VisaStatus();
         visaStatus.setEmployeeId(employeeId);
         if(visa.getString("citizen").equals("yes")) {
@@ -118,7 +120,7 @@ public class BoardingController {
         }catch (ParseException e){e.printStackTrace();}
         return visaStatus;
     }
-    public Contact generateNormalContact(JSONObject objPack, int employeeId){
+    public Contact generateNormalContact(JSONObject objPack, int employeeId) throws JSONException {
         Contact contactEntity = new Contact();
         contactEntity.setEmployeeId(employeeId);
         contactEntity.setIsEmergency((byte)0);
@@ -132,7 +134,7 @@ public class BoardingController {
         contactEntity.setCellPhone(contact.getString("cellPhone"));
         return contactEntity;
     }
-    public Contact generateEmergencyContact(JSONObject contact, int employeeId){
+    public Contact generateEmergencyContact(JSONObject contact, int employeeId) throws JSONException {
         Contact contactEntity = new Contact();
         contactEntity.setEmployeeId(employeeId);
         contactEntity.setIsEmergency((byte)1);

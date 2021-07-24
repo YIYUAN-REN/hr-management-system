@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VisastartService } from '../../services/visastart.service';
+import { VisastartService } from '../../../service/employee-visa-service/visastart.service';
 import { Router } from '@angular/router'
 
 @Component({

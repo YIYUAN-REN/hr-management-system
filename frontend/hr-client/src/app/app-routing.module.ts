@@ -4,16 +4,16 @@ import { LoginComponent } from './component/auth/login.component';
 import { LoginEmailComponent } from './component/auth/login-email.component';
 import { HousingComponent } from './component/housing/housing.component';
 import { ReportDetailComponent } from './component/housing/report-detail.component';
-import { I20Component } from './visa/i20/i20.component';
-import { I983templateComponent } from './visa/i983template/i983template.component';
-import { OpteadComponent } from './visa/optead/optead.component';
-import { OptreceiptComponent } from './visa/optreceipt/optreceipt.component';
-import { OptstemeadComponent } from './visa/optstemead/optstemead.component';
-import { OptstemreceiptComponent } from './visa/optstemreceipt/optstemreceipt.component';
-import { UploadStemReceiptComponent } from './visa/upload-stem-receipt/upload-stem-receipt.component';
-import { WaitforhrComponent } from './visa/waitforhr/waitforhr.component';
-import { VisastartComponent } from './visa/visastart/visastart.component';
-import { UploadComponent } from './visa/upload/upload.component';
+import { I20Component } from './component/visa/employee-visa-i20/i20.component';
+import { I983templateComponent } from './component/visa/employee-visa-i983template/i983template.component';
+import { OpteadComponent } from './component/visa/employee-visa-optead/optead.component';
+import { OptreceiptComponent } from './component/visa/employee-visa-optreceipt/optreceipt.component';
+import { OptstemeadComponent } from './component/visa/employee-visa-optstemead/optstemead.component';
+import { OptstemreceiptComponent } from './component/visa/employee-visa-optstemreceipt/optstemreceipt.component';
+import { UploadStemReceiptComponent } from './component/visa/employee-visa-uploadstemreceipt/upload-stem-receipt.component';
+import { WaitforhrComponent } from './component/visa/employee-visa-waitforhr/waitforhr.component';
+import { VisastartComponent } from './component/visa/employee-visa-visastart/visastart.component';
+import { UploadComponent } from './component/visa/employee-visa-upload/upload.component';
 
 const routes: Routes = [
   { path:"login", component:LoginComponent },
