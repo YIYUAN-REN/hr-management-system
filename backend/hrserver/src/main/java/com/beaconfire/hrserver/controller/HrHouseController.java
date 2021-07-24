@@ -28,7 +28,7 @@ public class HrHouseController {
     }
 
 //    @PostMapping(value = "/postHouse")
-//    public NewHouseResponse addNewHouse(@RequestBody NewHouseRequest request){
+//    public NewHouseResponse postHouse(@RequestBody NewHouseRequest request){
 //
 //        return response;
 //    }
