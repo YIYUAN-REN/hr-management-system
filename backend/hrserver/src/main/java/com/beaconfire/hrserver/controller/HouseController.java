@@ -57,7 +57,6 @@ public class HouseController {
 //    @CrossOrigin(origins="http://localhost:4200")
     @PostMapping(value = "/postComment")
     public CommentResponse postComment(@RequestBody CommentPostRequest request) {
-        System.out.println("11111111111111111111111111111111111111111");
         CommentResponse response = new CommentResponse();
         Integer detailId = facilityService.postComment(request.getReportId(), request.getEmployeeId(), request.getComments());
         response.setStatus(new ResponseStatus(detailId != null, detailId != null ? "Success!" : "Fail!"));
@@ -67,8 +66,6 @@ public class HouseController {
 //    @CrossOrigin(origins="http://localhost:4200")
     @PostMapping(value = "/updateComment")
     public CommentResponse updateComment(@RequestBody CommentUpdateRequest request){
-        System.out.println("22222222222222222222222222222222222");
-        System.out.println(request.getDetailId());
         CommentResponse response = new CommentResponse();
         facilityService.updateComment(request.getDetailId(), request.getComments());
         response.setStatus(new ResponseStatus(true, "Success!"));
