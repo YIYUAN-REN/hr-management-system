@@ -1,5 +1,6 @@
 package com.beaconfire.authserver.response;
 
+import com.beaconfire.authserver.domain.Role;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,6 @@ public class LoginResponse {
     private String id;
     private String userName;
     private String email;
-    private String role;
+    private Role role;
     private String token;
 }
