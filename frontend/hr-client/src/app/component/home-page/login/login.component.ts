@@ -37,6 +37,7 @@ export class LoginComponent {
         } else {
           sessionStorage.setItem("userId", jsonObject.id);
           sessionStorage.setItem("email", jsonObject.email);
+          sessionStorage.setItem("userName", jsonObject.userName);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
           this.router.navigate(["employee"]);

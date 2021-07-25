@@ -53,6 +53,7 @@ public class LoginController {
 
         response.setMessage("Success!");
         response.setId(String.valueOf(user.getId()));
+        response.setUserName(user.getUserName());
         response.setEmail(user.getEmail());
         response.setRole(String.valueOf(roleService.getRoleByUserId(user.getId())));
         response.setToken(token);
