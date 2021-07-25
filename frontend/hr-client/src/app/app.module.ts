@@ -11,6 +11,8 @@ import { HttpService } from './service/housing/http.service';
 import { LoginEmailComponent } from './component/employee/auth/login-email.component';
 import { HousingComponent } from './component/employee/housing/housing.component';
 import { ReportDetailComponent } from './component/employee/housing/report-detail.component';
+import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
+import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
 // employee - visa
 import { OptreceiptService } from './service/visa/optreceipt.service';
 import { VisastartComponent } from './component/employee/visa/visastart/visastart.component';
@@ -55,6 +57,8 @@ import { HireComponent } from './component/hr/hire/hire.component';
     LoginEmailComponent,
     HousingComponent,
     ReportDetailComponent,
+    HrHousingComponent,
+    HrHousingDetailComponent,
 
     // employee - visa
     VisastartComponent,

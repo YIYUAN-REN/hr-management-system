@@ -33,4 +33,14 @@ public class EmployeeDAO extends AbstractHibernateDAO{
         List<Employee> employees = query.getResultList();
         return employees.isEmpty() ? null : employees;
     }
+
+    public Employee findEmployeeByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        System.out.println(email);
+        String statement = "from Employee where email = :email";
+        Query query = session.createQuery(statement);
+        query.setParameter("email", email);
+        List<Employee> employees = query.getResultList();
+        return employees.get(0);
+    }
 }
