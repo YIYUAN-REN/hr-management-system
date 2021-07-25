@@ -37,7 +37,7 @@ export class LoginEmailComponent {
           sessionStorage.setItem("email", jsonObject.email);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate(["housing"]);
+          this.router.navigate([""]);
 
           // need HR coding
 
