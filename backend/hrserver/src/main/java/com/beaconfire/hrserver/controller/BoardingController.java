@@ -1,4 +1,9 @@
 package com.beaconfire.hrserver.controller;
+import com.beaconfire.hrserver.domain.*;
+import com.beaconfire.hrserver.request.HrDecideRequest;
+import com.beaconfire.hrserver.response.ApplicationDetailResponse;
+import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
+import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
@@ -7,16 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.beaconfire.hrserver.service.AddressService;
-import com.beaconfire.hrserver.service.ContactService;
-import com.beaconfire.hrserver.service.EmployeeService;
-import com.beaconfire.hrserver.service.VisaService;
-
-import com.beaconfire.hrserver.domain.Address;
-import com.beaconfire.hrserver.domain.Contact;
-import com.beaconfire.hrserver.domain.Employee;
-import com.beaconfire.hrserver.domain.VisaStatus;
+import java.util.List;
 
 
 @RestController
@@ -26,6 +22,7 @@ public class BoardingController {
     private AddressService addressService;
     private VisaService visaService;
     private ContactService contactService;
+    private WorkflowService workflowService;
     @Autowired
     public void setEmployeeService(EmployeeService employeeService){this.employeeService = employeeService;}
     @Autowired
@@ -34,10 +31,13 @@ public class BoardingController {
     public void setVisaService(VisaService visaService){this.visaService = visaService;}
     @Autowired
     public void setContactService(ContactService contactService){this.contactService = contactService;}
+    @Autowired
+    public void setWorkflowService(WorkflowService workflowService){this.workflowService = workflowService;}
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/boarding")
     public void Boarding(@RequestBody String JsonPack){
+        String WORKFLOW_STATE = "PENDING";
 //        System.out.println(JsonPack);
         JSONObject objPack = new JSONObject(JsonPack);
         Employee employee = generateEmployee(objPack);
@@ -52,12 +52,45 @@ public class BoardingController {
         for (int i = 0; i < emergencies.length(); i++) {
             this.contactService.addContact(generateEmergencyContact(emergencies.getJSONObject(i), employeeId));
         }
+        this.workflowService.addWorkflow(generateWorkflow(115,employeeId, WORKFLOW_STATE));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/viewBoarding/")
+    public List<ApplicationWorkFlow> ViewBoarding(){
+        String goalState = "PENDING";
+        return this.workflowService.getWorkflowByStatus(goalState);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getApplicationDetail/{id}")
+    public ApplicationDetailResponse getApplicationDetail(@PathVariable String id) {
+        ApplicationDetailResponse response = new ApplicationDetailResponse();
+        response.setEmployee(this.employeeService.getEmployeesById(Integer.parseInt(id)));
+        response.setAddress(this.addressService.getAddressByEmployeeId(Integer.parseInt(id)));
+        response.setVisa(this.visaService.getVisaByEmployeeId(Integer.parseInt(id)));
+        response.setEmergency(this.contactService.getEmergencyContactsByEmployeeId(Integer.parseInt(id)));
+        return response;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/hrDecide/")
+    public void hrDecideBoarding(@RequestBody HrDecideRequest decide){
+//        System.out.println(decide.getDecide());
+//        System.out.println(decide.getUid());
+        System.out.println(decide.getComment());
+        ApplicationWorkFlow workflow = this.workflowService.getWorkflowById(Integer.parseInt(decide.getUid()));
+        if(workflow!=null){
+            workflow.setStatus(decide.getDecide());
+            workflow.setComments(decide.getComment());
+            this.workflowService.addWorkflow(workflow);
+        }
+
+    }
     public Employee generateEmployee(JSONObject objPack){
         Employee employee = new Employee();
         //hardcode
-        employee.setUserId(1);
+        employee.setUserId(114);
         employee.setTitle("tbd");
         employee.setManagerId(1);
         employee.setStartDate("tbd");
@@ -142,6 +175,13 @@ public class BoardingController {
         contactEntity.setEmail(contact.getString("email"));
         contactEntity.setRelationship(contact.getString("relation"));
         return contactEntity;
+    }
+    public ApplicationWorkFlow generateWorkflow(int UserId, int employeeId, String state){
+        ApplicationWorkFlow workFlow = new ApplicationWorkFlow();
+        workFlow.setId(UserId);
+        workFlow.setEmployeeId(employeeId);
+        workFlow.setStatus(state);
+        return workFlow;
     }
 }
 

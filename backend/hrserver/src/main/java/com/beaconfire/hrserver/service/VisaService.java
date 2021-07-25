@@ -29,7 +29,7 @@ public class VisaService {
     @Transactional
     public VisaStatus getVisaByEmployeeId(int employeeId){
         Session session = sessionFactory.getCurrentSession();
-        return visaDAO.getVisaByEmployeeId(employeeId);
+        return this.visaDAO.getVisaByEmployeeId(employeeId);
     }
 
     @Transactional

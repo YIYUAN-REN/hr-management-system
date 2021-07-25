@@ -69,6 +69,8 @@ import { RegisterComponent } from './component/home-page/register/register.compo
 import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './samples/my-nav/my-nav.component';
 // import { MyTableComponent } from './samples/my-table/my-table.component';
+import { HireComponent } from './component/hr/hire/hire.component';
+import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +119,8 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
     MyDashboardComponent,
     MyNavComponent,
     // MyTableComponent
+    HireComponent,
+    HireDetailComponent
   ],
   imports: [
     BrowserModule,

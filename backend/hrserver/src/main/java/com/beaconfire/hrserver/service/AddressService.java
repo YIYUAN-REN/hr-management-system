@@ -13,4 +13,5 @@ public class AddressService {
     public void setAddressEntity(com.beaconfire.hrserver.dao.AddressDAO addressDAO){this.addressDAO = addressDAO;}
 
     public void addAddress(Address addressToAdd){this.addressDAO.addAddress(addressToAdd);}
+    public Address getAddressByEmployeeId(int id){return this.addressDAO.getAddressByEmployeeId(id);}
 }
