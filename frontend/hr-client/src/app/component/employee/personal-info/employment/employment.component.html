@@ -1,0 +1,106 @@
+
+
+<div>
+    <thead>
+        <tr>
+            <th><h2>Employmemt</h2></th>
+        </tr>
+    </thead>
+    <tbody>
+        <div *ngIf = "!editorEnabled">
+            
+            <tr>
+                <th>Work Authorization</th>
+                <th> &nbsp;{{employment?.workAuthorization}}</th>
+            </tr>
+    
+            <tr>
+                <th>Title</th>
+                <th> &nbsp;{{employment?.title}}</th>
+            </tr>
+    
+            <tr>
+                <th>Work Authorization Start Date</th>
+                <th>&nbsp;{{employment?.workAuthStartDate}}</th>
+            </tr>
+            <tr>
+                <th>Work Authorization End Date</th>
+                <th>&nbsp;{{employment?.workAuthEndDate}}</th>
+            </tr>
+            <tr>
+                <th>Employmemt Start Date</th>
+                <th>&nbsp;{{employment?.employmentStartDate}}</th>
+            </tr>
+            <tr>
+                <th>Employmemt End Date</th>
+                <th>&nbsp;{{employment?.employmentEndDate}}</th>
+            </tr>
+            
+            <button (click)="enableEditor()">Edit</button>
+        </div>
+    
+        <div *ngIf = "editorEnabled">
+            
+            <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+                <div #nameControl="ngModelGroup" ngModelGroup="user">
+                    <tr>
+                        <th>Work Authorization</th>
+                        <th>
+                            <input type="text" name="workAuthorization" [ngModel]="employment?.workAuthorization" (ngModelChange)="employment.workAuthorization=$event"><br>
+                            
+                        </th>
+                        
+                    </tr>
+            
+                    <tr>
+                        <th>Title</th>
+                        <th>
+                            <input type="text" name="title" [ngModel]="employment?.title" (ngModelChange)="employment.title=$event"><br>
+                                                    
+                        </th>
+                        
+                    </tr>
+            
+                    <tr>
+                        <th>Work Authorization Start Date</th>
+                        <th>
+                            <input type="text" name="workAuthStartDate" [ngModel]="employment?.workAuthStartDate" (ngModelChange)="employment.workAuthStartDate=$event"><br>
+                            
+                        </th>
+                        
+                    </tr>
+                    <tr>
+                        <th>Work Authorization End Date</th>
+                        <th>
+                            <input type="text" name="workAuthEndDate" [ngModel]="employment?.workAuthEndDate" (ngModelChange)="employment.workAuthEndDate=$event"><br>
+                            
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Employmemt Start Date</th>
+                        <th>
+                            <input type="text" name="employmentStartDate" [ngModel]="employment?.employmentStartDate" (ngModelChange)="employment.employmentStartDate=$event"><br>
+                            
+                        </th>
+                        
+                    </tr>
+                    <tr>
+                        <th>Employmemt End Date</th>
+                        <th>
+                            <input type="text" name="employmentEndDate" [ngModel]="employment?.employmentEndDate" (ngModelChange)="employment.employmentEndDate=$event"><br>
+                            
+                        </th>
+
+                    </tr>
+                </div>
+                <button type="submit">Save</button>
+            </form><br>
+            <button (click)="discardChanges()">Cancel</button>
+                
+        </div>
+        
+    </tbody>
+
+
+</div>
+

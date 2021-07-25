@@ -1,0 +1,108 @@
+
+<div *ngIf = "!editorEnabled">
+    <h2>Emergency Contact</h2>
+    <table>
+        
+        <tr *ngFor="let i of emergencyContacts">
+            <div>
+                <table>
+                    <tr>
+                        <th>Name：  </th>
+                        <th>{{i?.fullName}}</th>
+                    </tr>
+                    <tr>
+                        <th>Phone：  </th>
+                        <th>{{i?.phone}}</th>
+                    </tr>
+                </table>
+                
+
+                <h4>Address</h4>
+                <table>
+                    <tr>
+                        <td>{{i?.address?.lineOne}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{i?.address?.lineTwo}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{{i?.address?.city}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{i?.address?.state}}</td>
+                    </tr>
+                    <tr>
+                        <td>Zipcode</td>
+                        <td>{{i?.address?.zip}}</td>
+                    </tr>
+                </table>
+                
+                
+            </div>    
+        </tr>
+        <button (click)="enableEditor()">Edit</button>
+    </table>
+</div>
+
+<div *ngIf = "editorEnabled">
+    <h2>Emergency Contact</h2>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <table>
+            <tr *ngFor="let i of emergencyContacts;let index = index;">
+                <div>
+                    <table>
+                        <tr>
+                            <th>Name：  </th>
+                            <input type="text" name="a{{index}}fullName" [ngModel]="emergencyContacts[index]?.fullName" (ngModelChange)="emergencyContacts[index].fullName=$event"><br>
+                            
+                        </tr>
+                        <tr>
+                            <th>Phone：  </th>
+                            <input type="text" name="a{{index}}phone" [ngModel]="emergencyContacts[index]?.phone" (ngModelChange)="emergencyContacts[index].phone=$event"><br>
+                            
+                        </tr>
+                    </table>
+                    
+    
+                    <h4>Address</h4>
+                    <table>
+                        <tr>
+                            <td>Line1</td>
+                            <input type="text" name="a{{index}}lineOne" [ngModel]="emergencyContacts[index]?.address?.lineOne" (ngModelChange)="emergencyContacts[index].address.lineOne=$event"><br>
+                            
+                        </tr>
+                        <tr>
+                            <td>Line2</td>
+                            <input type="text" name="a{{index}}lineTwo" [ngModel]="emergencyContacts[index]?.address?.lineTwo" (ngModelChange)="emergencyContacts[index].address.lineTwo=$event"><br>
+                            
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <input type="text" name="a{{index}}city" [ngModel]="emergencyContacts[index]?.address?.city" (ngModelChange)="emergencyContacts[index].address.city=$event"><br>
+                            
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <input type="text" name="a{{index}}state" [ngModel]="emergencyContacts[index]?.address?.state" (ngModelChange)="emergencyContacts[index].address.state=$event"><br>
+                            
+                        </tr>
+                        <tr>
+                            <td>Zipcode</td>
+                            <input type="text" name="a{{index}}zip" [ngModel]="emergencyContacts[index]?.address?.zip" (ngModelChange)="emergencyContacts[index].address.zip=$event"><br>
+                            
+                        </tr>
+                    </table>
+                    
+                    
+                </div>    
+            </tr>
+        </table>
+        
+        
+        <button type="submit">Save</button>
+    </form>
+    <button (click)="discardChanges()">Cancel</button>
+</div>
+
