@@ -7,6 +7,7 @@ import { LoginEmailComponent } from './component/employee/auth/login-email.compo
 import { HousingComponent } from '../app/component/employee/housing/housing.component';
 import { ReportDetailComponent } from '../app/component/employee/housing/report-detail.component';
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
+import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
 
 // employee - visa
 import { I20Component } from '../app/component/employee/visa/i20/i20.component';
@@ -61,7 +62,7 @@ const routes: Routes = [
     children : [
       { path:"EmployeeProfile", component:LoginComponent },
       { path:"hire", component:HousingComponent },
-      { path:'housing', component: VisastartComponent},
+      { path:'housing', component: HrHousingComponent},
       { path:"visa", component:PersonalInfoComponent}
   ]},
 
@@ -71,6 +72,9 @@ const routes: Routes = [
   { path:"employee/login-email", component:LoginEmailComponent },
   { path:"employee/housing", component:HousingComponent },
   { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent },
+  { path:"hr/houseManagement", component:HrHousingComponent },
+  { path:"hr/houseManagement/detail/:houseId", component:HrHousingDetailComponent },
+  
 
   // employee - visa
   {path:'employee/visa', component: VisastartComponent},

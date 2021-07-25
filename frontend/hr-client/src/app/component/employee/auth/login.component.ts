@@ -39,7 +39,7 @@ export class LoginComponent {
           sessionStorage.setItem("email", jsonObject.email);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate([""]);  
+          this.router.navigate([""]);
 
           // need HR coding
 
