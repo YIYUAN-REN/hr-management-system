@@ -1,5 +1,6 @@
 package com.beaconfire.hrserver.controller;
 import com.beaconfire.hrserver.domain.*;
+import com.beaconfire.hrserver.request.HrDecideRequest;
 import com.beaconfire.hrserver.response.ApplicationDetailResponse;
 import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.service.*;
@@ -72,6 +73,20 @@ public class BoardingController {
         return response;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/hrDecide/")
+    public void hrDecideBoarding(@RequestBody HrDecideRequest decide){
+//        System.out.println(decide.getDecide());
+//        System.out.println(decide.getUid());
+        System.out.println(decide.getComment());
+        ApplicationWorkFlow workflow = this.workflowService.getWorkflowById(Integer.parseInt(decide.getUid()));
+        if(workflow!=null){
+            workflow.setStatus(decide.getDecide());
+            workflow.setComments(decide.getComment());
+            this.workflowService.addWorkflow(workflow);
+        }
+
+    }
     public Employee generateEmployee(JSONObject objPack){
         Employee employee = new Employee();
         //hardcode

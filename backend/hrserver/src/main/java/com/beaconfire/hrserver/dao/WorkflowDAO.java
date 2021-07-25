@@ -25,4 +25,8 @@ public class WorkflowDAO extends AbstractHibernateDAO{
         return results;
     }
 
+    public ApplicationWorkFlow getWorkflowByUid(int uid){
+        Session session = getCurrentSession();
+        return session.get(ApplicationWorkFlow.class,uid);
+    }
 }

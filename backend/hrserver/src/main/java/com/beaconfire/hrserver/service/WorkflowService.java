@@ -19,4 +19,6 @@ public class WorkflowService {
     }
 
     public List<ApplicationWorkFlow> getWorkflowByStatus(String state){return workflowDAO.getWorkflowByStatus(state);}
+
+    public ApplicationWorkFlow getWorkflowById(int uid){return workflowDAO.getWorkflowByUid(uid);}
 }

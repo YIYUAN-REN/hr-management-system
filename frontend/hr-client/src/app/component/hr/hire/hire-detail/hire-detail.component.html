@@ -41,3 +41,12 @@
     <p>Email: {{contact.email}}</p>
     <p>=====================================</p>
 </div>
+
+<b>Comment</b>
+<div>
+    <input type="text" [(ngModel)]="comment" /><br>
+    <p>=========================================</p>
+</div>
+
+<button type="button" (click)="hrDecide('COMPLETE')">Approve</button>
+<button type="button" (click)="hrDecide('REJECT')">Reject</button>
