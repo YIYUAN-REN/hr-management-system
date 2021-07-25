@@ -48,6 +48,7 @@ public class VisaService {
         LocalDate visaEndDate = LocalDate.parse(visaEndDatetmp, DateTimeFormatter.ISO_LOCAL_DATE);
         Duration diff = Duration.between(todayDate.atStartOfDay(), visaEndDate.atStartOfDay());
         long diffDays = diff.toDays();
+
         if (visaType.equals("OPT EAD")&& diffDays<100){
             visaStatus.setVisaType("I-983");
             visaDAO.updateVisaType(visaStatus);

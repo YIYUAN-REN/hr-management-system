@@ -14,6 +14,6 @@ export class OptstemreceiptComponent implements OnInit {
   }
 
   next(){
-    this.router.navigate(['hr/visa/optstemead']);
+    this.router.navigate(['employee/visa/optstemead']);
   }
 }

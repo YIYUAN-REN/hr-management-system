@@ -44,6 +44,8 @@ import { AlertDiscardChangesComponent } from './component/employee/personal-info
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+import { HrVisaMainComponent } from './component/hr/hr-visa/hr-visa-main/hr-visa-main.component';
+import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-notification/hr-visa-notification.component';
 
 const routes: Routes = [
   // home page
@@ -62,7 +64,7 @@ const routes: Routes = [
       { path:"EmployeeProfile", component:LoginComponent },
       { path:"hire", component:HousingComponent },
       { path:'housing', component: VisastartComponent},
-      { path:"visa", component:PersonalInfoComponent}
+      { path:"visa", component:HrVisaMainComponent}
   ]},
 
 
@@ -87,6 +89,8 @@ const routes: Routes = [
   {path:'employee/visa/optstemreceipt',component:OptstemreceiptComponent},
   {path:'employee/visa/optstemead',component:OptstemeadComponent},
 
+  // hr - visa
+  {path:'hr/visa/notify',component: HrVisaNotificationComponent},
 
   // employee - boarding
   { path:"employee/boarding", component:BoardingFormComponent,

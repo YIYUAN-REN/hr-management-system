@@ -22,6 +22,6 @@ export class OptreceiptComponent implements OnInit {
     this.router.navigate(['upload'],{relativeTo:this.route}); 
   }
   next(){
-    this.router.navigate(['hr/visa/optead']);
+    this.router.navigate(['employee/visa/optead']);
   }
 }

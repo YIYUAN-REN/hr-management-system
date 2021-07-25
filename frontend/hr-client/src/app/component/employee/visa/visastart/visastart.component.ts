@@ -32,21 +32,21 @@ export class VisastartComponent implements OnInit {
   //redirect
   go(){
     if(this.visaType=="OPT Receipt"){
-      this.router.navigate(['hr/visa/optreceipt']);
+      this.router.navigate(['employee/visa/optreceipt']);
     }else if(this.visaType=="OPT EAD"){
-      this.router.navigate(['hr/visa/optead']);
+      this.router.navigate(['employee/visa/optead']);
     }else if(this.visaType=="I-983" && !this.I983Submitted){
-      this.router.navigate(['hr/visa/i983template']);
+      this.router.navigate(['employee/visa/i983template']);
     }else if(this.visaType=="I-983" && this.I983Submitted){
-      this.router.navigate(['hr/visa/waitforhr']);
+      this.router.navigate(['employee/visa/waitforhr']);
     }else if(this.visaType=="I-20" && !this.OptStemReceiptReceived){
-      this.router.navigate(['hr/visa/i20']);
+      this.router.navigate(['employee/visa/i20']);
     }else if(this.visaType=="I-20" && this.OptStemReceiptReceived){
-      this.router.navigate(['hr/visa/uploadStemReceipt']);
+      this.router.navigate(['employee/visa/uploadStemReceipt']);
     }else if(this.visaType=="OPT STEM Receipt"){
-      this.router.navigate(['hr/visa/optstemreceipt']);
+      this.router.navigate(['employee/visa/optstemreceipt']);
     }else if(this.visaType=="OPT STEM EAD"){
-      this.router.navigate(['hr/visa/optstemead']);
+      this.router.navigate(['employee/visa/optstemead']);
     }
   }
 

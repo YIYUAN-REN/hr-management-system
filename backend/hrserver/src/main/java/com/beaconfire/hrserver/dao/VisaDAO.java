@@ -49,6 +49,15 @@ public class VisaDAO extends AbstractHibernateDAO{
         return true;
     }
 
+    public String getStatus(int employeeId){
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from ApplicationWorkFlow where employeeId = :employeeId";
+        Query query = session.createQuery(statement);
+        query.setParameter("employeeId", employeeId);
+        List<ApplicationWorkFlow> list = query.getResultList();
+        return list.get(0).getStatus();
+    }
+
     public void insertNewWorkFlow(int employeeId, String createDate,String modificationDate){
         ApplicationWorkFlow applicationWorkFlow = new ApplicationWorkFlow();
         applicationWorkFlow.setEmployeeId(employeeId);
@@ -59,8 +68,12 @@ public class VisaDAO extends AbstractHibernateDAO{
         session.save(applicationWorkFlow);
     }
 
-    public String getStatus(int employeeId){
+    public String getVisaType(int employeeId){
         Session session = sessionFactory.getCurrentSession();
-        return session.get(ApplicationWorkFlow.class,employeeId).getStatus();
+        String statement = "from VisaStatus where employeeId = :employeeId";
+        Query query = session.createQuery(statement);
+        query.setParameter("employeeId", employeeId);
+        List<VisaStatus> list = query.getResultList();
+        return list.get(0).getVisaType();
     }
 }

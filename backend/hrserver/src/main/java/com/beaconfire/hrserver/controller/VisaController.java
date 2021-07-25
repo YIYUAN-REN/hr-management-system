@@ -26,7 +26,6 @@ public class VisaController {
         VisaStatus visaStatus = visaService.getVisaByEmployeeId(employeeId);
         visaService.preProcessVisa(visaStatus);
 
-        //hardcode for now
         String visaType = visaStatus.getVisaType();
         String status = visaService.getStatus(employeeId);
 

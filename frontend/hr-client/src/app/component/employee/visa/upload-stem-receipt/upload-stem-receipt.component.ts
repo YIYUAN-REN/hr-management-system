@@ -14,6 +14,6 @@ export class UploadStemReceiptComponent implements OnInit {
   ngOnInit(): void {
   }
   next(){
-    this.router.navigate(['hr/visa/optstemreceipt']);
+    this.router.navigate(['employee/visa/optstemreceipt']);
   }
 }
