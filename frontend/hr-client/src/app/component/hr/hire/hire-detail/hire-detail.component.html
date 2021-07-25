@@ -1,0 +1,52 @@
+<b>Name Info</b>
+<p>firstName: {{employee.firstName}}</p>
+<p>middleName: {{employee.middleName}}</p>
+<p>lastName: {{employee.lastName}}</p>
+<p>preferedName: {{employee.preferedName}}</p>
+
+<b>Other identity Info</b>
+<p>SSN: {{employee.ssn}}</p>
+<p>Date of Birth: {{employee.dob}}</p>
+<p>Gender: {{employee.gender}}</p>
+
+<b>Address Info</b>
+<p>Address Line1: {{address.addressLine1}}</p>
+<p>Address Line2: {{address.addressLine2}}</p>
+<p>City: {{address.city}}</p>
+<p>ZipCode: {{address.zipcode}}</p>
+<p>State: {{address.stateName}}</p>
+<p>State Abbrevation: {{address.stateAbbr}}</p>
+
+<b>Contact Info</b>
+<p>Cellphone: {{employee.cellPhone}}</p>
+<p>Work Phone: {{employee.alternatePhone}}</p>
+<p>Email: {{employee.email}}</p>
+
+<b>Car Info</b>
+<p>Car Info: {{employee.car}}</p>
+<p>Driver Liscence: {{employee.driverLicense}}</p>
+<p>Driver Liscence Expiration Date: {{employee.driverLicenseExpirationDate}}</p>
+
+<b>Visa Info</b>
+<p>visaType: {{visa.visaType}}</p>
+<p>Active: {{visa.active=="1"?"Active":"Inactive"}}</p>
+<p>Start Date: {{visa.visaStartDate}}</p>
+<p>End Date: {{visa.visaEndDate}}</p>
+
+<b>Emergency Contacts</b>
+<div *ngFor="let contact of emergency">
+    <p>first Name: {{contact.firstName}}</p>
+    <p>last name: {{contact.lastName}}</p>
+    <p>Cellphone: {{contact.cellPhone}}</p>
+    <p>Email: {{contact.email}}</p>
+    <p>=====================================</p>
+</div>
+
+<b>Comment</b>
+<div>
+    <input type="text" [(ngModel)]="comment" /><br>
+    <p>=========================================</p>
+</div>
+
+<button type="button" (click)="hrDecide('COMPLETE')">Approve</button>
+<button type="button" (click)="hrDecide('REJECT')">Reject</button>

@@ -55,6 +55,8 @@ import { RegisterComponent } from './component/home-page/register/register.compo
 import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './samples/my-nav/my-nav.component';
 
+import { HireComponent } from './component/hr/hire/hire.component';
+import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 
 const routes: Routes = [
   // home page
@@ -78,12 +80,12 @@ const routes: Routes = [
   { path:"hr", component:HrHomePageComponent ,
     children : [
       { path:"EmployeeProfile", component:EmployeeProfileComponent },
-      { path:"hire", component:HousingComponent },
+      { path:"hire", component:HireComponent },
       { path:'housing', component: HrHousingComponent},
       { path:"visa", component:HrVisaMainComponent}
   ]},
-
-
+  { path:"hireDetail", component:HireDetailComponent },
+  
   // employee - housing 
   { path:"employee/login", component:LoginComponent },
   { path:"employee/login-email", component:LoginEmailComponent },
