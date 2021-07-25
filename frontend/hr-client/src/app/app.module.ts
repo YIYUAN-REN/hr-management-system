@@ -24,6 +24,8 @@ import { NameComponent } from './component/boarding/name/name.component';
 import { OtherIdentityInfoComponent } from './component/boarding/other-identity-info/other-identity-info.component';
 import { ReferenceComponent } from './component/boarding/reference/reference.component';
 import { VisaStatusComponent } from './component/boarding/visa-status/visa-status.component';
+import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
+import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { VisaStatusComponent } from './component/boarding/visa-status/visa-statu
     CarComponent,
     VisaStatusComponent,
     ReferenceComponent,
-    EmergencyContactComponent
+    EmergencyContactComponent,
+    HrHousingComponent,
+    HrHousingDetailComponent
   ],
   imports: [
     BrowserModule,

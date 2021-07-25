@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/auth/login.component';
 import { LoginEmailComponent } from './component/auth/login-email.component';
 import { HousingComponent } from './component/housing/housing.component';
+import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
 import { ReportDetailComponent } from './component/housing/report-detail.component';
 import { I20Component } from './visa/i20/i20.component';
 import { I983templateComponent } from './visa/i983template/i983template.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path:"login", component:LoginComponent },
   { path:"login-email", component:LoginEmailComponent },
   { path:"housing", component:HousingComponent },
+  { path:"hr/houseManagement", component:HrHousingComponent },
   { path:"report-detail/:reportId", component:ReportDetailComponent },
   {path:'hr/visa/main', component: VisastartComponent},
   {path:'hr/visa/optreceipt', component:OptreceiptComponent,
