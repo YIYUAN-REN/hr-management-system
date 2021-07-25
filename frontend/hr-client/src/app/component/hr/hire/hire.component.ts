@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/service/http.service';
+import { HttpService } from 'src/app/service/housing/http.service';
 
 @Component({
   selector: 'app-hire',
