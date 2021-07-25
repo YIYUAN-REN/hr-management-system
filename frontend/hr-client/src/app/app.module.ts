@@ -45,6 +45,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+import { HireComponent } from './component/hr/hire/hire.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { HomePageComponent } from './component/home-page/home-page.component';
     AlertDiscardChangesComponent,
     EmployeeHomePageComponent,
     HrHomePageComponent,
-    HomePageComponent
+    HomePageComponent,
+    HireComponent
   ],
   imports: [
     BrowserModule,

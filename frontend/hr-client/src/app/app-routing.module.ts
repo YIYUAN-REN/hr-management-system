@@ -44,6 +44,7 @@ import { AlertDiscardChangesComponent } from './component/employee/personal-info
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+import { HireComponent } from './component/hr/hire/hire.component';
 
 const routes: Routes = [
   // home page
@@ -60,7 +61,7 @@ const routes: Routes = [
   { path:"hr", component:HrHomePageComponent ,
     children : [
       { path:"EmployeeProfile", component:LoginComponent },
-      { path:"hire", component:HousingComponent },
+      { path:"hire", component:HireComponent },
       { path:'housing', component: VisastartComponent},
       { path:"visa", component:PersonalInfoComponent}
   ]},

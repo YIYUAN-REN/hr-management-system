@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -51,6 +52,12 @@ public class BoardingController {
         this.workflowService.addWorkflow(generateWorkflow(115,employeeId, WORKFLOW_STATE));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/viewBoarding/")
+    public List<ApplicationWorkFlow> ViewBoarding(){
+        String goalState = "PENDING";
+        return this.workflowService.getWorkflowByStatus(goalState);
+    }
     public Employee generateEmployee(JSONObject objPack){
         Employee employee = new Employee();
         //hardcode
