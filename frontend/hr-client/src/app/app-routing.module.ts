@@ -15,6 +15,7 @@ import { WaitforhrComponent } from './visa/waitforhr/waitforhr.component';
 import { VisastartComponent } from './visa/visastart/visastart.component';
 import { UploadComponent } from './visa/upload/upload.component';
 import { BoardingFormComponent } from './component/boarding/boarding-form/boarding-form.component';
+import { HireComponent } from './component/hr/hire/hire.component';
 
 const routes: Routes = [
   { path:"login", component:LoginComponent },
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path:'hr/visa/uploadStemReceipt',component:UploadStemReceiptComponent},
   {path:'hr/visa/optstemreceipt',component:OptstemreceiptComponent},
   {path:'hr/visa/optstemead',component:OptstemeadComponent},
-  {path: 'boarding', component: BoardingFormComponent}
+  {path: 'boarding', component: BoardingFormComponent},
+  {path: 'hire', component: HireComponent}
 ];
 
 @NgModule({
