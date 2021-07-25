@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 // employee - housing 
-import { LoginComponent } from './component/employee/auth/login.component';
-import { LoginEmailComponent } from './component/employee/auth/login-email.component';
+import { LoginComponent } from './component/home-page/login/login.component';
+import { LoginEmailComponent } from './component/home-page/login/login-email.component';
 import { HousingComponent } from '../app/component/employee/housing/housing.component';
 import { ReportDetailComponent } from '../app/component/employee/housing/report-detail.component';
 
@@ -44,13 +44,28 @@ import { AlertDiscardChangesComponent } from './component/employee/personal-info
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+// hr - personal info
+import { EmployeeProfileComponent } from './component/hr/employee-profile/employee-profile.component';
+import { RegisterComponent } from './component/home-page/register/register.component';
+
+
+import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
+import { MyNavComponent } from './samples/my-nav/my-nav.component';
+
 
 const routes: Routes = [
   // home page
   { path:"", component:HomePageComponent},
+
+  // { path:"address", component:MyAddressFormComponent},
+  { path:"dashboard", component:MyDashboardComponent},
+  { path:"nav", component:MyNavComponent},
+  // { path:"table", component:MyTableComponent},
+
+  { path:"login", component: HomePageComponent },
+  { path:"employee/register", component:RegisterComponent },
   { path:"employee", component:EmployeeHomePageComponent,
-    children : [
-      { path:"login", component:LoginComponent },
+    children : [  
       { path:"housing", component:HousingComponent },
       { path:'visa', component: VisastartComponent},
       { path:"personalInfo", component:PersonalInfoComponent},
@@ -59,7 +74,7 @@ const routes: Routes = [
   },
   { path:"hr", component:HrHomePageComponent ,
     children : [
-      { path:"EmployeeProfile", component:LoginComponent },
+      { path:"EmployeeProfile", component:EmployeeProfileComponent },
       { path:"hire", component:HousingComponent },
       { path:'housing', component: VisastartComponent},
       { path:"visa", component:PersonalInfoComponent}
@@ -104,11 +119,12 @@ const routes: Routes = [
 
     // employee - personal info
     { path:"employee/personalInfo", component:PersonalInfoComponent,
-    children:[
+      children:[
       {path:'name',component:PiNameComponent}
     ]
-  }
-  
+    },
+    // hr - personal info
+    {path:'hr/EmployeeProfile',component:EmployeeProfileComponent}
 
 ]
 

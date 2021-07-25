@@ -1,9 +1,0 @@
-<h1>Login</h1>
-<a routerLink="/login">Login with Username</a><br><br>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
-    <label><input placeholder="Email" type="text" formControlName="email" required></label><br><br>
-    <label><input placeholder="Password" type="password" formControlName="password" required></label><br><br>
-    <button type="submit" [disabled]="!loginForm.valid">Login</button><br><br>
-</form>
-<a routerLink="/registration">Register</a><br><br>
-{{message}}

@@ -1,0 +1,28 @@
+
+<mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+        <p>
+            <mat-form-field>
+                <input placeholder="Email" type="text" matInput formControlName="email" required>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field>
+                <input placeholder="Password" type="password" matInput formControlName="password" required>
+            </mat-form-field>
+        </p>
+
+        <p *ngIf="message!='Success'" class="error">
+            {{ message }}
+        </p>
+
+        <div class="button">
+            <button type="submit" [disabled]="!loginForm.valid" mat-button>Login</button>
+        </div>
+        <div class="button">
+            <button type="submit"  routerLink="/employee/register" mat-button>Register</button>
+        </div>
+
+    </form>
+</mat-card-content>
