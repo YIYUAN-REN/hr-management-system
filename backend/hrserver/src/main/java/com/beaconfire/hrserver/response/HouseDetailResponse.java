@@ -2,7 +2,6 @@ package com.beaconfire.hrserver.response;
 
 import com.beaconfire.hrserver.domain.Employee;
 import com.beaconfire.hrserver.domain.FacilityReport;
-import com.beaconfire.hrserver.domain.House;
 import lombok.Getter;
 import lombok.Setter;
 

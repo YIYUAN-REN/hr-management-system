@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "VisaStatus", schema = "hrdb")
+@Table(name = "VisaStatus", schema = "hrdb", catalog = "")
 public class VisaStatus implements Serializable {
     private int id;
     private int employeeId;
@@ -14,8 +14,7 @@ public class VisaStatus implements Serializable {
     private String modificationDate;
     private String visaStartDate;
     private String visaEndDate;
-//    private boolean I983Submitted;
-//    private boolean OptStemReceiptReceived;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,25 +87,6 @@ public class VisaStatus implements Serializable {
         this.visaEndDate = visaEndDate;
     }
 
-//    @Basic
-//    @Column(name = "I983Submitted", nullable = true)
-//    public boolean getI983Submitted() {
-//        return I983Submitted;
-//    }
-//
-//    public void setI983Submitted(boolean I983Submitted) {
-//        this.I983Submitted = I983Submitted;
-//    }
-//
-//    @Basic
-//    @Column(name = "OptStemReceiptReceived", nullable = true)
-//    public boolean getOptStemReceiptReceived() {
-//        return OptStemReceiptReceived;
-//    }
-//
-//    public void setOptStemReceiptReceived(boolean OptStemReceiptReceived) {
-//        this.OptStemReceiptReceived = OptStemReceiptReceived;
-//    }
 
     @Override
     public boolean equals(Object o) {

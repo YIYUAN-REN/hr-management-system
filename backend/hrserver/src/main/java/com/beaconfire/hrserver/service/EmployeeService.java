@@ -4,21 +4,13 @@ import com.beaconfire.hrserver.dao.EmployeeDAO;
 import com.beaconfire.hrserver.domain.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeeService {
-    private EmployeeDAO employeeDAO;
+    private EmployeeDAO employeedao;
 
     @Autowired
-    public void setEmployeeDao(EmployeeDAO employeeDAO){this.employeeDAO = employeeDAO;}
+    public void setEmployeeDao(EmployeeDAO employeedao){this.employeedao = employeedao;}
 
-    public int addEmployee(Employee employeeToAdd){return employeeDAO.addEmployee(employeeToAdd);}
-
-    @Transactional
-    public Employee getEmployeesById(Integer id){
-        Employee employee = employeeDAO.getEmployeeById(id);
-        return employee;
-    }
-
+    public int addEmployee(Employee employeeToAdd){return employeedao.addEmployee(employeeToAdd);}
 }
