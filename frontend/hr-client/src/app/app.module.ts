@@ -17,6 +17,8 @@ import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-deta
 import { OptreceiptService } from './service/visa/optreceipt.service';
 import { VisastartComponent } from './component/employee/visa/visastart/visastart.component';
 import { UploadComponent } from './component/employee/visa/upload/upload.component';
+import { HrVisaMainComponent } from './component/hr/hr-visa/hr-visa-main/hr-visa-main.component';
+import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-notification/hr-visa-notification.component';
 // employee - boarding
 import { AddressComponent } from './component/employee/boarding/address/address.component';
 import { BoardingFormComponent } from './component/employee/boarding/boarding-form/boarding-form.component';
@@ -62,6 +64,8 @@ import { HomePageComponent } from './component/home-page/home-page.component';
     // employee - visa
     VisastartComponent,
     UploadComponent,
+    HrVisaMainComponent,
+    HrVisaNotificationComponent,
 
     // employee - boarding
     NameComponent,

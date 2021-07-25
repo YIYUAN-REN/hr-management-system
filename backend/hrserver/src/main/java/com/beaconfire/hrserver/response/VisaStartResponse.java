@@ -7,6 +7,5 @@ import lombok.Setter;
 @Getter
 public class VisaStartResponse {
     private String visaType;
-    private boolean I983Submitted;
-    private boolean OptStemReceiptReceived;
+    private String status;
 }
