@@ -1,8 +1,12 @@
 package com.beaconfire.hrserver.dao;
 import com.beaconfire.hrserver.domain.Contact;
 import com.beaconfire.hrserver.domain.House;
+import com.beaconfire.hrserver.domain.VisaStatus;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class ContactDAO extends AbstractHibernateDAO{
@@ -29,5 +33,15 @@ public class ContactDAO extends AbstractHibernateDAO{
         Session session = sessionFactory.getCurrentSession();
         Contact contact = session.get(Contact.class, id);
         return contact;
+    }
+
+    public List<Contact> getEmergencyContactsByEmployeeId(int employeeId){
+        Session session = sessionFactory.getCurrentSession();
+        String get = "from Contact contact where contact.employeeId=:employeeId";
+        Query query = session.createQuery(get);
+        query.setParameter("employeeId", employeeId);
+        List<Contact> results = query.getResultList();
+        if (results.size()>0) return results;
+        else return null;
     }
 }

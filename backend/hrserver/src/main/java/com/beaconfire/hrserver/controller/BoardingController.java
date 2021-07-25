@@ -1,5 +1,7 @@
 package com.beaconfire.hrserver.controller;
 import com.beaconfire.hrserver.domain.*;
+import com.beaconfire.hrserver.response.ApplicationDetailResponse;
+import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -58,6 +60,18 @@ public class BoardingController {
         String goalState = "PENDING";
         return this.workflowService.getWorkflowByStatus(goalState);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getApplicationDetail/{id}")
+    public ApplicationDetailResponse getApplicationDetail(@PathVariable String id) {
+        ApplicationDetailResponse response = new ApplicationDetailResponse();
+        response.setEmployee(this.employeeService.getEmployeesById(Integer.parseInt(id)));
+        response.setAddress(this.addressService.getAddressByEmployeeId(Integer.parseInt(id)));
+        response.setVisa(this.visaService.getVisaByEmployeeId(Integer.parseInt(id)));
+        response.setEmergency(this.contactService.getEmergencyContactsByEmployeeId(Integer.parseInt(id)));
+        return response;
+    }
+
     public Employee generateEmployee(JSONObject objPack){
         Employee employee = new Employee();
         //hardcode

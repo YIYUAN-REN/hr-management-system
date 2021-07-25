@@ -48,6 +48,7 @@ import { EmployeeHomePageComponent } from './component/employee/employee-home-pa
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
 import { HireComponent } from './component/hr/hire/hire.component';
+import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { HireComponent } from './component/hr/hire/hire.component';
     EmployeeHomePageComponent,
     HrHomePageComponent,
     HomePageComponent,
-    HireComponent
+    HireComponent,
+    HireDetailComponent
   ],
   imports: [
     BrowserModule,
