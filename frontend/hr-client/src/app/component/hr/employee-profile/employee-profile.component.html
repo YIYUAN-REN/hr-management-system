@@ -1,0 +1,17 @@
+<mat-form-field appearance="fill">
+    <mat-label>Search By</mat-label>
+    <mat-select [(value)]="selectedValue">
+    <mat-option value="name">Name</mat-option>
+    <mat-option value="id">ID</mat-option>
+    </mat-select>
+</mat-form-field>
+<p>You selected: {{selectedValue}}</p>
+<button mat-raised-button color="primary" (click)="search()">Search</button>
+
+<div *ngIf = "selected">
+    <app-pi-name></app-pi-name>
+    <app-contact-info>contact info</app-contact-info>
+    <app-pi-address>address</app-pi-address>
+    <app-employment>employment</app-employment>
+    <app-pi-emergency-contact>emergency contact</app-pi-emergency-contact>
+</div>
