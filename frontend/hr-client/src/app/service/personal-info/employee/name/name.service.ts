@@ -14,6 +14,7 @@ export class NameService {
   constructor(private http: HttpClient) { }
 
   getName() {
+    // var userId = sessionStorage.getItem("userId");
     return this.http.get<Name>(`${this.baseUrl}/1`).pipe(catchError(this.handleError));
   }
 

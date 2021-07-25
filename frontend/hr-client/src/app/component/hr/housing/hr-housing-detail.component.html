@@ -1,8 +1,29 @@
 <h1>House Detail</h1><br>
-<!-- 
-<h2>>House Information</h2>
-    Address: {{houseInfo.address}}<br>
-    Landlord: {{houseInfo.contact.firstName}} {{houseInfo.contact.lastName}}<br>
-    Phone: {{houseInfo.contact.phoneNumber}}<br>
-    Email: {{houseInfo.contact.email}}<br>
-    Number of Employees: {{houseInfo.numberOfPerson}}<br><br> -->
+
+<h2>House Information</h2>
+    Address: {{house?.address}}<br>
+    Landlord: {{contact?.firstName}} {{contact?.lastName}}<br>
+    Phone: {{contact?.cellPhone}}<br>
+    Email: {{contact?.email}}<br>
+    Number of Employees: {{house?.numberOfPerson}}<br><br>
+
+<h2>Facility Information</h2>
+<ng-container *ngFor="let facility of facilities">
+    Type: {{facility?.type}} | Quantity: {{facility?.quantity}}<br>
+</ng-container><br>
+<h3>Report List:</h3>
+<ng-container *ngFor="let report of reports">
+    Title: {{report.title}}<br>
+    Date: {{report.reportDate}}<br>
+    Status: {{report.status}}<br>
+    <button routerLink="/employee/housing/report-detail/{{report.id}}">Detail</button><br><br>
+</ng-container><br>
+
+<h2>Employee Information</h2>
+<ng-container *ngFor="let employee of employees">
+    Name: {{employee.preferedName == null ? employee.firstName : employee.preferedName}}<br>
+    Phone: {{employee.cellPhone}}<br>
+    Email: {{employee.email}}<br>
+    Car: {{employee.car}}<br>
+    <button (click)="goProfile(employee.id)">Detail</button><br><br>
+</ng-container>

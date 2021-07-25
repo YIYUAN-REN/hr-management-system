@@ -14,6 +14,7 @@ import com.beaconfire.hrserver.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -63,6 +64,9 @@ public class HrHouseController {
         response.setEmployees(houseService.getEmployeesByHouse(house));
         response.setFacilities(houseService.getFacilitiesByHouse(house));
         response.setReports(houseService.getFacilityReportByHouse(house));
+        List<House> houses = new ArrayList<>();
+        houses.add(house);
+        response.setContact(houseService.getContactsByHouses(houses).get(0));
         return response;
     }
 }

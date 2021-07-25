@@ -1,0 +1,67 @@
+<p>HR Visa Management Main Page</p>
+
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Name(Leagal Name)
+            </th>
+            <th>
+                Work Authorization
+            </th>
+            <th>
+                Expiration Date
+            </th>
+            <th>
+                Day left
+            </th>
+            <th>
+                Action Required
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <button (click)="toggleValue = !toggleValue">Expend</button>
+            <td>
+                {{this.name}}
+            </td>
+            <td>
+                {{this.visaType}}
+            </td>
+            <td>
+                {{this.endDate}}
+            </td>
+            <td>
+                {{this.daysLeft}}
+            </td>
+            <td>
+                <button (click)="notify()">Send Notification</button>
+            </td>
+        </tr>
+
+        <tr>
+            <ng-container *ngIf="!toggleValue">
+            <td></td>
+            <td colspan="2">
+                <p onclick="this.contentEditable=true;this.className='inEdit';
+                "onblur="this.contentEditable=false;this.className=''; "
+                contenteditable="false" class="">
+                    {{this.name}} <br>
+                    {{this.visaType}} <br>
+                    {{this.startDate}} <br>
+                    {{this.endDate}}
+                </p>
+            </td>
+            <td colspan="3">
+                Document Received: <br>
+                {{this.filePath}}
+            </td>
+            </ng-container>
+        </tr>
+
+    </tbody>
+</table>

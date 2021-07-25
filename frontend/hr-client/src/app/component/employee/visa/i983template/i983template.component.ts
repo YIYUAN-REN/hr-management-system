@@ -14,6 +14,6 @@ export class I983templateComponent implements OnInit {
   }
 
   next(){
-    this.router.navigate(['hr/visa/waitforhr']);
+    this.router.navigate(['employee/visa/waitforhr']);
   }
 }

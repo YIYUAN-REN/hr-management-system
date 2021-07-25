@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // employee - housing 
-import { LoginComponent } from './component/employee/auth/login.component';
-import { LoginEmailComponent } from './component/employee/auth/login-email.component';
+import { LoginComponent } from './component/home-page/login/login.component';
+import { LoginEmailComponent } from './component/home-page/login/login-email.component';
 import { HousingComponent } from '../app/component/employee/housing/housing.component';
 import { ReportDetailComponent } from '../app/component/employee/housing/report-detail.component';
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
+import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
 
 // employee - visa
 import { I20Component } from '../app/component/employee/visa/i20/i20.component';
@@ -44,13 +45,30 @@ import { AlertDiscardChangesComponent } from './component/employee/personal-info
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+import { HrVisaMainComponent } from './component/hr/hr-visa/hr-visa-main/hr-visa-main.component';
+import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-notification/hr-visa-notification.component';
+// hr - personal info
+import { EmployeeProfileComponent } from './component/hr/employee-profile/employee-profile.component';
+import { RegisterComponent } from './component/home-page/register/register.component';
+
+
+import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
+import { MyNavComponent } from './samples/my-nav/my-nav.component';
+
 
 const routes: Routes = [
   // home page
   { path:"", component:HomePageComponent},
+
+  // { path:"address", component:MyAddressFormComponent},
+  { path:"dashboard", component:MyDashboardComponent},
+  { path:"nav", component:MyNavComponent},
+  // { path:"table", component:MyTableComponent},
+
+  { path:"login", component: HomePageComponent },
+  { path:"employee/register", component:RegisterComponent },
   { path:"employee", component:EmployeeHomePageComponent,
-    children : [
-      { path:"login", component:LoginComponent },
+    children : [  
       { path:"housing", component:HousingComponent },
       { path:'visa', component: VisastartComponent},
       { path:"personalInfo", component:PersonalInfoComponent},
@@ -59,10 +77,10 @@ const routes: Routes = [
   },
   { path:"hr", component:HrHomePageComponent ,
     children : [
-      { path:"EmployeeProfile", component:LoginComponent },
+      { path:"EmployeeProfile", component:EmployeeProfileComponent },
       { path:"hire", component:HousingComponent },
-      { path:'housing', component: VisastartComponent},
-      { path:"visa", component:PersonalInfoComponent}
+      { path:'housing', component: HrHousingComponent},
+      { path:"visa", component:HrVisaMainComponent}
   ]},
 
 
@@ -71,6 +89,9 @@ const routes: Routes = [
   { path:"employee/login-email", component:LoginEmailComponent },
   { path:"employee/housing", component:HousingComponent },
   { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent },
+  { path:"hr/houseManagement", component:HrHousingComponent },
+  { path:"hr/houseManagement/detail/:houseId", component:HrHousingDetailComponent },
+  
 
   // employee - visa
   {path:'employee/visa', component: VisastartComponent},
@@ -87,6 +108,8 @@ const routes: Routes = [
   {path:'employee/visa/optstemreceipt',component:OptstemreceiptComponent},
   {path:'employee/visa/optstemead',component:OptstemeadComponent},
 
+  // hr - visa
+  {path:'hr/visa/notify',component: HrVisaNotificationComponent},
 
   // employee - boarding
   { path:"employee/boarding", component:BoardingFormComponent,
@@ -104,11 +127,12 @@ const routes: Routes = [
 
     // employee - personal info
     { path:"employee/personalInfo", component:PersonalInfoComponent,
-    children:[
+      children:[
       {path:'name',component:PiNameComponent}
     ]
-  }
-  
+    },
+    // hr - personal info
+    {path:'hr/EmployeeProfile',component:EmployeeProfileComponent}
 
 ]
 

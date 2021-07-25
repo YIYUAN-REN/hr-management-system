@@ -15,7 +15,7 @@ export class I20Component implements OnInit {
   }
 
   next(){
-    this.router.navigate(['hr/visa/uploadStemReceipt']);
+    this.router.navigate(['employee/visa/uploadStemReceipt']);
   }
 
 }

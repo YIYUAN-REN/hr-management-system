@@ -4,28 +4,33 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-
-export class LoginComponent {
+export class RegisterComponent {
   message: string;
-  loginForm: any;
+  registerForm: any;
 
   constructor(private httpService: HttpService, private router: Router) { 
     this.message = "";
-    this.loginForm = new FormGroup({
+    this.registerForm = new FormGroup({
       userName: new FormControl(''),
-      password: new FormControl('')
+      email: new FormControl(''),
+      password: new FormControl(''),
+      passwordConfirm: new FormControl(''),
+      token: new FormControl('')
+      
     });
   }
 
   onSubmit(form: FormGroup) {
     this.httpService.postData("/auth/login", {
       userName: form.value["userName"], 
-      email: null,
-      password: form.value["password"]
+      email : form.value["email"],
+      password: form.value["password"],
+      passwordConfirm: form.value["passwordConfirm"],
+      token: form.value["token"]
     }).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
@@ -33,13 +38,13 @@ export class LoginComponent {
         // console.log(jsonObject);
         if (jsonObject.message != "Success!") {
           this.message = jsonObject.message;
-          this.loginForm.setValue({userName:"", password:""});
+          this.registerForm.setValue({userName:"", password:""});
         } else {
           sessionStorage.setItem("userId", jsonObject.id);
           sessionStorage.setItem("email", jsonObject.email);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate([""]);  
+          this.router.navigate(["login"]);  
 
           // need HR coding
 

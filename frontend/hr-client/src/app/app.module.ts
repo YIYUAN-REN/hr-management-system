@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './component/employee/auth/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // employee - housing 
 import { HttpService } from './service/housing/http.service';
-import { LoginEmailComponent } from './component/employee/auth/login-email.component';
+import { LoginComponent } from './component/home-page/login/login.component';
+import { LoginEmailComponent } from './component/home-page/login/login-email.component';
 import { HousingComponent } from './component/employee/housing/housing.component';
 import { ReportDetailComponent } from './component/employee/housing/report-detail.component';
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
@@ -17,6 +17,8 @@ import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-deta
 import { OptreceiptService } from './service/visa/optreceipt.service';
 import { VisastartComponent } from './component/employee/visa/visastart/visastart.component';
 import { UploadComponent } from './component/employee/visa/upload/upload.component';
+import { HrVisaMainComponent } from './component/hr/hr-visa/hr-visa-main/hr-visa-main.component';
+import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-notification/hr-visa-notification.component';
 // employee - boarding
 import { AddressComponent } from './component/employee/boarding/address/address.component';
 import { BoardingFormComponent } from './component/employee/boarding/boarding-form/boarding-form.component';
@@ -44,9 +46,29 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
+
+
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
 import { HrHomePageComponent } from './component/hr/hr-home-page/hr-home-page.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
+// hr - personal info
+import { EmployeeProfileComponent } from './component/hr/employee-profile/employee-profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './component/home-page/register/register.component';
+
+// import { MyAddressFormComponent } from './samples/my-address-form/my-address-form.component';
+import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
+import { MyNavComponent } from './samples/my-nav/my-nav.component';
+// import { MyTableComponent } from './samples/my-table/my-table.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +84,8 @@ import { HomePageComponent } from './component/home-page/home-page.component';
     // employee - visa
     VisastartComponent,
     UploadComponent,
+    HrVisaMainComponent,
+    HrVisaNotificationComponent,
 
     // employee - boarding
     NameComponent,
@@ -85,7 +109,14 @@ import { HomePageComponent } from './component/home-page/home-page.component';
     AlertDiscardChangesComponent,
     EmployeeHomePageComponent,
     HrHomePageComponent,
-    HomePageComponent
+    HomePageComponent,
+    EmployeeProfileComponent,
+    RegisterComponent,
+
+    // MyAddressFormComponent,
+    MyDashboardComponent,
+    MyNavComponent,
+    // MyTableComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +124,25 @@ import { HomePageComponent } from './component/home-page/home-page.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatCardModule,
+    MatRadioModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatDividerModule,
+    MatGridListModule,
+    MatMenuModule
+
+
+
     // AngularFileUploaderModule
   ],
   providers: [
