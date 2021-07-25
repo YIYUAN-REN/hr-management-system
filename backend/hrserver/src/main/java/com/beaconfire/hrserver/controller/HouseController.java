@@ -1,0 +1,74 @@
+package com.beaconfire.hrserver.controller;
+
+import com.beaconfire.hrserver.common.ResponseStatus;
+import com.beaconfire.hrserver.domain.House;
+import com.beaconfire.hrserver.request.CommentPostRequest;
+import com.beaconfire.hrserver.request.CommentUpdateRequest;
+import com.beaconfire.hrserver.request.FacilityReportRequest;
+import com.beaconfire.hrserver.response.CommentResponse;
+import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
+import com.beaconfire.hrserver.response.FacilityReportResponse;
+import com.beaconfire.hrserver.response.HouseDetailResponse;
+import com.beaconfire.hrserver.service.FacilityService;
+import com.beaconfire.hrserver.service.HouseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/hr/housing")
+public class HouseController {
+    @Autowired
+    private HouseService houseService;
+
+    @Autowired
+    private FacilityService facilityService;
+
+//    @CrossOrigin(origins="http://localhost:4200")
+    @GetMapping(value="/houseDetail/{employeeId}")
+    public HouseDetailResponse getHouseDetail(@PathVariable String employeeId) {
+            HouseDetailResponse response = new HouseDetailResponse();
+            House house = houseService.getHouseByEmployeeId(Integer.parseInt(employeeId));
+            response.setId(house.getId());
+            response.setAddress(house.getAddress());
+            response.setEmployees(houseService.getEmployeesByHouse(house));
+            response.setReports(houseService.getFacilityReportByHouse(house));
+            return response;
+    }
+
+//    @CrossOrigin(origins="http://localhost:4200")
+    @PostMapping(value = "/facilityReport")
+    public FacilityReportResponse postFacilityReport(@RequestBody FacilityReportRequest request) {
+        FacilityReportResponse response = new FacilityReportResponse();
+        Integer facilityReportId = facilityService.postFacilityReport(request.getHouseId(), request.getTitle(), request.getEmployeeId(), request.getDescription());
+        response.setStatus(new ResponseStatus(true, facilityReportId != null ? "Success!" : "Fail!"));
+        return response;
+    }
+
+//    @CrossOrigin(origins="http://localhost:4200")
+    @GetMapping("/facilityReportDetail/{id}")
+    public FacilityReportDetailResponse getFacilityReportDetail(@PathVariable String id) {
+        FacilityReportDetailResponse response = new FacilityReportDetailResponse();
+        response.setFacilityReport(facilityService.getFacilityReportById(Integer.parseInt(id)));
+        response.setFacilityReportDetails(facilityService.getFacilityReportDetailByFacilityReportId(Integer.parseInt(id)));
+        return response;
+    }
+
+//    @CrossOrigin(origins="http://localhost:4200")
+    @PostMapping(value = "/postComment")
+    public CommentResponse postComment(@RequestBody CommentPostRequest request) {
+        CommentResponse response = new CommentResponse();
+        Integer detailId = facilityService.postComment(request.getReportId(), request.getEmployeeId(), request.getComments());
+        response.setStatus(new ResponseStatus(detailId != null, detailId != null ? "Success!" : "Fail!"));
+        return response;
+    }
+
+//    @CrossOrigin(origins="http://localhost:4200")
+    @PostMapping(value = "/updateComment")
+    public CommentResponse updateComment(@RequestBody CommentUpdateRequest request){
+        CommentResponse response = new CommentResponse();
+        facilityService.updateComment(request.getDetailId(), request.getComments());
+        response.setStatus(new ResponseStatus(true, "Success!"));
+        return response;
+    }
+}

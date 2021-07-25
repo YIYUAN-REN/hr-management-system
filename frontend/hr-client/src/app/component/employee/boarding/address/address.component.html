@@ -1,0 +1,30 @@
+<form [formGroup]="addressForm" >
+
+    <p>Address Info</p>
+    
+    <div>
+        <label>Address Line1: <input type="text" formControlName="addressLine1"></label>
+        <label style="color:red" *ngIf="addressForm.controls.addressLine1.invalid && 
+        (addressForm.controls.addressLine1.dirty||addressForm.controls.addressLine1.touched)">addressLine1 required!</label><br>
+        
+        <label>Address Line2: <input type="text" formControlName="addressLine2"></label><br>
+        
+        <label>City: <input type="text" formControlName="city"></label>
+        <label style="color:red" *ngIf="addressForm.controls.city.invalid && 
+        (addressForm.controls.city.dirty||addressForm.controls.city.touched)">City name required!</label><br>
+        
+        <label>zipcode: <input type="text" formControlName="zipCode"></label>
+        <label style="color:red" *ngIf="addressForm.controls.zipCode.invalid && 
+        (addressForm.controls.zipCode.dirty||addressForm.controls.zipCode.touched)">zipCode required!</label><br>   
+        
+        <label>State Name: <input type="text" formControlName="sateName"></label>
+        <label style="color:red" *ngIf="addressForm.controls.sateName.invalid && 
+        (addressForm.controls.sateName.dirty||addressForm.controls.sateName.touched)">sateName required!</label><br>
+        
+        <label>State Abbrevation: <input type="text" formControlName="stateAbbr"></label>
+        <label style="color:red" *ngIf="addressForm.controls.stateAbbr.invalid && 
+        (addressForm.controls.stateAbbr.dirty||addressForm.controls.stateAbbr.touched)">State Abbrevation required!</label><br>
+        
+    </div>
+    <!-- <button type="submit" (click)="onSubmit()" [disabled]="!addressForm.valid">Next</button> -->
+    </form>
