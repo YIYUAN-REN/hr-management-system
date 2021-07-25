@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 // employee - housing 
 import { LoginComponent } from './component/employee/auth/login.component';
 import { LoginEmailComponent } from './component/employee/auth/login-email.component';
 import { HousingComponent } from '../app/component/employee/housing/housing.component';
 import { ReportDetailComponent } from '../app/component/employee/housing/report-detail.component';
+import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
 
 // employee - visa
 import { I20Component } from '../app/component/employee/visa/i20/i20.component';

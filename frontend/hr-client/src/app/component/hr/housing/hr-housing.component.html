@@ -1,0 +1,22 @@
+<h1>House Management</h1><br>
+
+<h2>View Houses</h2>
+<ng-container *ngFor="let house of houses; let i=index">
+    Address: {{house.address}}<br>
+    Landlord: {{contacts[i].firstName}} {{contacts[i].lastName}}<br>
+    Phone: {{contacts[i].cellPhone}}<br>
+    Email: {{contacts[i].email}}<br>
+    Number of Employees: {{house.numberOfPerson}}<br>
+    <button routerLink="/house-detail/{{house.id}}">Detail</button><br><br>
+</ng-container>
+
+<h2>Add House</h2>
+<form [formGroup]="addHouseForm" (ngSubmit)="onSubmit(addHouseForm)">
+    <input type="text" formControlName="address" placeholder="Address" required><br>
+    <input type="text" formControlName="firstName" placeholder="First Name" required><br>
+    <input type="text" formControlName="lastName" placeholder="Last Name" required><br>
+    <input type="text" formControlName="cellPhone" placeholder="Phone" required><br>
+    <input type="text" formControlName="email" placeholder="Email" required><br>
+    <button type="submit" [disabled]="!addHouseForm.valid">Add</button>
+</form>
+{{message}}
