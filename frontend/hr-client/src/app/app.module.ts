@@ -72,6 +72,7 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
 import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 import { PendingComponent } from './component/home-page/pending/pending.component';
+import { FileUploadComponent } from './component/employee/boarding/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { PendingComponent } from './component/home-page/pending/pending.componen
     // MyTableComponent
     HireComponent,
     HireDetailComponent,
-    PendingComponent
+    PendingComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
