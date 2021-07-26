@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/service/housing/http.service';
 import { HireComponent } from '../hire.component';
 
@@ -17,7 +18,7 @@ export class HireDetailComponent implements OnInit {
   uid:any;
   comment:String='';
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private router:Router) {
     let packString = sessionStorage.getItem("packString");
     var jsonObject;
     if(packString){
@@ -43,6 +44,7 @@ export class HireDetailComponent implements OnInit {
     }).subscribe(
       (Response)=>{
         console.log(Response);
+        this.router.navigate(["hr/hire"]);
       }
     );
   }

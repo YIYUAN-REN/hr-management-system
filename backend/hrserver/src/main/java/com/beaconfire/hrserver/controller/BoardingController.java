@@ -55,7 +55,7 @@ public class BoardingController {
         for (int i = 0; i < emergencies.length(); i++) {
             this.contactService.addContact(generateEmergencyContact(emergencies.getJSONObject(i), employeeId));
         }
-        this.workflowService.addWorkflow(generateWorkflow(115,employeeId, WORKFLOW_STATE));
+        this.workflowService.addWorkflow(generateWorkflow(Integer.parseInt(userId),employeeId, WORKFLOW_STATE));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
