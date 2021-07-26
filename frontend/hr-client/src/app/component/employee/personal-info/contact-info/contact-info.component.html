@@ -1,78 +1,82 @@
 
 
-<div>
-    <thead>
-        <tr>
-            <th><h2>Contact Information</h2></th>
-        </tr>
-    </thead>
-    <tbody>
-        <div *ngIf = "!editorEnabled">
-            
+
+<div *ngIf = "!editorEnabled">
+    <mat-card class="example-card">
+        <h1>Contact Information</h1>
+        <mat-card-content>
             <tr>
-                <th>Cell Phone</th>
+                <td><button mat-button color="primary">Cell Phone</button></td>
                 <th> &nbsp;{{contactinfo?.cellPhone}}</th>
             </tr>
-    
+
             <tr>
-                <th>Work Phone</th>
+                <td><button mat-button color="primary">Work Phone</button></td>
                 <th> &nbsp;{{contactinfo?.workPhone}}</th>
             </tr>
-    
+
             <tr>
-                <th>Personal Email</th>
+                <td><button mat-button color="primary">Personal Email</button></td>
                 <th>&nbsp;{{contactinfo?.personalEmail}}</th>
             </tr>
             <tr>
-                <th>Work Email</th>
+                <td><button mat-button color="primary">Work Email</button></td>
                 <th>&nbsp;{{contactinfo?.workEmail}}</th>
             </tr>
             
+        </mat-card-content> 
             
-            <button (click)="enableEditor()">Edit</button>
-        </div>
-    
-        <div *ngIf = "editorEnabled">
-            
-            <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-                <div>
-                    <tr>
-                        <td>Cell Phone</td>
-                        <td>
-                            <input type="text" name="cellPhone" [ngModel]="contactinfo?.cellPhone" (ngModelChange)="contactinfo.cellPhone=$event"><br>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Work Phone</td>
-                        <td>
-                            <input type="text" name="workPhone" [ngModel]="contactinfo?.workPhone" (ngModelChange)="contactinfo.workPhone=$event"><br>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Personal Email</td>
-                        <td>
-                            <input type="text" name="personalEmail" [ngModel]="contactinfo?.personalEmail" (ngModelChange)="contactinfo.personalEmail=$event"><br>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Work Email</td>
-                        <td>
-                            <input type="text" name="workEmail" [ngModel]="contactinfo?.workEmail" (ngModelChange)="contactinfo.workEmail=$event"><br>
-                            
-                        </td>
-                    </tr>
-                    
-                </div>
-                <button type="submit">Save</button>
-            </form><br>
-                <button (click)="discardChanges()">Cancel</button>
-        </div>
-        
-    </tbody>
-
-
+        <mat-card-actions>
+            <button mat-raised-button color="primary" mat-button (click)="enableEditor()">Edit</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
+
+<div *ngIf = "editorEnabled">
+    <mat-card>
+    <h1>Contact Information</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+        <table>
+            <tr>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cell Phone</mat-label>
+                        <input matInput type="text" name="cellPhone" [ngModel]="contactinfo?.cellPhone" (ngModelChange)="contactinfo.cellPhone=$event"><br>
+                    </mat-form-field>
+                </th> 
+            </tr>
+            <tr>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Work Phone</mat-label>
+                        <input matInput type="text" name="workPhone" [ngModel]="contactinfo?.workPhone" (ngModelChange)="contactinfo.workPhone=$event"><br>
+                    </mat-form-field>
+                </th> 
+            </tr>
+            <tr>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Personal Email</mat-label>
+                        <input matInput type="text" name="personalEmail" [ngModel]="contactinfo?.personalEmail" (ngModelChange)="contactinfo.personalEmail=$event"><br>
+                    </mat-form-field>
+                </th> 
+            </tr>
+            <tr>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Work Email</mat-label>
+                        <input matInput type="text" name="workEmail" [ngModel]="contactinfo?.workEmail" (ngModelChange)="contactinfo.workEmail=$event"><br>
+                    </mat-form-field>
+                </th> 
+            </tr>
+            <tr>
+                <button mat-stroked-button color="primary" (click)="onSubmit()">Save</button>
+                <button mat-stroked-button color="accent" (click)="discardChanges()">Cancel</button>
+            </tr> 
+        </table>
+    </form><br>
+    </mat-card>
+</div>
+        
+
 

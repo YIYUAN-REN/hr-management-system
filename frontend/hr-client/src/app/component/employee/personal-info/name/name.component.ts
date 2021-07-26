@@ -58,8 +58,8 @@ export class PiNameComponent implements OnInit {
     data.gender
   }
 
-  onSubmit(form: any) {
-    console.log(form);
+  onSubmit() {
+
     
     let name = new Name(
       this.name.age,

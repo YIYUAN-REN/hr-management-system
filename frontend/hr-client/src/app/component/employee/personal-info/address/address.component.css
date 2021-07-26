@@ -1,5 +1,16 @@
-div {
+/* div {
     border: 1px solid yellow;
     padding: 10px;
     margin: 10px;
-  }
+  } */
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+h1 {
+  color: #16bdf0;
+}
+
+th {
+  color: #364952;
+}

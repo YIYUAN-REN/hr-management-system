@@ -1,38 +1,33 @@
 
 
 <mat-tab-group>
-    <mat-tab label="Log in as Employee"> 
+    <mat-tab label="Log with UserName"> 
         
         <mat-card>
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedLoginMethod">
+            <!-- <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedLoginMethod">
                 <mat-radio-button value="username">Use Username</mat-radio-button>
                 <mat-radio-button value="email">User Email</mat-radio-button>
             </mat-radio-group>
-            {{selectedLoginMethod}}
+            {{selectedLoginMethod}} -->
             <!-- <mat-card-title>Login</mat-card-title> -->
-                <div *ngIf = "selectedLoginMethod=='email'">
-                    <app-login-email></app-login-email>
-                </div>
-                <div *ngIf = "selectedLoginMethod=='username'">
+
+
                     <app-login></app-login>
-                </div>
+
         </mat-card>
     </mat-tab>
 
-    <mat-tab label="Log in as HR"> 
+    <mat-tab label="Log with Email"> 
         <mat-card>
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedLoginMethod">
+            <!-- <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedLoginMethod">
                 <mat-radio-button value="username">Use Username</mat-radio-button>
                 <mat-radio-button value="email">User Email</mat-radio-button>
             </mat-radio-group>
-            {{selectedLoginMethod}}
+            {{selectedLoginMethod}} -->
             <!-- <mat-card-title>Login</mat-card-title> -->
-                <div *ngIf = "selectedLoginMethod=='email'">
+
                     <app-login-email></app-login-email>
-                </div>
-                <div *ngIf = "selectedLoginMethod=='username'">
-                    <app-login></app-login>
-                </div>
+
         </mat-card>
     </mat-tab>
 </mat-tab-group>

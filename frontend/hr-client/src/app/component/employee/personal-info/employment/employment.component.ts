@@ -57,8 +57,8 @@ export class EmploymentComponent implements OnInit {
     this.employment.workAuthEndDate = data.workAuthEndDate;
   }
 
-  onSubmit(form: any) {
-    console.log(form);
+  onSubmit() {
+
     
     let employment = new Employment(
       this.employment.workAuthorization,

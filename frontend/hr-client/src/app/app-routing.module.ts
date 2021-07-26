@@ -52,18 +52,10 @@ import { EmployeeProfileComponent } from './component/hr/employee-profile/employ
 import { RegisterComponent } from './component/home-page/register/register.component';
 
 
-import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
-import { MyNavComponent } from './samples/my-nav/my-nav.component';
-
 
 const routes: Routes = [
   // home page
   { path:"", component:HomePageComponent},
-
-  // { path:"address", component:MyAddressFormComponent},
-  { path:"dashboard", component:MyDashboardComponent},
-  { path:"nav", component:MyNavComponent},
-  // { path:"table", component:MyTableComponent},
 
   { path:"login", component: HomePageComponent },
   { path:"employee/register", component:RegisterComponent },

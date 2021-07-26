@@ -54,8 +54,8 @@ export class ContactinfoComponent implements OnInit {
     data.workPhone
   }
 
-  onSubmit(form: any) {
-    console.log(form);
+  onSubmit() {
+
     
     let contactinfo = new Contactinfo(
       this.contactinfo.cellPhone,

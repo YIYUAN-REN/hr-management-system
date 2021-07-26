@@ -1,13 +1,37 @@
 
 
-<app-pi-name></app-pi-name>
+<div>
+  <mat-card>
+    <mat-card-content>
+      <table>
+        <tr>
+          <th></th>
+          <th>
+            <app-pi-name></app-pi-name>
+          </th>
+          <th>
+            <app-employment></app-employment>
+          </th>
+          <th>
+            
+          </th>
+          <th>
+            <app-contact-info></app-contact-info>
+          </th>
+          <th>
+          
+        </tr>
 
-<app-contact-info>contact info</app-contact-info>
-<app-pi-address>address</app-pi-address>
-<app-employment>employment</app-employment>
-<app-pi-emergency-contact>emergency contact</app-pi-emergency-contact>
 
-<!-- 
-<app-document>document</app-document>  -->
+        <tr>
+          <app-pi-address></app-pi-address>
+        </tr>
+        <tr>
+          <app-pi-emergency-contact></app-pi-emergency-contact>
+        </tr>
 
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
 

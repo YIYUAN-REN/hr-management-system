@@ -1,5 +1,17 @@
-div {
+/* div {
     border: 1px solid lightskyblue;
     padding: 10px;
     margin: 10px;
+  } */
+
+  h1 {
+    color: #16bdf0;
+  }
+
+  th {
+    color: #364952;
+  }
+
+  .individual {
+    border: 1px solid lightskyblue;
   }

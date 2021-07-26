@@ -8,6 +8,7 @@ import { Address } from '../pojo/address/address';
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDiscardChangesComponent } from '../alert-discard-changes/alert-discard-changes.component'
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-pi-address',
@@ -18,8 +19,19 @@ import { AlertDiscardChangesComponent } from '../alert-discard-changes/alert-dis
 export class PiAddressComponent implements OnInit {
   addressInfo : AddressInfo = new AddressInfo();
   editorEnabled : boolean = false;
-
   addressForm : any;
+
+  panelOpenState = false;
+  step = 0;
+  setStep(index: number) {
+    this.step = index;
+  }
+  nextStep() {
+    this.step++;
+  }
+  prevStep() {
+    this.step--;
+  }
 
   constructor(private addressService : AddressService, private dateType : DatePipe,
     private dialog: MatDialog) {
@@ -55,8 +67,8 @@ export class PiAddressComponent implements OnInit {
     // data.workPhone
   }
 
-  onSubmit(form: any) {
-    console.log(form);
+  onSubmit() {
+
     
     let address = new AddressInfo(
       this.addressInfo.primaryAddress,

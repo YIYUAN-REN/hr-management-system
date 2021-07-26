@@ -1,67 +1,77 @@
 
 <div *ngIf = "!editorEnabled">
-    <h2>Emergency Contact</h2>
-    <table>
-        
-        <tr *ngFor="let i of emergencyContacts">
-            <div>
-                <table>
-                    <tr>
-                        <th>Name：  </th>
-                        <th>{{i?.fullName}}</th>
-                    </tr>
-                    <tr>
-                        <th>Phone：  </th>
-                        <th>{{i?.phone}}</th>
-                    </tr>
-                </table>
-                
+    <mat-card class="example-card">
+        <h1>Emergency Contact</h1>
+        <mat-card-content>
+            <tr *ngFor="let i of emergencyContacts">
+                <div class="individual">
+                    <table>
+                        <tr>
+                            <td><button mat-button color="primary">Full Name</button></td>
+                            <th>{{i?.fullName}}</th>
+                        </tr>
+                        <tr>
+                            <td><button mat-button color="primary">Phone</button></td>
+                            <th>{{i?.phone}}</th>
+                        </tr>
+                    </table>
+                    
 
-                <h4>Address</h4>
-                <table>
-                    <tr>
-                        <td>{{i?.address?.lineOne}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{i?.address?.lineTwo}}</td>
-                    </tr>
-                    <tr>
-                        <td>City</td>
-                        <td>{{i?.address?.city}}</td>
-                    </tr>
-                    <tr>
-                        <td>State</td>
-                        <td>{{i?.address?.state}}</td>
-                    </tr>
-                    <tr>
-                        <td>Zipcode</td>
-                        <td>{{i?.address?.zip}}</td>
-                    </tr>
-                </table>
-                
-                
-            </div>    
-        </tr>
-        <button (click)="enableEditor()">Edit</button>
-    </table>
+                    <td><button mat-button color="primary">Address</button></td>
+                    <table>
+                        <tr>
+                            <td><button mat-button color="primary">Line1</button></td>
+                            <th>{{i?.address?.lineOne}}</th>
+                        </tr>
+                        <tr>
+                            <td><button mat-button color="primary">Line2</button></td>
+                            <th>{{i?.address?.lineTwo}}</th>
+                        </tr>
+                        <tr>
+                            <td><button mat-button color="primary">City</button></td>
+                            <th>{{i?.address?.city}}</th>
+                        </tr>
+                        <tr>
+                            <td><button mat-button color="primary">State</button></td>
+                            <th>{{i?.address?.state}}</th>
+                        </tr>
+                        <tr>
+                            <td><button mat-button color="primary">Zopcode</button></td>
+                            <th>{{i?.address?.zip}}</th>
+                        </tr>
+                    </table>    
+                </div>    
+            </tr>
+        </mat-card-content> 
+        
+        <mat-card-actions>
+            <button mat-raised-button color="primary" mat-button (click)="enableEditor()">Edit</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
 
 <div *ngIf = "editorEnabled">
-    <h2>Emergency Contact</h2>
-    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <h1>Emergency Contact</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
         <table>
             <tr *ngFor="let i of emergencyContacts;let index = index;">
                 <div>
                     <table>
                         <tr>
-                            <th>Name：  </th>
-                            <input type="text" name="a{{index}}fullName" [ngModel]="emergencyContacts[index]?.fullName" (ngModelChange)="emergencyContacts[index].fullName=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput type="text" name="a{{index}}fullName" [ngModel]="emergencyContacts[index]?.fullName" (ngModelChange)="emergencyContacts[index].fullName=$event"><br>
+                                </mat-form-field>
+                            </th> 
                         </tr>
                         <tr>
-                            <th>Phone：  </th>
-                            <input type="text" name="a{{index}}phone" [ngModel]="emergencyContacts[index]?.phone" (ngModelChange)="emergencyContacts[index].phone=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput type="text" name="a{{index}}phone" [ngModel]="emergencyContacts[index]?.phone" (ngModelChange)="emergencyContacts[index].phone=$event"><br>
+                                </mat-form-field>
+                            </th> 
                         </tr>
                     </table>
                     
@@ -69,40 +79,53 @@
                     <h4>Address</h4>
                     <table>
                         <tr>
-                            <td>Line1</td>
-                            <input type="text" name="a{{index}}lineOne" [ngModel]="emergencyContacts[index]?.address?.lineOne" (ngModelChange)="emergencyContacts[index].address.lineOne=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Line1</mat-label>
+                                    <input matInput type="text" name="a{{index}}lineOne" [ngModel]="emergencyContacts[index]?.address?.lineOne" (ngModelChange)="emergencyContacts[index].address.lineOne=$event"><br>
+                                </mat-form-field>
+                            </th> 
                         </tr>
                         <tr>
-                            <td>Line2</td>
-                            <input type="text" name="a{{index}}lineTwo" [ngModel]="emergencyContacts[index]?.address?.lineTwo" (ngModelChange)="emergencyContacts[index].address.lineTwo=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Line2</mat-label>
+                                    <input matInput type="text" name="a{{index}}lineTwo" [ngModel]="emergencyContacts[index]?.address?.lineTwo" (ngModelChange)="emergencyContacts[index].address.lineTwo=$event"><br>
+                                </mat-form-field>
+                            </th>
                         </tr>
                         <tr>
-                            <td>City</td>
-                            <input type="text" name="a{{index}}city" [ngModel]="emergencyContacts[index]?.address?.city" (ngModelChange)="emergencyContacts[index].address.city=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>City</mat-label>
+                                    <input matInput type="text" name="a{{index}}city" [ngModel]="emergencyContacts[index]?.address?.city" (ngModelChange)="emergencyContacts[index].address.city=$event"><br>
+                                </mat-form-field>
+                            </th>
                         </tr>
                         <tr>
-                            <td>State</td>
-                            <input type="text" name="a{{index}}state" [ngModel]="emergencyContacts[index]?.address?.state" (ngModelChange)="emergencyContacts[index].address.state=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>State</mat-label>
+                                    <input matInput type="text" name="a{{index}}state" [ngModel]="emergencyContacts[index]?.address?.state" (ngModelChange)="emergencyContacts[index].address.state=$event"><br>
+                                </mat-form-field>
+                            </th>
                         </tr>
                         <tr>
-                            <td>Zipcode</td>
-                            <input type="text" name="a{{index}}zip" [ngModel]="emergencyContacts[index]?.address?.zip" (ngModelChange)="emergencyContacts[index].address.zip=$event"><br>
-                            
+                            <th>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Zipcode</mat-label>
+                                    <input matInput type="text" name="a{{index}}zip" [ngModel]="emergencyContacts[index]?.address?.zip" (ngModelChange)="emergencyContacts[index].address.zip=$event"><br>
+                                </mat-form-field>
+                            </th>
                         </tr>
+                        <tr>
+                            <button mat-stroked-button color="primary" (click)="onSubmit()">Save</button>
+                            <button mat-stroked-button color="accent" (click)="discardChanges()">Cancel</button>
+                        </tr> 
                     </table>
-                    
-                    
                 </div>    
             </tr>
         </table>
-        
-        
-        <button type="submit">Save</button>
     </form>
-    <button (click)="discardChanges()">Cancel</button>
 </div>
 
