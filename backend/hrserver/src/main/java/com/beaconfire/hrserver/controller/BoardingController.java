@@ -41,7 +41,9 @@ public class BoardingController {
         String WORKFLOW_STATE = "PENDING";
 //        System.out.println(JsonPack);
         JSONObject objPack = new JSONObject(JsonPack);
-        Employee employee = generateEmployee(objPack);
+        String userId = objPack.getString("userId");
+        System.out.println(userId);
+        Employee employee = generateEmployee(objPack, Integer.parseInt(userId));
         int employeeId = this.employeeService.addEmployee(employee);
         Address address = generateAddress(objPack.getJSONObject("address"), employeeId);
         this.addressService.addAddress(address);
@@ -104,10 +106,10 @@ public class BoardingController {
         }
         return resp;
     }
-    public Employee generateEmployee(JSONObject objPack){
+    public Employee generateEmployee(JSONObject objPack, int userId){
         Employee employee = new Employee();
         //hardcode
-        employee.setUserId(114);
+        employee.setUserId(userId);
         employee.setTitle("tbd");
         employee.setManagerId(1);
         employee.setStartDate("tbd");

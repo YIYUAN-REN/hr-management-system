@@ -26,10 +26,12 @@ export class BoardingFormComponent implements OnInit {
   @ViewChild(ReferenceComponent) private referComponent!: ReferenceComponent;
   @ViewChild(EmergencyContactComponent) private emergencyComponent!: EmergencyContactComponent;
   formValid: any;
-  
+  userId:String;
   boardingPackage!: BoardingPackage;
   constructor(private httpService: HttpServiceService, private router: Router) { 
-    
+    let uid_tmp = sessionStorage.getItem("userId");
+    if(uid_tmp) this.userId = uid_tmp;
+    else this.userId = "-1";
   }
 
   ngOnInit(): void {
@@ -49,6 +51,7 @@ export class BoardingFormComponent implements OnInit {
       this.referComponent.onSubmit();
       this.emergencyComponent.onSubmit();
       this.boardingPackage = new BoardingPackage(
+        this.userId,
         this.nameComponent.nameObj, 
         this.otherIdComponent.otherIdObj,
         this.addressComponent.addressObj,

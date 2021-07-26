@@ -8,6 +8,7 @@ import { Reference } from "./Reference";
 import { Visa } from "./Visa";
 
 export class BoardingPackage{
+    userId:String;
     name:Name;
     otherId: OtherIdentity;
     address:EmployeeAddress;
@@ -18,6 +19,7 @@ export class BoardingPackage{
     emegencies: Emergency;
 
     constructor(
+        userId:String,
         name:Name,
         otherId:OtherIdentity,
         address:EmployeeAddress,
@@ -27,6 +29,7 @@ export class BoardingPackage{
         refer: Reference,
         emegencies: Emergency
     ){
+        this.userId = userId;
         this.name = name;
         this.otherId = otherId;
         this.address = address;
