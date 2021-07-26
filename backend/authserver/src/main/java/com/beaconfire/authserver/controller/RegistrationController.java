@@ -23,14 +23,13 @@ public class RegistrationController {
     public RegistrationResponse register(@RequestBody RegistrationRequest request) {
         RegistrationResponse response = new RegistrationResponse();
 
-        System.out.println(request.getEmail() + " " + request.getRegistrationToken());
-
         if (userService.isUserExist(request.getUserName())) {
             response.setMessage("User Exist!");
         } else if (!request.getPassword().equals(request.getConfirmPassword())) {
             System.out.println(request.getPassword() + " " + request.getConfirmPassword());
             response.setMessage("Password Not Match!");
         } else if (!request.getEmail().equals(registrationTokenService.getEmailWithToken(request.getRegistrationToken()))) {
+            System.out.println(request.getEmail() + " " + registrationTokenService.getEmailWithToken(request.getRegistrationToken()));
             response.setMessage("Email and Token Not Match!");
         } else if (!registrationTokenService.isTokenExist(request.getRegistrationToken())) {
             response.setMessage("Registration Token Not Exist!");
@@ -42,6 +41,7 @@ public class RegistrationController {
                 response.setMessage("Fail!");
             } else {
                 response.setMessage("Success!");
+                response.setId(userId);
             }
         }
 

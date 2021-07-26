@@ -41,4 +41,14 @@ public class RegistrationTokenDAO {
         String email = query.getResultList().isEmpty() ? null : (String)query.getResultList().get(0);
         return email;
     }
+
+    public void insertToken(String tokenValue, String time, String email, User user){
+        Session session = sessionFactory.getCurrentSession();
+        RegistrationToken token = new RegistrationToken();
+        token.setToken(tokenValue);
+        token.setValidDuration(time);
+        token.setEmail(email);
+        token.setCreatedBy(user.getId());
+        session.save(token);
+    }
 }

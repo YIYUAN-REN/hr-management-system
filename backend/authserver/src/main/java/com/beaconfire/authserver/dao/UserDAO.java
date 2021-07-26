@@ -47,6 +47,15 @@ public class UserDAO {
         return list.isEmpty() ? null : list.get(0);
     }
 
+    public User getUserOnlyByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from User where email = :email";
+        Query query = session.createQuery(statement);
+        query.setParameter("email", email);
+        List<User> list = query.getResultList();
+        return list.isEmpty() ? null : list.get(0);
+    }
+
     public Integer addUser(String username, String email, String password, String createDate) {
         Session session = sessionFactory.getCurrentSession();
         User user = new User();

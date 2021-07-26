@@ -71,6 +71,7 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
 // import { MyTableComponent } from './samples/my-table/my-table.component';
 import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
+import { HrEmailComponent } from './component/hr/email/hr-email.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail
     MyNavComponent,
     // MyTableComponent
     HireComponent,
-    HireDetailComponent
+    HireDetailComponent,
+    HrEmailComponent
   ],
   imports: [
     BrowserModule,

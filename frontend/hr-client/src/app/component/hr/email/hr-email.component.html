@@ -1,0 +1,6 @@
+<h1>Generate Token</h1>
+<form [formGroup]="emailForm" (ngSubmit)="onSubmit(emailForm)">
+    <input type="text" formControlName="email" placeholder="Employee's Email" required><br>
+    <button type="submit" [disabled]="!emailForm.valid">Generate Token</button><br>
+</form>
+{{message}}

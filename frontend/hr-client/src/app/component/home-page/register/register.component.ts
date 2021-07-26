@@ -27,7 +27,7 @@ export class RegisterComponent {
   onSubmit(form: FormGroup) {
     this.httpService.postData("/auth/registration", {
       userName: form.value["userName"], 
-      email : form.value["email"],
+      email: form.value["email"],
       password: form.value["password"],
       confirmPassword: form.value["confirmPassword"],
       registrationToken: form.value["token"]
@@ -35,6 +35,7 @@ export class RegisterComponent {
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
         this.message = jsonObject.message;
+        sessionStorage.setItem("userId", jsonObject.id);
         if (jsonObject.message != "Success!") {
           // this.registerForm.setValue({userName:"", email:"", password:"", confirmPassword:"", token:""});
         } else {

@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegistrationResponse {
+public class EmailResponse {
     private String message;
-    private int id;
 }

@@ -8,6 +8,7 @@ import { HousingComponent } from '../app/component/employee/housing/housing.comp
 import { ReportDetailComponent } from '../app/component/employee/housing/report-detail.component';
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
 import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
+import { HrEmailComponent } from './component/hr/email/hr-email.component';
 
 // employee - visa
 import { I20Component } from '../app/component/employee/visa/i20/i20.component';
@@ -93,7 +94,7 @@ const routes: Routes = [
   { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent },
   { path:"hr/houseManagement", component:HrHousingComponent },
   { path:"hr/houseManagement/detail/:houseId", component:HrHousingDetailComponent },
-  
+  { path:"hr/email", component:HrEmailComponent },
 
   // employee - visa
   {path:'employee/visa', component: VisastartComponent},
