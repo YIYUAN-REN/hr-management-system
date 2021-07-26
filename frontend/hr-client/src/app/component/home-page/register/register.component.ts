@@ -18,36 +18,27 @@ export class RegisterComponent {
       userName: new FormControl(''),
       email: new FormControl(''),
       password: new FormControl(''),
-      passwordConfirm: new FormControl(''),
+      confirmPassword: new FormControl(''),
       token: new FormControl('')
       
     });
   }
 
   onSubmit(form: FormGroup) {
-    this.httpService.postData("/auth/login", {
+    this.httpService.postData("/auth/registration", {
       userName: form.value["userName"], 
       email : form.value["email"],
       password: form.value["password"],
-      passwordConfirm: form.value["passwordConfirm"],
-      token: form.value["token"]
+      confirmPassword: form.value["confirmPassword"],
+      registrationToken: form.value["token"]
     }).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
-        // console.log("111111111");
-        // console.log(jsonObject);
+        this.message = jsonObject.message;
         if (jsonObject.message != "Success!") {
-          this.message = jsonObject.message;
-          this.registerForm.setValue({userName:"", password:""});
+          // this.registerForm.setValue({userName:"", email:"", password:"", confirmPassword:"", token:""});
         } else {
-          sessionStorage.setItem("userId", jsonObject.id);
-          sessionStorage.setItem("email", jsonObject.email);
-          sessionStorage.setItem("role", jsonObject.role);
-          sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate(["login"]);  
-
-          // need HR coding
-
+          this.router.navigate(["employee/boarding"]);  
         }
       }
     );

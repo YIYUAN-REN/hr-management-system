@@ -18,7 +18,7 @@ public class UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public User getUserByUserName(String userName, String password){
+    public User getUserByUserName(String userName, String password) {
         Session session = sessionFactory.getCurrentSession();
         String statement = "from User where userName = :userName and password = :password";
         Query query = session.createQuery(statement);
@@ -28,7 +28,7 @@ public class UserDAO {
         return list.isEmpty() ? null : list.get(0);
     }
 
-    public User getUserByEmail(String email, String password){
+    public User getUserByEmail(String email, String password) {
         Session session = sessionFactory.getCurrentSession();
         String statement = "from User where email = :email and password = :password";
         Query query = session.createQuery(statement);
@@ -38,6 +38,22 @@ public class UserDAO {
         return list.isEmpty() ? null : list.get(0);
     }
 
+    public User getUserOnlyByUserName(String userName) {
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from User where userName = :userName";
+        Query query = session.createQuery(statement);
+        query.setParameter("userName", userName);
+        List<User> list = query.getResultList();
+        return list.isEmpty() ? null : list.get(0);
+    }
 
-
+    public Integer addUser(String username, String email, String password, String createDate) {
+        Session session = sessionFactory.getCurrentSession();
+        User user = new User();
+        user.setUserName(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setCreateDate(createDate);
+        return (Integer)session.save(user);
+    }
 }
