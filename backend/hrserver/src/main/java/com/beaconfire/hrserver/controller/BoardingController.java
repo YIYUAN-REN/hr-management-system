@@ -8,6 +8,7 @@ import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -34,6 +35,8 @@ public class BoardingController {
     public void setContactService(ContactService contactService){this.contactService = contactService;}
     @Autowired
     public void setWorkflowService(WorkflowService workflowService){this.workflowService = workflowService;}
+    @Autowired
+    S3Service s3Service;
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/boarding")
@@ -105,6 +108,16 @@ public class BoardingController {
             else resp.setComment(workflow.getComments());
         }
         return resp;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/boardingFile/upload/")
+    public void uploadBoardingFile(@RequestParam("file") MultipartFile file,
+                                   @RequestParam("userid") String uid,
+                                   @RequestParam("type") String type){
+        if(uid==null||uid.equals(""))uid = "-1";
+        String keyName = type+"_"+uid;
+        s3Service.uploadFile(keyName, file);
     }
     public Employee generateEmployee(JSONObject objPack, int userId){
         Employee employee = new Employee();

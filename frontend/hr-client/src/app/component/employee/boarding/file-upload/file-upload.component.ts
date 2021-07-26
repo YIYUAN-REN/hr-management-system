@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -7,9 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileUploadComponent implements OnInit {
 
-  constructor() { }
+  selectedDriverFile!: File;
+  selectedVisaFile!:File;
+  selectedAvatarFile!:File;
+  currentFileUpload!: File;
+
+  constructor(private uploadService:FileUploadService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  selectDriverFile(event:any) {
+    this.selectedDriverFile = event.target.files;
+  }
+  selectVisaFile(event:any) {
+    this.selectedVisaFile = event.target.files;
+  }
+  selectAvatarFile(event:any) {
+    this.selectedAvatarFile = event.target.files;
+  }
+
+  upload(){
+    this.uploadService.pushFileToStorage(this.selectedAvatarFile, "avatar").subscribe(
+      ()=>{
+        this.uploadService.pushFileToStorage(this.selectedDriverFile, "driver").subscribe(
+          ()=>{
+            this.uploadService.pushFileToStorage(this.selectedVisaFile, "visa").subscribe(
+              ()=>{
+                this.router.navigate(["pending"]);
+              }
+            );
+          }
+        );
+      }
+    );
+  }
 }

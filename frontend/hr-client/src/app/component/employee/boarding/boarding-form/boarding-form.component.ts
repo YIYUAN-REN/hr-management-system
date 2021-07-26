@@ -66,7 +66,7 @@ export class BoardingFormComponent implements OnInit {
       this.httpService.addName(this.boardingPackage).subscribe(
         (boardingPackage)=>{
           console.log(boardingPackage);
-          this.router.navigate(["pending"]);
+          this.router.navigate(["boardingUpload"]);
         },
         (error)=>{console.log(error)}
       );

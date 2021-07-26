@@ -73,6 +73,7 @@ import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 import { PendingComponent } from './component/home-page/pending/pending.component';
 import { FileUploadComponent } from './component/employee/boarding/file-upload/file-upload.component';
+import { FileUploadService } from './component/employee/boarding/file-upload.service';
 
 @NgModule({
   declarations: [
@@ -156,7 +157,8 @@ import { FileUploadComponent } from './component/employee/boarding/file-upload/f
   providers: [
     HttpService,
     HttpServiceService,
-    OptreceiptService
+    OptreceiptService,
+    FileUploadService,
   ],
 
   bootstrap: [AppComponent]

@@ -1,1 +1,14 @@
-<p>file-upload works!</p>
+<label> Select Avatar file
+    <input type="file" (change)="selectAvatarFile($event)">
+</label><br>
+
+<label> Select Driver Liscense file
+    <input type="file" (change)="selectDriverFile($event)">
+</label><br>
+
+<label> Select Work Authorication file
+    <input type="file" (change)="selectVisaFile($event)">
+</label><br>
+
+<button [disabled]="(!selectedDriverFile)||(!selectedVisaFile)||(!selectedAvatarFile)" 
+(click)="upload()">Upload</button>
