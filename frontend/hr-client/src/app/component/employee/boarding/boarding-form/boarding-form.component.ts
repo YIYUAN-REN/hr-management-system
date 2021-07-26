@@ -9,6 +9,7 @@ import { CarComponent } from '../car/car.component';
 import { VisaStatusComponent } from '../visa-status/visa-status.component';
 import { ReferenceComponent } from '../reference/reference.component';
 import { EmergencyContactComponent } from '../emergency-contact/emergency-contact.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-boarding-form',
   templateUrl: './boarding-form.component.html',
@@ -27,7 +28,7 @@ export class BoardingFormComponent implements OnInit {
   formValid: any;
   
   boardingPackage!: BoardingPackage;
-  constructor(private httpService: HttpServiceService) { 
+  constructor(private httpService: HttpServiceService, private router: Router) { 
     
   }
 
@@ -60,9 +61,13 @@ export class BoardingFormComponent implements OnInit {
 
       if (!this.boardingPackage) { return; }
       this.httpService.addName(this.boardingPackage).subscribe(
-        (boardingPackage)=>{console.log(boardingPackage)},
+        (boardingPackage)=>{
+          console.log(boardingPackage);
+          this.router.navigate(["pending"]);
+        },
         (error)=>{console.log(error)}
       );
+      
     }
     else{
       alert("invalid");

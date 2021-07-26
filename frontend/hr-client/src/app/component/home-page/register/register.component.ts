@@ -44,8 +44,8 @@ export class RegisterComponent {
           sessionStorage.setItem("email", jsonObject.email);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate(["login"]);  
-
+          // this.router.navigate(["login"]);  
+          this.router.navigate(["employee/boarding"]);
           // need HR coding
 
         }

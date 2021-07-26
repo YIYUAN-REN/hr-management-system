@@ -2,6 +2,7 @@ package com.beaconfire.hrserver.controller;
 import com.beaconfire.hrserver.domain.*;
 import com.beaconfire.hrserver.request.HrDecideRequest;
 import com.beaconfire.hrserver.response.ApplicationDetailResponse;
+import com.beaconfire.hrserver.response.ApplicationStatusResponse;
 import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +86,23 @@ public class BoardingController {
             workflow.setComments(decide.getComment());
             this.workflowService.addWorkflow(workflow);
         }
+    }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getBoardingStatus/{uid}")
+    public ApplicationStatusResponse getBoardingStatus(@PathVariable String uid){
+        ApplicationStatusResponse resp = new ApplicationStatusResponse();
+        ApplicationWorkFlow workflow = this.workflowService.getWorkflowById(Integer.parseInt(uid));
+        if(workflow==null){
+            resp.setMessage("REJECT");
+            resp.setComment("");
+        }
+        else {
+            resp.setMessage(workflow.getStatus());
+            if (workflow.getComments() == null) resp.setComment("");
+            else resp.setComment(workflow.getComments());
+        }
+        return resp;
     }
     public Employee generateEmployee(JSONObject objPack){
         Employee employee = new Employee();
