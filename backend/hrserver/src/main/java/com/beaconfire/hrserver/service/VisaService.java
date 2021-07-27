@@ -59,7 +59,16 @@ public class VisaService {
     //config employee visa type,user visaType, Today's date, user visaEndDate
     @Transactional
     public void preProcessVisa(VisaStatus visaStatus){
+        int employeeID =visaStatus.getEmployeeId();
         String visaType = visaStatus.getVisaType();
+        if (visaType.equals("F1(CPT/OPT)")){
+            visaStatus.setVisaType("OPT Receipt");
+            visaDAO.updateVisaType(visaStatus);
+
+            ApplicationWorkFlow applicationWorkFlow = visaDAO.getWorkflowByEmployeeId(employeeID);
+            applicationWorkFlow.setStatus("nosubmission");
+            visaDAO.updateStatusWorkflow(applicationWorkFlow);
+        }
         LocalDate todayDate = LocalDate.now();
         String visaEndDatetmp = visaStatus.getVisaEndDate();
         LocalDate visaEndDate = LocalDate.parse(visaEndDatetmp, DateTimeFormatter.ISO_LOCAL_DATE);

@@ -101,6 +101,9 @@ public class VisaDAO extends AbstractHibernateDAO{
         Query query = session.createQuery(statement);
         query.setParameter("employeeId", employeeId);
         List<VisaStatus> list = query.getResultList();
+        if(list.isEmpty()){
+            return null;
+        }
         return list.get(0).getVisaType();
     }
 

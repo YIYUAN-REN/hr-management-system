@@ -41,7 +41,9 @@ public class HrVisaController {
         List<String> workauth = new ArrayList<>();
         for (int i=0;i<employees.size();i++){
             int employeeId = employees.get(i).getId();
+            System.out.println(employeeId);
             String tmp = visaService.getVisaTypeByEmployeeId(employeeId);
+            System.out.println(tmp);
             workauth.add(tmp);
         }
         response.setWorkAuth(workauth);
@@ -51,6 +53,12 @@ public class HrVisaController {
             Employee curr = employees.get(i);
             String expDate = curr.getEndDate();
             LocalDate todayDate = LocalDate.now();
+
+            System.out.println(expDate);
+            if (expDate==null || expDate.equals("tbd")){
+                days.add(null);
+                continue;
+            }
             LocalDate visaEndDate = LocalDate.parse(expDate, DateTimeFormatter.ISO_LOCAL_DATE);
             Duration diff = Duration.between(todayDate.atStartOfDay(), visaEndDate.atStartOfDay());
             Integer diffDays = Math.toIntExact(diff.toDays());
@@ -58,8 +66,11 @@ public class HrVisaController {
         }
         response.setDays(days);
 
+
+
         Map<Integer,List<String>> files = new HashMap<>();
         for (int i=0;i<docs.size();i++){
+
             int employeeId = docs.get(i).getEmployeeId();
             String singleFile = docs.get(i).getTitle();
 
@@ -106,6 +117,10 @@ public class HrVisaController {
         ApplicationWorkFlow applicationWorkFlow = visaService.getWorkflowByEmployeeId(employeeId);
         applicationWorkFlow.setStatus("nonewi20");
         visaService.updateStatusWorkflow(applicationWorkFlow);
+
+        VisaStatus visaStatus = visaService.getVisaByEmployeeId(employeeId);
+        visaStatus.setVisaType("I-20");
+        visaService.updateVisaType(visaStatus);
         return;
     }
 

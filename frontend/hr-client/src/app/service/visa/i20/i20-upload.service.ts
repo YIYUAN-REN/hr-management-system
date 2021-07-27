@@ -13,7 +13,7 @@ export class I20UploadService {
 
     formdata.append('file', file);
 
-    const req = new HttpRequest('POST', 'http://localhost:8080/employee/visa/i20Upload'+sessionStorage.getItem("userId"), formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/employee/visa/i20Upload/'+sessionStorage.getItem("userId"), formdata, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -22,7 +22,7 @@ export class I20UploadService {
   }
 
   getFiles(): Observable<any> {
-    return this.http.get('http://localhost:8080/employee/visa/i20Upload/all'+sessionStorage.getItem("userId"));
+    return this.http.get('http://localhost:8080/employee/visa/i20Upload/all/'+sessionStorage.getItem("userId"));
   }
 
 }
