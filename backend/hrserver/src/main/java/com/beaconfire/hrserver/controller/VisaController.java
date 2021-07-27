@@ -31,11 +31,12 @@ public class VisaController {
     @GetMapping("visa/{userId}")
     public VisaStartResponse visaMainPage(@PathVariable String userId){
         // find EmployeeId by using userId
-        //int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
-        int employeeId = 45;
+        int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
 
         VisaStatus visaStatus = visaService.getVisaByEmployeeId(employeeId);
         visaService.preProcessVisa(visaStatus);
+        System.out.println(employeeId);
+
 
         String visaType = visaStatus.getVisaType();
         String status = visaService.getStatus(employeeId);
@@ -64,8 +65,7 @@ public class VisaController {
         keyName = userId + keyName;
         s3Services.uploadFile(keyName, file);
 
-        //int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
-        int employeeId = 54;
+        int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
         VisaStatus visaStatus = visaService.getVisaByEmployeeId(employeeId);
         visaStatus.setVisaType("OPT EAD");
         visaService.updateVisaType(visaStatus);
@@ -76,12 +76,13 @@ public class VisaController {
 
     @PostMapping("visa/i983templateUpload/{userId}")
     public String i983templateUpload(@RequestParam("file") MultipartFile file, @PathVariable String userId) {
+
+        System.out.println("testing i983");
         String keyName = file.getOriginalFilename();
         keyName = userId + keyName;
         s3Services.uploadFile(keyName, file);
 
-        //int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
-        int employeeId = 54;
+        int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
         ApplicationWorkFlow applicationWorkFlow = visaService.getWorkflowByEmployeeId(employeeId);
         applicationWorkFlow.setStatus("waitforhr");
         visaService.updateStatusWorkflow(applicationWorkFlow);
@@ -96,8 +97,7 @@ public class VisaController {
         keyName = userId + keyName;
         s3Services.uploadFile(keyName, file);
 
-        //int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
-        int employeeId = 54;
+        int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
         ApplicationWorkFlow applicationWorkFlow = visaService.getWorkflowByEmployeeId(employeeId);
         applicationWorkFlow.setStatus("newi20");
         visaService.updateStatusWorkflow(applicationWorkFlow);
@@ -112,8 +112,7 @@ public class VisaController {
         keyName = userId + keyName;
         s3Services.uploadFile(keyName, file);
 
-        //int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
-        int employeeId = 54;
+        int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
         VisaStatus visaStatus = visaService.getVisaByEmployeeId(employeeId);
         visaStatus.setVisaType("OPT STEM Receipt");
         visaService.updateVisaType(visaStatus);
@@ -128,8 +127,7 @@ public class VisaController {
         keyName = userId + keyName;
         s3Services.uploadFile(keyName, file);
 
-        //int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
-        int employeeId = 54;
+        int employeeId = visaService.getEmployeeIdByUserId(Integer.parseInt(userId));
         VisaStatus visaStatus = visaService.getVisaByEmployeeId(employeeId);
         visaStatus.setVisaType("OPT STEM");
         visaService.updateVisaType(visaStatus);

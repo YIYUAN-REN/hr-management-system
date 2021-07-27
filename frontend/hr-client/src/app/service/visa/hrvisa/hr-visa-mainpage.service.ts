@@ -13,8 +13,7 @@ export class HrVisaMainpageService {
 
   getData(): Observable<any>{
     
-    //for testing
-    // return this.http.get<any>(this.baseUrl+"124");
+    console.log("testing for hr visa main")
 
     return this.http.get<any>(this.baseUrl);
   }
