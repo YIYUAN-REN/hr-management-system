@@ -9,12 +9,12 @@ import { catchError } from 'rxjs/operators';
 })
 export class ContactinfoService {
 
-  baseUrl : string = "http://localhost:8080/personalinfo/contactinfo";
+  baseUrl : string = "http://localhost:8080/personalinfo/contactinfo/updatecontactinfo";
 
   constructor(private http: HttpClient) { }
 
-  getContactinfo() {
-    return this.http.get<Contactinfo>(`${this.baseUrl}/1`).pipe(catchError(this.handleError));
+  getContactinfo(employeeId:any) {
+    return this.http.get<Contactinfo>(`${this.baseUrl}/${employeeId}`).pipe(catchError(this.handleError));
   }
 
   updateContactinfo(contactinfo:Contactinfo){

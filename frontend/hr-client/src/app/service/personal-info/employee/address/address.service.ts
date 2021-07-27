@@ -14,8 +14,8 @@ export class AddressService {
 
   constructor(private http: HttpClient) { }
 
-  getAddressInfo() {
-    return this.http.get<AddressInfo>(`${this.baseUrl}/1`).pipe(catchError(this.handleError));
+  getAddressInfo(employeeId:any) {
+    return this.http.get<AddressInfo>(`${this.baseUrl}/${employeeId}`).pipe(catchError(this.handleError));
   }
 
   updateAddressInfo(addressInfo: AddressInfo){

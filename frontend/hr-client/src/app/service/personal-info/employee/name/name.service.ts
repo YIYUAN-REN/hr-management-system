@@ -13,9 +13,10 @@ export class NameService {
 
   constructor(private http: HttpClient) { }
 
-  getName() {
+  getName(userId : any) {
     // var userId = sessionStorage.getItem("userId");
-    return this.http.get<Name>(`${this.baseUrl}/1`).pipe(catchError(this.handleError));
+    // let curUrl : string = this.baseUrl + '/' + userId;
+    return this.http.get<Name>(`${this.baseUrl}/${userId}`).pipe(catchError(this.handleError));
   }
 
   updateName(name: Name){

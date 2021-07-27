@@ -13,8 +13,8 @@ export class EmergencycontactService {
 
   constructor(private http: HttpClient) { }
 
-  getEmergencyContacts() {
-    return this.http.get<EmergencyContact[]>(`${this.baseUrl}/1`).pipe(catchError(this.handleError));
+  getEmergencyContacts(employeeId:any) {
+    return this.http.get<EmergencyContact[]>(`${this.baseUrl}/${employeeId}`).pipe(catchError(this.handleError));
   }
 
   updateEmergencyContact(emergencyContacts: EmergencyContact[]){
