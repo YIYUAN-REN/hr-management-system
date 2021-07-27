@@ -31,16 +31,19 @@ export class FileUploadComponent implements OnInit {
 
   upload(){
     this.uploadService.pushFileToStorage(this.selectedAvatarFile, "avatar").subscribe(
-      ()=>{
-        this.uploadService.pushFileToStorage(this.selectedDriverFile, "driver").subscribe(
-          ()=>{
-            this.uploadService.pushFileToStorage(this.selectedVisaFile, "visa").subscribe(
-              ()=>{
-                this.router.navigate(["pending"]);
-              }
-            );
-          }
-        );
+      (Response)=>{
+        console.log(Response);
+        // this.uploadService.pushFileToStorage(this.selectedDriverFile, "driver").subscribe(
+        //   (Response)=>{
+        //     console.log(Response);
+        //     this.uploadService.pushFileToStorage(this.selectedVisaFile, "visa").subscribe(
+        //       (Response)=>{
+                
+        //         this.router.navigate(["pending"]);
+        //       }
+        //     );
+        //   }
+        // );
       }
     );
   }

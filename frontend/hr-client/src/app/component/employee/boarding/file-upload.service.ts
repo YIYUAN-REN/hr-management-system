@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileUploadService {
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(private http:HttpClient) { }
 
@@ -25,7 +29,7 @@ export class FileUploadService {
     //   responseType: 'text'
     // });
 
-    return this.http.post('http://localhost:8080/boardingFile/upload', formdata);
+    return this.http.post('http://localhost:8080/boardingFileUpload', formdata);
   }
 
 }

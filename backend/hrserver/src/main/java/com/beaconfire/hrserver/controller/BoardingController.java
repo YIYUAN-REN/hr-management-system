@@ -120,14 +120,16 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/boardingFile/upload/")
+    @PostMapping("/boardingFileUpload/")
     public void uploadBoardingFile(@RequestParam("file") MultipartFile file,
                                    @RequestParam("userid") String uid,
                                    @RequestParam("type") String type){
+        System.out.println("here!");
         if(uid==null||uid.equals(""))uid = "-1";
         String keyName = type+"_"+uid;
         s3Service.uploadFile(keyName, file);
     }
+
     public Employee generateEmployee(JSONObject objPack, int userId){
         Employee employee = new Employee();
         //hardcode
