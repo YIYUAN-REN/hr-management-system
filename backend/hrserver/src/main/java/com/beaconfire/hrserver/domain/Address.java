@@ -1,9 +1,14 @@
 package com.beaconfire.hrserver.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Address")
 public class Address implements Serializable {

@@ -2,7 +2,6 @@ package com.beaconfire.hrserver.controller.personalinfoControllers;
 
 import com.beaconfire.hrserver.common.ResponseStatus;
 import com.beaconfire.hrserver.domain.Employee;
-import com.beaconfire.hrserver.response.personalinfoResponses.Address;
 import com.beaconfire.hrserver.response.personalinfoResponses.AddressResponse;
 import com.beaconfire.hrserver.response.personalinfoResponses.EmploymentResponse;
 import com.beaconfire.hrserver.response.personalinfoResponses.NameResponse;

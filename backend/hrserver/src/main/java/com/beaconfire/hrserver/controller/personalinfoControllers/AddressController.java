@@ -1,8 +1,8 @@
 package com.beaconfire.hrserver.controller.personalinfoControllers;
 
 import com.beaconfire.hrserver.common.ResponseStatus;
+import com.beaconfire.hrserver.domain.Address;
 import com.beaconfire.hrserver.domain.Employee;
-import com.beaconfire.hrserver.response.personalinfoResponses.Address;
 import com.beaconfire.hrserver.response.personalinfoResponses.AddressResponse;
 import com.beaconfire.hrserver.response.personalinfoResponses.NameResponse;
 import com.beaconfire.hrserver.service.EmployeeService;
@@ -20,10 +20,10 @@ public class AddressController {
 
     AddressController() {
         address = new AddressResponse();
-        Address ad1 = new Address("1010 W Main", "University Group", "Champaign", "Illinois", "61801");
-        Address ad2 = new Address("505 Gree Str", "Capstone", "Champaign", "Illinois", "61801");
-        address.setPrimaryAddress(ad1);
-        address.setSecondaryAddress(ad2);
+//        Address ad1 = new Address("1010 W Main", "University Group", "Champaign", "Illinois", "61801");
+//        Address ad2 = new Address("505 Gree Str", "Capstone", "Champaign", "Illinois", "61801");
+//        address.setPrimaryAddress(ad1);
+//        address.setSecondaryAddress(ad2);
     }
     @Autowired
     private EmployeeService employeeSerive;
