@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-hr-home-page',
@@ -17,7 +18,7 @@ export class HrHomePageComponent implements OnInit {
     );
 
   currentPage : string;
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private cookieService: CookieService) {
     this.currentPage = "Employee Profile";
   }
 
@@ -42,6 +43,8 @@ export class HrHomePageComponent implements OnInit {
 
   logOut() {
     // clear session info here
+    this.cookieService.delete("JWT");
+    sessionStorage.clear();
     
     //redirect to login page
     this.router.navigate(["login"]);  

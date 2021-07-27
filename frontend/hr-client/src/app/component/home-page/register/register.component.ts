@@ -35,6 +35,7 @@ export class RegisterComponent {
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
         this.message = jsonObject.message;
+        console.log(jsonObject.message);
         sessionStorage.setItem("userId", jsonObject.id);
         if (jsonObject.message != "Success!") {
           // this.registerForm.setValue({userName:"", email:"", password:"", confirmPassword:"", token:""});

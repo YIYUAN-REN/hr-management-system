@@ -20,6 +20,7 @@ public class EmployeeDAO {
         Query query = session.createQuery(statement);
         query.setParameter("userId", userId);
         List<Employee> employees = query.getResultList();
+
         return employees.isEmpty() ? null : employees.get(0);
     }
 }

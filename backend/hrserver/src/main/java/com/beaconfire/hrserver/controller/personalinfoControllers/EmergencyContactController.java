@@ -26,27 +26,27 @@ public class EmergencyContactController {
         EmergencyContact ec1 = new EmergencyContact();
         ec1.setFullName("Daniel Wang");
         ec1.setPhone("7549235134");
-        Address address1 = new Address();
-        address1.setLineOne("912 Inverness Way");
-        address1.setLineTwo("Apartment Cuperia");
-        address1.setCity("Arizonta");
-        address1.setState("Illinoise");
-        address1.setZip("61820");
-        ec1.setAddress(address1);
-
-        EmergencyContact ec2 = new EmergencyContact();
-        ec2.setFullName("Erica Jane");
-        ec2.setPhone("9834398741");
-        Address address2 = new Address();
-        address2.setLineOne("978 University St. Roselle");
-        address2.setLineTwo("Building Clessvel");
-        address2.setCity("Rosselle");
-        address2.setState("Illinoise");
-        address2.setZip("60172");
-        ec2.setAddress(address2);
-
-        emergencyContactResponse.getEmergencyContactList().add(ec1);
-        emergencyContactResponse.getEmergencyContactList().add(ec2);
+//        Address address1 = new Address();
+//        address1.setLineOne("912 Inverness Way");
+//        address1.setLineTwo("Apartment Cuperia");
+//        address1.setCity("Arizonta");
+//        address1.setState("Illinoise");
+//        address1.setZip("61820");
+//        ec1.setAddress(address1);
+//
+//        EmergencyContact ec2 = new EmergencyContact();
+//        ec2.setFullName("Erica Jane");
+//        ec2.setPhone("9834398741");
+//        Address address2 = new Address();
+//        address2.setLineOne("978 University St. Roselle");
+//        address2.setLineTwo("Building Clessvel");
+//        address2.setCity("Rosselle");
+//        address2.setState("Illinoise");
+//        address2.setZip("60172");
+//        ec2.setAddress(address2);
+//
+//        emergencyContactResponse.getEmergencyContactList().add(ec1);
+//        emergencyContactResponse.getEmergencyContactList().add(ec2);
     }
     @Autowired
     private EmployeeService employeeSerive;

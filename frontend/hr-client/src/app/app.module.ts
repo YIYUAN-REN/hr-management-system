@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 // employee - housing 
 import { HttpService } from './service/housing/http.service';
@@ -190,6 +191,7 @@ import { FileUploadService } from './component/employee/boarding/file-upload.ser
     EmployeeGuardService,
     HrGuardService,
     FileUploadService,
+    CookieService
   ],
   exports:[CommonModule,],
 

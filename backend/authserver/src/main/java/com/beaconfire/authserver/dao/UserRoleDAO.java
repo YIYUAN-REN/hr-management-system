@@ -1,6 +1,7 @@
 package com.beaconfire.authserver.dao;
 
 import com.beaconfire.authserver.domain.User;
+import com.beaconfire.authserver.domain.UserRole;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,14 @@ public class UserRoleDAO {
         query.setParameter("userId", userId);
         List<Integer> list = query.getResultList();
         return list.isEmpty() ? null : list.get(0);
+    }
+
+    public void addUserRole(Integer userId, Integer roleId, String time) {
+        Session session = sessionFactory.getCurrentSession();
+        UserRole userRole = new UserRole();
+        userRole.setUserId(userId);
+        userRole.setRoleId(roleId);
+        userRole.setCreateDate(time);
+        session.save(userRole);
     }
 }

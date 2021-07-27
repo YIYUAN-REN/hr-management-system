@@ -3,6 +3,7 @@ package com.beaconfire.authserver.controller;
 import com.beaconfire.authserver.request.RegistrationRequest;
 import com.beaconfire.authserver.response.RegistrationResponse;
 import com.beaconfire.authserver.service.RegistrationTokenService;
+import com.beaconfire.authserver.service.UserRoleService;
 import com.beaconfire.authserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegistrationController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRoleService userRoleService;
 
     @Autowired
     RegistrationTokenService registrationTokenService;
@@ -37,6 +41,8 @@ public class RegistrationController {
             response.setMessage("Registration Token Expire!");
         } else {
             Integer userId = userService.addUser(request.getUserName(), request.getEmail(), request.getPassword());
+            userRoleService.addUserRole(userId);
+
             if (userId == null) {
                 response.setMessage("Fail!");
             } else {

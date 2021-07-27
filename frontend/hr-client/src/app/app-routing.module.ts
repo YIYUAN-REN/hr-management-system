@@ -64,48 +64,50 @@ const routes: Routes = [
 
   // { path:"address", component:MyAddressFormComponent},
   // { path:"table", component:MyTableComponent},
-  { path:"pending", component: PendingComponent},
+  { path:"pending", component: PendingComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
   { path:"login", component: HomePageComponent },
-  { path:"employee/register", component:RegisterComponent },
+  
   { path:"employee", component:EmployeeHomePageComponent,
     children : [  
-      { path:"housing", component:HousingComponent },
-      { path:'visa', component: VisastartComponent},
-      { path:"personalInfo", component:PersonalInfoComponent},
-      { path:"boarding", component:BoardingFormComponent}
+      { path:"housing", component:HousingComponent, canActivate:[JwtGuardService, EmployeeGuardService] },
+      { path:'visa', component: VisastartComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+      { path:"personalInfo", component:PersonalInfoComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+      { path:"boarding", component:BoardingFormComponent, canActivate:[JwtGuardService]}
     ]
   },
+  { path:"employee/register", component:RegisterComponent },
   { path:"hr", component:HrHomePageComponent ,
     children : [
       { path:"EmployeeProfile", component:EmployeeProfileComponent },
       { path:"hire", component:HireComponent },
       { path:'housing', component: HrHousingComponent},
       { path:"visa", component:HrVisaMainComponent}
-  ]},
-  { path:"hireDetail", component:HireDetailComponent },
+    ], canActivate:[JwtGuardService, HrGuardService]
+  },
+  { path:"hireDetail", component:HireDetailComponent, canActivate:[JwtGuardService, HrGuardService] },
   
   // employee - housing 
   { path:"employee/login", component:LoginComponent },
   { path:"employee/login-email", component:LoginEmailComponent },
-  { path:"employee/housing", component:HousingComponent },
-  { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent },
-  { path:"hr/houseManagement", component:HrHousingComponent },
-  { path:"hr/houseManagement/detail/:houseId", component:HrHousingDetailComponent },
-  { path:"hr/email", component:HrEmailComponent },
+  { path:"employee/housing", component:HousingComponent, canActivate:[JwtGuardService, EmployeeGuardService] },
+  { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent, canActivate:[JwtGuardService, EmployeeGuardService] },
+  { path:"hr/houseManagement", component:HrHousingComponent, canActivate:[JwtGuardService, HrGuardService] },
+  { path:"hr/houseManagement/detail/:houseId", component:HrHousingDetailComponent, canActivate:[JwtGuardService, HrGuardService] },
+  { path:"hr/email", component:HrEmailComponent, canActivate:[JwtGuardService, HrGuardService] },
 
   // employee - visa
-  {path:'employee/visa', component: VisastartComponent},
-  {path:'employee/visa/optreceipt', component:OptreceiptComponent},
-  {path:'employee/visa/optead', component:OpteadComponent},
-  {path:'employee/visa/i983template', component:I983templateComponent},
-  {path:'employee/visa/waitforhr', component:WaitforhrComponent},
-  {path:'employee/visa/i20' ,component:I20Component},
-  {path:'employee/visa/uploadStemReceipt',component:UploadStemReceiptComponent},
-  {path:'employee/visa/optstemreceipt',component:OptstemreceiptComponent},
-  {path:'employee/visa/optstemead',component:OptstemeadComponent},
+  {path:'employee/visa', component: VisastartComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/optreceipt', component:OptreceiptComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/optead', component:OpteadComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/i983template', component:I983templateComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/waitforhr', component:WaitforhrComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/i20' ,component:I20Component, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/uploadStemReceipt',component:UploadStemReceiptComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/optstemreceipt',component:OptstemreceiptComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  {path:'employee/visa/optstemead',component:OptstemeadComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
 
   // hr - visa
-  {path:'hr/visa/notify',component: HrVisaNotificationComponent},
+  {path:'hr/visa/notify',component: HrVisaNotificationComponent, canActivate:[JwtGuardService, HrGuardService]},
 
   // employee - boarding
   { path:"employee/boarding", component:BoardingFormComponent,
@@ -120,16 +122,16 @@ const routes: Routes = [
       {path:'visa',component:VisaStatusComponent}
     ]
   },
-  { path:"boardingUpload", component:FileUploadComponent},
+  { path:"boardingUpload", component:FileUploadComponent, canActivate:[JwtGuardService]},
 
-    // employee - personal info
-    { path:"employee/personalInfo", component:PersonalInfoComponent,
-      children:[
-      {path:'name',component:PiNameComponent}
-    ]
-    },
-    // hr - personal info
-    {path:'hr/EmployeeProfile',component:EmployeeProfileComponent}
+  // employee - personal info
+  { path:"employee/personalInfo", component:PersonalInfoComponent,
+    children:[
+    {path:'name',component:PiNameComponent}
+  ], canActivate:[JwtGuardService, EmployeeGuardService]
+  },
+  // hr - personal info
+  {path:'hr/EmployeeProfile',component:EmployeeProfileComponent, canActivate:[JwtGuardService, HrGuardService]}
 
 ]
 

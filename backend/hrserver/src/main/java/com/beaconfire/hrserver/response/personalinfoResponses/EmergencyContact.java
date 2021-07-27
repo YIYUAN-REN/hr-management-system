@@ -16,5 +16,5 @@ public class EmergencyContact {
 //    private Employee employee;
     private String fullName;
     private String phone;
-    private Address address;
+//    private Address address;
 }
