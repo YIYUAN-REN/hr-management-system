@@ -24,4 +24,12 @@ public class AddressDAO extends AbstractHibernateDAO{
         if (results.size()>0) return results.get(0);
         else return null;
     }
+
+    public void deleteAddressByEmployeeId(int id){
+        Session session = getCurrentSession();
+        String del = "delete Address  where employeeId=:id";
+        Query query = session.createQuery(del);
+        query.setParameter("id",id);
+        query.executeUpdate();
+    }
 }

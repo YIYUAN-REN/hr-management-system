@@ -78,4 +78,12 @@ public class VisaDAO extends AbstractHibernateDAO{
         List<VisaStatus> list = query.getResultList();
         return list.get(0).getVisaType();
     }
+
+    public void deleteVisaByEmployeeId(int id){
+        Session session = getCurrentSession();
+        String del = "delete VisaStatus  where employeeId=:id";
+        Query query = session.createQuery(del);
+        query.setParameter("id",id);
+        query.executeUpdate();
+    }
 }

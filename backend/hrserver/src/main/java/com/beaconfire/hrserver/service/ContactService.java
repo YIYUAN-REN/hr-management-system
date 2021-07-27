@@ -35,4 +35,6 @@ public class ContactService {
         Integer contactId = contactDAO.addLandlord(firstName, lastName, cellPhone, email, 0);
         return contactId;
     }
+    @Transactional
+    public void deleteContactByEmployeeId(int id){this.contactDAO.deleteContactByEmployeeId(id);}
 }

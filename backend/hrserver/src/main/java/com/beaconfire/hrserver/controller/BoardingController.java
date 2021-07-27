@@ -46,8 +46,17 @@ public class BoardingController {
         JSONObject objPack = new JSONObject(JsonPack);
         String userId = objPack.getString("userId");
         System.out.println(userId);
+        int detectEmployee = deleteOldBoarding(Integer.parseInt(userId));
         Employee employee = generateEmployee(objPack, Integer.parseInt(userId));
-        int employeeId = this.employeeService.addEmployee(employee);
+        int employeeId = 0;
+        if (detectEmployee<0) {
+            employeeId = this.employeeService.addEmployee(employee);
+        }
+        else {
+            employeeId = detectEmployee;
+            employee.setId(employeeId);
+            this.employeeService.updateEmployee(employee);
+        }
         Address address = generateAddress(objPack.getJSONObject("address"), employeeId);
         this.addressService.addAddress(address);
         this.visaService.addVisa(generateVisa(objPack.getJSONObject("visa"), employeeId));
@@ -214,6 +223,18 @@ public class BoardingController {
         workFlow.setEmployeeId(employeeId);
         workFlow.setStatus(state);
         return workFlow;
+    }
+    //except employee
+    public int deleteOldBoarding(Integer uid){
+        List<Employee> oldEmployee = this.employeeService.getEmployeeByUid(uid);
+        if(oldEmployee==null||oldEmployee.size()==0) return -1;
+        for(Employee old:oldEmployee){
+            int eid = old.getId();
+            this.addressService.deleteAddressByEmployeeId(eid);
+            this.contactService.deleteContactByEmployeeId(eid);
+            this.visaService.deleteVisaByEmployeeId(eid);
+        }
+        return oldEmployee.get(0).getId();
     }
 }
 

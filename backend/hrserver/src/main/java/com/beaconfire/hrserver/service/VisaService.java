@@ -31,7 +31,8 @@ public class VisaService {
         Session session = sessionFactory.getCurrentSession();
         return this.visaDAO.getVisaByEmployeeId(employeeId);
     }
-
+    @Transactional
+    public void deleteVisaByEmployeeId(int id){this.visaDAO.deleteVisaByEmployeeId(id);}
     @Transactional
     public void updateVisaType(VisaStatus visaStatus){
         Session session = sessionFactory.getCurrentSession();

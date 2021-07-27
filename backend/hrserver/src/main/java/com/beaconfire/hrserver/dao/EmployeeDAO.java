@@ -19,9 +19,30 @@ public class EmployeeDAO extends AbstractHibernateDAO{
 
     public int addEmployee(Employee employee){ return save(employee);}
 
+    public void updateEmployee(Employee employee){
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(employee);
+    }
+
     public Employee getEmployeeById(Integer id){
         Session session = sessionFactory.getCurrentSession();
         return session.get(Employee.class, id);
+    }
+
+    public List<Employee> getEmployeeByUid(Integer uid){
+        Session session = sessionFactory.getCurrentSession();
+        String get = "from Employee where userId=:uid";
+        Query query = session.createQuery(get);
+        query.setParameter("uid", uid);
+        return query.getResultList();
+    }
+
+    public void deleteEmployeeByUid(Integer uid){
+        Session session = sessionFactory.getCurrentSession();
+        String get = "delete Employee where userId=:uid";
+        Query query = session.createQuery(get);
+        query.setParameter("uid", uid);
+        query.executeUpdate();
     }
 
     public List<Employee> getEmployeesByHouse(House house){
