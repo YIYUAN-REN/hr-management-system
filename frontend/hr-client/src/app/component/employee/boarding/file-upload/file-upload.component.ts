@@ -27,23 +27,27 @@ export class FileUploadComponent implements OnInit {
   }
   selectAvatarFile(event:any) {
     this.selectedAvatarFile = event.target.files;
+    alert(this.selectedAvatarFile.name);
   }
 
   upload(){
     this.uploadService.pushFileToStorage(this.selectedAvatarFile, "avatar").subscribe(
       (Response)=>{
         console.log(Response);
-        // this.uploadService.pushFileToStorage(this.selectedDriverFile, "driver").subscribe(
-        //   (Response)=>{
-        //     console.log(Response);
-        //     this.uploadService.pushFileToStorage(this.selectedVisaFile, "visa").subscribe(
-        //       (Response)=>{
-                
-        //         this.router.navigate(["pending"]);
-        //       }
-        //     );
-        //   }
-        // );
+        this.uploadService.pushFileToStorage(this.selectedDriverFile, "driver").subscribe(
+          (Response)=>{
+            console.log(Response);
+            this.uploadService.pushFileToStorage(this.selectedVisaFile, "visa").subscribe(
+              (Response)=>{
+                console.log(Response);
+                this.router.navigate(["pending"]);
+              }
+            );
+          }
+        );
+      },
+      (error)=>{
+        console.log(error)
       }
     );
   }

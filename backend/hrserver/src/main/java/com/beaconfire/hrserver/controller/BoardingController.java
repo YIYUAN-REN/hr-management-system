@@ -120,13 +120,15 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/boardingFileUpload/")
-    public void uploadBoardingFile(@RequestParam("file") MultipartFile file,
-                                   @RequestParam("userid") String uid,
-                                   @RequestParam("type") String type){
+    @PostMapping("/FileUploadBoarding/")
+    public void uploadBoardingFile(
+//                                   @RequestParam("userid") String uid,
+//                                   @RequestParam("type") String type,
+                                   @RequestParam("file") MultipartFile file){
         System.out.println("here!");
-        if(uid==null||uid.equals(""))uid = "-1";
-        String keyName = type+"_"+uid;
+//        if(uid==null||uid.equals(""))uid = "-1";
+//        String keyName = type+"_"+uid;
+        String keyName = file.getOriginalFilename();
         s3Service.uploadFile(keyName, file);
     }
 
