@@ -44,7 +44,7 @@ public class BoardingController {
     S3Service s3Service;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/boarding/")
+    @PostMapping("/boarding")
     public void Boarding(@RequestBody String JsonPack){
         String WORKFLOW_STATE = "PENDING";
 //        System.out.println(JsonPack);
@@ -83,7 +83,7 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getApplicationDetail/{id}/")
+    @GetMapping("/getApplicationDetail/{id}")
     public ApplicationDetailResponse getApplicationDetail(@PathVariable String id) {
         ApplicationDetailResponse response = new ApplicationDetailResponse();
         response.setEmployee(this.employeeService.getEmployeesById(Integer.parseInt(id)));
@@ -108,7 +108,7 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getBoardingStatus/{uid}/")
+    @GetMapping("/getBoardingStatus/{uid}")
     public ApplicationStatusResponse getBoardingStatus(@PathVariable String uid){
         ApplicationStatusResponse resp = new ApplicationStatusResponse();
         ApplicationWorkFlow workflow = this.workflowService.getWorkflowById(Integer.parseInt(uid));
@@ -254,6 +254,17 @@ public class BoardingController {
             this.visaService.deleteVisaByEmployeeId(eid);
         }
         return oldEmployee.get(0).getId();
+    }
+
+    private MediaType contentType(String keyname) {
+        String[] arr = keyname.split("\\.");
+        String type = arr[arr.length-1];
+        switch(type) {
+            case "txt": return MediaType.TEXT_PLAIN;
+            case "png": return MediaType.IMAGE_PNG;
+            case "jpg": return MediaType.IMAGE_JPEG;
+            default: return MediaType.APPLICATION_OCTET_STREAM;
+        }
     }
 }
 
