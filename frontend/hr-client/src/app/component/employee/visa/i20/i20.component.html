@@ -1,2 +1,28 @@
 <p>Please send the I-983 with all necessary documents to your school and upload the new I-20.</p>
-<button (click)='next()'>Next</button>
+
+<div *ngIf="currentFileUpload" class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+      aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+      {{progress.percentage}}%</div>
+  </div>
+  
+<label class="btn btn-default">
+<input type="file" (change)="selectFile($event)">
+</label>
+
+<button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button><br><br>
+
+
+<button (click)='next()'>Next</button> <br><br>
+<button (click)='showFiles(true)'>Show Files</button>&nbsp;
+<button (click)='showFiles(false)'>Hide Files</button>
+
+<div [hidden]="!showFile">
+    <div>List of Files</div>
+    <ng-container *ngFor="let file of fileUploads | async">
+        <tr>
+            <details-upload [fileUpload]='file'></details-upload>
+        </tr>
+        
+    </ng-container>
+</div>

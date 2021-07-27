@@ -1,6 +1,7 @@
 package com.beaconfire.hrserver.service;
 
 import com.beaconfire.hrserver.dao.VisaDAO;
+import com.beaconfire.hrserver.domain.ApplicationWorkFlow;
 import com.beaconfire.hrserver.domain.FacilityReport;
 import com.beaconfire.hrserver.domain.VisaStatus;
 import org.hibernate.Session;
@@ -39,9 +40,20 @@ public class VisaService {
     }
 
     @Transactional
+    public ApplicationWorkFlow getWorkflowByEmployeeId(int employeeId){
+        Session session = sessionFactory.getCurrentSession();
+        return visaDAO.getWorkflowByEmployeeId(employeeId);
+    }
+
+    @Transactional
+    public void updateStatusWorkflow(ApplicationWorkFlow applicationWorkFlow){
+        Session session = sessionFactory.getCurrentSession();
+        session.update(applicationWorkFlow);
+    }
+
+    //config employee visa type,user visaType, Today's date, user visaEndDate
+    @Transactional
     public void preProcessVisa(VisaStatus visaStatus){
-        // config employee visa type
-        // user visaType, Today's date, user visaEndDate,
         String visaType = visaStatus.getVisaType();
         LocalDate todayDate = LocalDate.now();
         String visaEndDatetmp = visaStatus.getVisaEndDate();
@@ -68,6 +80,12 @@ public class VisaService {
     public String getStatus(int employeeId){
         String status = visaDAO.getStatus(employeeId);
         return status;
+    }
+
+    @Transactional
+    public int getEmployeeIdByUserId(int userId){
+        int employeeId = visaDAO.getEmployeeIdByUserId(userId);
+        return employeeId;
     }
 
 }

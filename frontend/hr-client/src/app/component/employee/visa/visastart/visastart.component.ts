@@ -10,8 +10,8 @@ import { Router } from '@angular/router'
 export class VisastartComponent implements OnInit {
 
   visaType!: String;
-  I983Submitted! :boolean;
-  OptStemReceiptReceived! :boolean;
+  status!: String;
+
   msg!:string;
 
   constructor(private visastartService: VisastartService,
@@ -20,13 +20,12 @@ export class VisastartComponent implements OnInit {
   check(){
     this.visastartService.getData().subscribe((data)=>{
       this.visaType = data.visaType;
-      this.I983Submitted = data.I983Submitted;
-      this.OptStemReceiptReceived = data.OptStemReceiptReceived;
+      this.status = data.status;
+
       this.msg = "Your current OPT status is:" + data.visaType;
     });
     
-    return this.msg;
-       
+    return this.msg;  
   }
 
   //redirect
@@ -35,13 +34,13 @@ export class VisastartComponent implements OnInit {
       this.router.navigate(['employee/visa/optreceipt']);
     }else if(this.visaType=="OPT EAD"){
       this.router.navigate(['employee/visa/optead']);
-    }else if(this.visaType=="I-983" && !this.I983Submitted){
+    }else if(this.visaType=="I-983" && this.status=="nosubmission"){
       this.router.navigate(['employee/visa/i983template']);
-    }else if(this.visaType=="I-983" && this.I983Submitted){
+    }else if(this.visaType=="I-983" && this.status=="waitforhr"){
       this.router.navigate(['employee/visa/waitforhr']);
-    }else if(this.visaType=="I-20" && !this.OptStemReceiptReceived){
+    }else if(this.visaType=="I-20" && this.status=="nonewi20"){
       this.router.navigate(['employee/visa/i20']);
-    }else if(this.visaType=="I-20" && this.OptStemReceiptReceived){
+    }else if(this.visaType=="I-20" && this.status=="newi20"){
       this.router.navigate(['employee/visa/uploadStemReceipt']);
     }else if(this.visaType=="OPT STEM Receipt"){
       this.router.navigate(['employee/visa/optstemreceipt']);

@@ -37,12 +37,5 @@ export class HrVisaMainComponent implements OnInit {
     this.router.navigate(['hr/visa/notify']);
   }
 
-  // toggle(){
-  //   if(this.toggleValue == false){
-  //     this.toggleValue = true;
-  //   }else{
-  //     this.toggleValue = false;
-  //   }
-  // }
 
 }

@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // employee - housing 
 import { HttpService } from './service/housing/http.service';
@@ -14,9 +15,13 @@ import { ReportDetailComponent } from './component/employee/housing/report-detai
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
 import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
 // employee - visa
-import { OptreceiptService } from './service/visa/optreceipt.service';
 import { VisastartComponent } from './component/employee/visa/visastart/visastart.component';
-import { UploadComponent } from './component/employee/visa/upload/upload.component';
+import { I983templateComponent } from './component/employee/visa/i983template/i983template.component';
+import { I20Component } from './component/employee/visa/i20/i20.component';
+import { UploadStemReceiptComponent } from './component/employee/visa/upload-stem-receipt/upload-stem-receipt.component';
+
+
+// hr - visa
 import { HrVisaMainComponent } from './component/hr/hr-visa/hr-visa-main/hr-visa-main.component';
 import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-notification/hr-visa-notification.component';
 // employee - boarding
@@ -68,6 +73,10 @@ import { RegisterComponent } from './component/home-page/register/register.compo
 // import { MyAddressFormComponent } from './samples/my-address-form/my-address-form.component';
 import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './samples/my-nav/my-nav.component';
+import { OptreceiptComponent } from './component/employee/visa/optreceipt/optreceipt.component';
+import { DetailsUploadComponent } from './component/employee/visa/details-upload/details-upload.component';
+import { OptstemreceiptComponent } from './component/employee/visa/optstemreceipt/optstemreceipt.component';
+
 // import { MyTableComponent } from './samples/my-table/my-table.component';
 
 @NgModule({
@@ -83,7 +92,13 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
 
     // employee - visa
     VisastartComponent,
-    UploadComponent,
+    OptreceiptComponent,
+    I983templateComponent,
+    I20Component,
+    UploadStemReceiptComponent,
+    OptstemreceiptComponent,
+
+    //hr -visa
     HrVisaMainComponent,
     HrVisaNotificationComponent,
 
@@ -116,6 +131,7 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
     // MyAddressFormComponent,
     MyDashboardComponent,
     MyNavComponent,
+    DetailsUploadComponent,
     // MyTableComponent
   ],
   imports: [
@@ -139,17 +155,18 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
     MatListModule,
     MatDividerModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    CommonModule
 
 
 
-    // AngularFileUploaderModule
   ],
   providers: [
     HttpService,
     HttpServiceService,
-    OptreceiptService
+    
   ],
+  exports:[CommonModule,],
 
   bootstrap: [AppComponent]
 })

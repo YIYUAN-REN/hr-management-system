@@ -7,12 +7,18 @@ import { HttpClient , HttpErrorResponse, HttpHeaders, HttpResponse } fro
 })
 export class VisastartService {
 
-  private baseUrl = "http://localhost:8080/hr/visa/main";
+  private baseUrl = "http://localhost:8080/employee/visa/";
 
 
   constructor(private http:HttpClient){}
 
+  
+
   getData(): Observable<any>{
-    return this.http.get<any>(this.baseUrl);
+    
+    //for testing
+    return this.http.get<any>(this.baseUrl+"124");
+
+    // return this.http.get<any>(this.baseUrl+sessionStorage.getItem("userId"));
   }
 }

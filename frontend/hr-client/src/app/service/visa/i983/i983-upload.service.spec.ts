@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OptreceiptService } from './optreceipt.service';
+import { I983UploadService } from './i983-upload.service';
 
-describe('OptreceiptService', () => {
-  let service: OptreceiptService;
+describe('I983UploadService', () => {
+  let service: I983UploadService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(OptreceiptService);
+    service = TestBed.inject(I983UploadService);
   });
 
   it('should be created', () => {
