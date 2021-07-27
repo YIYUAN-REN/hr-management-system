@@ -20,6 +20,9 @@ export class HireComponent implements OnInit {
     this.getPending();
   }
 
+  gotoEmail(){
+    this.router.navigate(["hr/email"]);
+  }
 
   getPending() { 
     this.httpService.getData("http://localhost:8080/viewBoarding/").subscribe(
