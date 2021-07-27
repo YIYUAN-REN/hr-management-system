@@ -18,6 +18,9 @@ export class HireDetailComponent implements OnInit {
   uid:any;
   comment:String='';
 
+  avatarFile:String;
+  driverFile:String;
+  visaFile:String;
   constructor(private httpService: HttpService, private router:Router) {
     let packString = sessionStorage.getItem("packString");
     var jsonObject;
@@ -31,6 +34,9 @@ export class HireDetailComponent implements OnInit {
     this.emergency = jsonObject.emergency;
     this.visa = jsonObject.visa;
     this.address = jsonObject.address;
+    this.avatarFile = "avatarBoarding"+"_"+this.uid;
+    this.driverFile = "driverBoarding"+"_"+this.uid;
+    this.visaFile = "visaBoarding"+"_"+this.uid
    }
 
   ngOnInit(): void {

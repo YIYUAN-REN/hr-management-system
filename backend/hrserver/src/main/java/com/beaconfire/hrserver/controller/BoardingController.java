@@ -6,10 +6,14 @@ import com.beaconfire.hrserver.response.ApplicationStatusResponse;
 import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,7 +43,7 @@ public class BoardingController {
     S3Service s3Service;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/boarding")
+    @PostMapping("/boarding/")
     public void Boarding(@RequestBody String JsonPack){
         String WORKFLOW_STATE = "PENDING";
 //        System.out.println(JsonPack);
@@ -78,7 +82,7 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getApplicationDetail/{id}")
+    @GetMapping("/getApplicationDetail/{id}/")
     public ApplicationDetailResponse getApplicationDetail(@PathVariable String id) {
         ApplicationDetailResponse response = new ApplicationDetailResponse();
         response.setEmployee(this.employeeService.getEmployeesById(Integer.parseInt(id)));
@@ -103,7 +107,7 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/getBoardingStatus/{uid}")
+    @GetMapping("/getBoardingStatus/{uid}/")
     public ApplicationStatusResponse getBoardingStatus(@PathVariable String uid){
         ApplicationStatusResponse resp = new ApplicationStatusResponse();
         ApplicationWorkFlow workflow = this.workflowService.getWorkflowById(Integer.parseInt(uid));
@@ -122,14 +126,24 @@ public class BoardingController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/FileUploadBoarding/")
     public void uploadBoardingFile(
-//                                   @RequestParam("userid") String uid,
-//                                   @RequestParam("type") String type,
+                                   @RequestParam("userid") String uid,
+                                   @RequestParam("type") String type,
                                    @RequestParam("file") MultipartFile file){
         System.out.println("here!");
-//        if(uid==null||uid.equals(""))uid = "-1";
-//        String keyName = type+"_"+uid;
-        String keyName = file.getOriginalFilename();
+        if(uid==null||uid.equals(""))uid = "-1";
+        String keyName = type+"Boarding_"+uid;
         s3Service.uploadFile(keyName, file);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/api/file/{keyname}")
+    public ResponseEntity<byte[]> downloadFile(@PathVariable String keyname) {
+        ByteArrayOutputStream downloadInputStream = s3Service.downloadFile(keyname);
+
+        return ResponseEntity.ok()
+                .contentType(contentType(keyname))
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + keyname + "\"")
+                .body(downloadInputStream.toByteArray());
     }
 
     public Employee generateEmployee(JSONObject objPack, int userId){

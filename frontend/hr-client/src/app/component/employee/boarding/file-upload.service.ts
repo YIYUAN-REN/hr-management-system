@@ -24,13 +24,6 @@ export class FileUploadService {
     else formdata.append('userId', '-1');
     //Driver Liscense/avatar/visa
     formdata.append('type', type);
-
-    // const req = new HttpRequest('POST', 'http://localhost:8080/FileUploadBoarding/', formdata, {
-    //   reportProgress: true,
-    //   responseType: 'text'
-    // });
-
-    // return this.http.request(req);
     return this.httpService.postData("http://localhost:8080/FileUploadBoarding/", formdata);
   }
 

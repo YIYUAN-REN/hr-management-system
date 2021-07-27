@@ -9,6 +9,7 @@ import { FileUploadService } from '../file-upload.service';
 })
 export class FileUploadComponent implements OnInit {
 
+  selectedFiles: FileList | undefined;
   selectedDriverFile!: File;
   selectedVisaFile!:File;
   selectedAvatarFile!:File;
@@ -20,14 +21,19 @@ export class FileUploadComponent implements OnInit {
   }
 
   selectDriverFile(event:any) {
-    this.selectedDriverFile = event.target.files;
+    this.selectedFiles = event.target.files;
+    this.selectedDriverFile = this.selectedFiles!.item(0) as File;
+    this.selectedFiles = undefined;
   }
   selectVisaFile(event:any) {
-    this.selectedVisaFile = event.target.files;
+    this.selectedFiles = event.target.files;
+    this.selectedVisaFile = this.selectedFiles!.item(0) as File;
+    this.selectedFiles = undefined;
   }
   selectAvatarFile(event:any) {
-    this.selectedAvatarFile = event.target.files;
-    alert(this.selectedAvatarFile.name);
+    this.selectedFiles = event.target.files;
+    this.selectedAvatarFile = this.selectedFiles!.item(0) as File;
+    this.selectedFiles = undefined;
   }
 
   upload(){
