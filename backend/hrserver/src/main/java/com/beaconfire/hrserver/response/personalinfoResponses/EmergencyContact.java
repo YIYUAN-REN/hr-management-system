@@ -1,5 +1,6 @@
 package com.beaconfire.hrserver.response.personalinfoResponses;
 
+import com.beaconfire.hrserver.domain.Address;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
