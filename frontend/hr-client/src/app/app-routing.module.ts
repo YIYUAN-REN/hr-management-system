@@ -64,7 +64,7 @@ const routes: Routes = [
 
   // { path:"address", component:MyAddressFormComponent},
   // { path:"table", component:MyTableComponent},
-  { path:"pending", component: PendingComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  { path:"pending", component: PendingComponent, canActivate:[JwtGuardService]},
   { path:"login", component: HomePageComponent },
   
   { path:"employee", component:EmployeeHomePageComponent,
