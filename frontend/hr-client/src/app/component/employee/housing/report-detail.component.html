@@ -21,6 +21,6 @@
         <form>
             <textarea #updateComment cols="20" rows="1" [disabled]="!onDisabled(comment.employeeId)">{{comment.comments}}</textarea><br><br>
             <button (click)="onUpdate(comment.id, updateComment.value)" [disabled]="!onDisabled(comment.employeeId)">Submit</button>
-            {{updateMessage}}
+            <!-- {{updateMessage}} -->
         </form><br><br>
     </ng-container>

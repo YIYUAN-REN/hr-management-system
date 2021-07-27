@@ -13,6 +13,10 @@ import { HousingComponent } from './component/employee/housing/housing.component
 import { ReportDetailComponent } from './component/employee/housing/report-detail.component';
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
 import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
+import { JwtGuardService } from './service/guard/jwt-guard.service';
+import { EmployeeGuardService } from './service/guard/employee-guard.service';
+import { HrGuardService } from './service/guard/hr-guard.service';
+
 // employee - visa
 import { OptreceiptService } from './service/visa/optreceipt.service';
 import { VisastartComponent } from './component/employee/visa/visastart/visastart.component';
@@ -154,7 +158,10 @@ import { HrEmailComponent } from './component/hr/email/hr-email.component';
   providers: [
     HttpService,
     HttpServiceService,
-    OptreceiptService
+    OptreceiptService,
+    JwtGuardService,
+    EmployeeGuardService,
+    HrGuardService
   ],
 
   bootstrap: [AppComponent]

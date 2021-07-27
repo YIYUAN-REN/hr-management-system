@@ -53,6 +53,12 @@ public class HouseService {
     }
 
     @Transactional
+    public Integer deleteHouse(Integer id) {
+        Integer houseId = houseDAO.deleteHouse(id);
+        return houseId;
+    }
+
+    @Transactional
     public House getHouseById(int houseId) {
         return houseDAO.getHouseById(houseId);
     }

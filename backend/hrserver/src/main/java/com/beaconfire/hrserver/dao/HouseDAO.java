@@ -50,6 +50,25 @@ public class HouseDAO {
         return houseId;
     }
 
+    public Integer deleteHouse(int id){
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "select numberOfPerson from House where id = :id";
+        Query query = session.createQuery(statement);
+        query.setParameter("id", id);
+        List<Integer> list = query.getResultList();
+
+
+        if (list.isEmpty() || list.get(0) > 0) {
+            return null;
+        }
+        System.out.println(list.get(0));
+        statement = "delete from House where id = :id";
+        query = session.createQuery(statement);
+        query.setParameter("id", id);
+        query.executeUpdate();
+        return id;
+    }
+
     public List<Facility> getFacilitiesByHouse(House house){
         Session session = sessionFactory.getCurrentSession();
         int houseId = house.getId();

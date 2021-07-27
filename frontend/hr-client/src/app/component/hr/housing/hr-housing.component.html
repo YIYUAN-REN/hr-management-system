@@ -8,7 +8,7 @@
     Email: {{contacts[i].email}}<br>
     Number of Employees: {{house.numberOfPerson}}<br>
     <button routerLink="/hr/houseManagement/detail/{{house.id}}">Detail</button><br><br>
-</ng-container>
+</ng-container><br>
 
 <h2>Add House</h2>
 <form [formGroup]="addHouseForm" (ngSubmit)="onSubmit(addHouseForm)">
@@ -19,4 +19,11 @@
     <input type="text" formControlName="email" placeholder="Email" required><br>
     <button type="submit" [disabled]="!addHouseForm.valid">Add</button>
 </form>
-{{message}}
+{{addMessage}}<br><br>
+
+<h2>Delete House</h2>
+<form [formGroup]="deleteHouseForm" (ngSubmit)="onDelete(deleteHouseForm)">
+    <input type="text" formControlName="houseId" placeholder="House ID" required><br>
+    <button type="submit" [disabled]="!deleteHouseForm.valid">Delete</button>
+</form>
+{{deleteMessage}}<br><br>

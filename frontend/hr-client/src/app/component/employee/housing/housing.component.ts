@@ -32,7 +32,7 @@ export class HousingComponent implements OnInit {
 
   getHousingDetail() {
     // change from userId to employeeId later
-    this.httpService.getData("/hr/housing/houseDetail/" + sessionStorage.getItem("userId")).subscribe(
+    this.httpService.getData("/hr/housing/houseDetail/" + sessionStorage.getItem("employeeId")).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
         // console.log(jsonObject);

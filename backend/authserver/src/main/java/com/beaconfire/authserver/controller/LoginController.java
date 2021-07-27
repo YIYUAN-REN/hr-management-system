@@ -6,10 +6,10 @@ import com.beaconfire.authserver.request.LoginRequest;
 import com.beaconfire.authserver.response.LoginResponse;
 import com.beaconfire.authserver.security.CookieUtil;
 import com.beaconfire.authserver.security.JwtUtil;
+import com.beaconfire.authserver.service.EmployeeService;
 import com.beaconfire.authserver.service.RoleService;
 import com.beaconfire.authserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +22,9 @@ public class LoginController {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    EmployeeService employeeService;
 
 //    @CrossOrigin(origins="http://localhost:4200")
 //    @GetMapping("/login")
@@ -57,6 +60,7 @@ public class LoginController {
         response.setEmail(user.getEmail());
         response.setRole(roleService.getRoleByUserId(user.getId()));
         response.setToken(token);
+        response.setEmployee(employeeService.getEmployeeByUserId(user.getId()));
 
         return response;
     }

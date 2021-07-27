@@ -51,7 +51,7 @@ export class ReportDetailComponent implements OnInit {
   onCreate(form: FormGroup){
     this.httpService.postData("/hr/housing/postComment", {
       // change from userId to employeeId later
-      employeeId: sessionStorage.getItem("userId"),
+      employeeId: sessionStorage.getItem("employeeId"),
       reportId: this.reportId,
       comments: form.value["comment"]
     }).subscribe(
@@ -79,7 +79,7 @@ export class ReportDetailComponent implements OnInit {
 
   onDisabled(author: number):boolean {
     // change from userId to employeeId later
-    return sessionStorage.getItem("userId") == String(author);
+    return sessionStorage.getItem("employeeId") == String(author);
   }
 
 }

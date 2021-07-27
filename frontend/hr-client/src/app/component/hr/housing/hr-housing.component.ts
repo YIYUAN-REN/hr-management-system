@@ -8,13 +8,16 @@ import { HrHousingHttpService } from '../../../service/hr/housing/hr-housing-htt
   styleUrls: ['./hr-housing.component.css']
 })
 export class HrHousingComponent implements OnInit {
-  message: string;
+  addMessage: string;
+  deleteMessage: string;
   houses: any;
   contacts: any;
   addHouseForm: any;
+  deleteHouseForm: any;
 
   constructor(private httpService: HrHousingHttpService) { 
-    this.message = "";
+    this.addMessage = "";
+    this.deleteMessage = "";
     this.addHouseForm = new FormGroup({
       address: new FormControl(""),
       firstName: new FormControl(""),
@@ -22,6 +25,9 @@ export class HrHousingComponent implements OnInit {
       cellPhone: new FormControl(""),
       email: new FormControl("")
     });
+    this.deleteHouseForm = new FormGroup({
+      houseId: new FormControl("")
+    })
   }
 
   ngOnInit(): void {
@@ -48,7 +54,18 @@ export class HrHousingComponent implements OnInit {
     }).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
-        this.message = jsonObject.status.message;
+        this.addMessage = jsonObject.status.message;
+      }
+    );
+  }
+
+  onDelete(form: FormGroup){
+    this.httpService.postData("/hr/housing/deleteHouse", {
+      houseId: form.value["houseId"]
+    }).subscribe(
+      (response) => {
+        var jsonObject = JSON.parse(JSON.stringify(response));
+        this.deleteMessage = jsonObject.status.message;
       }
     );
   }

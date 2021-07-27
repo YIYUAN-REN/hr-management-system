@@ -9,6 +9,9 @@ import { ReportDetailComponent } from '../app/component/employee/housing/report-
 import { HrHousingComponent } from './component/hr/housing/hr-housing.component';
 import { HrHousingDetailComponent } from './component/hr/housing/hr-housing-detail.component';
 import { HrEmailComponent } from './component/hr/email/hr-email.component';
+import { JwtGuardService } from './service/guard/jwt-guard.service';
+import { EmployeeGuardService } from './service/guard/employee-guard.service';
+import { HrGuardService } from './service/guard/hr-guard.service';
 
 // employee - visa
 import { I20Component } from '../app/component/employee/visa/i20/i20.component';

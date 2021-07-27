@@ -3,11 +3,9 @@ package com.beaconfire.hrserver.controller;
 import com.beaconfire.hrserver.common.ResponseStatus;
 import com.beaconfire.hrserver.domain.Contact;
 import com.beaconfire.hrserver.domain.House;
+import com.beaconfire.hrserver.request.DeleteHouseRequest;
 import com.beaconfire.hrserver.request.NewHouseRequest;
-import com.beaconfire.hrserver.response.AllHouseResponse;
-import com.beaconfire.hrserver.response.HouseDetailResponse;
-import com.beaconfire.hrserver.response.HouseDetailResponseHr;
-import com.beaconfire.hrserver.response.NewHouseResponse;
+import com.beaconfire.hrserver.response.*;
 import com.beaconfire.hrserver.service.ContactService;
 import com.beaconfire.hrserver.service.FacilityService;
 import com.beaconfire.hrserver.service.HouseService;
@@ -48,6 +46,20 @@ public class HrHouseController {
         Integer houseId = houseService.addHouse(contactId, request.getAddress(), 0);
         if (houseId == null) {
             response.setStatus(new ResponseStatus(true, "Fail to add house!"));
+            return response;
+        }
+
+        response.setStatus(new ResponseStatus(true, "Success!"));
+        return response;
+    }
+
+    @PostMapping(value = "/deleteHouse")
+    public DeleteHouseResponse deleteHouse(@RequestBody DeleteHouseRequest request){
+        DeleteHouseResponse response = new DeleteHouseResponse();
+
+        Integer houseId = houseService.deleteHouse(request.getHouseId());
+        if (houseId == null) {
+            response.setStatus(new ResponseStatus(true, "Fail to delete house!"));
             return response;
         }
 
