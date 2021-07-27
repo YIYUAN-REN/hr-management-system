@@ -28,8 +28,8 @@ export class EmploymentComponent implements OnInit {
 
   ngOnInit():void {
     console.log('get employment ');
-    sessionStorage.setItem("employeeId", "7");
-    sessionStorage.setItem("userId", "11");
+    // sessionStorage.setItem("employeeId", "7");
+    // sessionStorage.setItem("userId", "11");
         this.employmentService.getEmployment(sessionStorage.getItem("employeeId"), sessionStorage.getItem("userId")).subscribe(data =>{  
             // console.log('returned user get fname  ' +data.legalName);
             // console.log('returned user get ssn ' +data.ssn);

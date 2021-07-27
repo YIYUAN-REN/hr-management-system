@@ -30,8 +30,8 @@ export class PiNameComponent implements OnInit {
 
   ngOnInit():void {
     console.log('get user ')
-    sessionStorage.setItem("employeeId", "7");
-    sessionStorage.setItem("userId", "11");
+    // sessionStorage.setItem("employeeId", "7");
+    // sessionStorage.setItem("userId", "11");
     console.log(sessionStorage.getItem("userId"))
         this.nameService.getName(sessionStorage.getItem("userId")).subscribe(data =>{  
             

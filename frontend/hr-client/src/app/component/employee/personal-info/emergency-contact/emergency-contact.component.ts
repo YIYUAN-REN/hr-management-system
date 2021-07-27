@@ -28,8 +28,8 @@ export class PiEmergencyContactComponent implements OnInit {
 
   ngOnInit():void {
     console.log('get emergencyContacts ')
-    sessionStorage.setItem("employeeId", "7");
-    sessionStorage.setItem("userId", "11");
+    // sessionStorage.setItem("employeeId", "7");
+    // sessionStorage.setItem("userId", "11");
         this.emergencyContactService.getEmergencyContacts(sessionStorage.getItem("employeeId")).subscribe(data =>{  
             // console.log('returned user get fname  ' +data.legalName);
             // console.log('returned user get ssn ' +data.ssn);
