@@ -40,7 +40,9 @@ export class PiAddressComponent implements OnInit {
 
   ngOnInit():void {
     console.log('get address info ')
-        this.addressService.getAddressInfo().subscribe(data =>{  
+    // sessionStorage.setItem("userId", "11");
+    // sessionStorage.setItem("employeeId", "7");
+        this.addressService.getAddressInfo(sessionStorage.getItem("employeeId")).subscribe(data =>{  
             // console.log('returned user get fname  ' +data.legalName);
             // console.log('returned user get ssn ' +data.ssn);
             // console.log('returned user  ' +data);

@@ -28,7 +28,9 @@ export class ContactinfoComponent implements OnInit {
 
   ngOnInit():void {
     console.log('get contact info ')
-        this.contactinfoService.getContactinfo().subscribe(data =>{  
+    // sessionStorage.setItem("userId", "11");
+    // sessionStorage.setItem("employeeId", "7");
+        this.contactinfoService.getContactinfo(sessionStorage.getItem("employeeId")).subscribe(data =>{  
             // console.log('returned user get fname  ' +data.legalName);
             // console.log('returned user get ssn ' +data.ssn);
             // console.log('returned user  ' +data);

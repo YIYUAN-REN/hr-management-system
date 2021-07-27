@@ -13,8 +13,8 @@ export class EmploymentService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployment() {
-    return this.http.get<Employment>(`${this.baseUrl}/1`).pipe(catchError(this.handleError));
+  getEmployment(employeeId : any , userId : any) {
+    return this.http.get<Employment>(`${this.baseUrl}/${employeeId}/${userId}`).pipe(catchError(this.handleError));
   }
 
   updateEmployment(employment: Employment){
