@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 
+
 @RestController
 @RequestMapping("/")
 public class BoardingController {
@@ -136,7 +137,7 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/api/file/{keyname}")
+    @GetMapping("/DownloadBoarding/{keyname}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable String keyname) {
         ByteArrayOutputStream downloadInputStream = s3Service.downloadFile(keyname);
 
