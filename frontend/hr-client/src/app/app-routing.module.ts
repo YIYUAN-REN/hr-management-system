@@ -61,6 +61,8 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
 
 import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
+import { PendingComponent } from './component/home-page/pending/pending.component';
+import { FileUploadComponent } from './component/employee/boarding/file-upload/file-upload.component';
 
 const routes: Routes = [
   // home page
@@ -70,7 +72,7 @@ const routes: Routes = [
   { path:"dashboard", component:MyDashboardComponent},
   { path:"nav", component:MyNavComponent},
   // { path:"table", component:MyTableComponent},
-
+  { path:"pending", component: PendingComponent},
   { path:"login", component: HomePageComponent },
   { path:"employee/register", component:RegisterComponent },
   { path:"employee", component:EmployeeHomePageComponent,
@@ -130,6 +132,7 @@ const routes: Routes = [
       {path:'visa',component:VisaStatusComponent}
     ]
   },
+  { path:"boardingUpload", component:FileUploadComponent},
 
     // employee - personal info
     { path:"employee/personalInfo", component:PersonalInfoComponent,

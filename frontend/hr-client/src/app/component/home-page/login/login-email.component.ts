@@ -40,14 +40,24 @@ export class LoginEmailComponent {
           sessionStorage.setItem("token", jsonObject.token);
           sessionStorage.setItem("employeeId", jsonObject.employee.id);
           
+
           if (jsonObject.role.roleName == "HR") {
             this.router.navigate(["hr"]);
           } else if (jsonObject.role.roleName == "Employee") {
             this.router.navigate(["employee"]);
           } else {
-            this.router.navigate(["employee/boarding"]);
+            alert("Role not found, abort!");
           }
         }
+      }
+    );
+  }
+
+  getBoardingStatus(uid:String){
+    this.httpService.getData("http://localhost:8080/getBoardingStatus/" + uid).subscribe(
+      (response) => {
+        var status = JSON.parse(JSON.stringify(response));
+        return status.message;
       }
     );
   }

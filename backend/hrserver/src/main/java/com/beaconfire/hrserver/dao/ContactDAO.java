@@ -44,4 +44,11 @@ public class ContactDAO extends AbstractHibernateDAO{
         if (results.size()>0) return results;
         else return null;
     }
-}
+
+    public void deleteContactByEmployeeId(int id){
+        Session session = getCurrentSession();
+        String del = "delete Contact  where employeeId=:id";
+        Query query = session.createQuery(del);
+        query.setParameter("id",id);
+        query.executeUpdate();
+    }}

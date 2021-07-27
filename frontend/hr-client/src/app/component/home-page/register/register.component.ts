@@ -39,7 +39,12 @@ export class RegisterComponent {
         if (jsonObject.message != "Success!") {
           // this.registerForm.setValue({userName:"", email:"", password:"", confirmPassword:"", token:""});
         } else {
-          this.router.navigate(["employee/boarding"]);  
+          sessionStorage.setItem("userId", jsonObject.id);
+          sessionStorage.setItem("email", jsonObject.email);
+          sessionStorage.setItem("role", jsonObject.role);
+          sessionStorage.setItem("token", jsonObject.token);
+          // this.router.navigate(["login"]);  
+          this.router.navigate(["employee/boarding"]);
         }
       }
     );

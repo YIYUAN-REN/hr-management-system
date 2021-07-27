@@ -2,11 +2,13 @@ package com.beaconfire.hrserver.controller;
 import com.beaconfire.hrserver.domain.*;
 import com.beaconfire.hrserver.request.HrDecideRequest;
 import com.beaconfire.hrserver.response.ApplicationDetailResponse;
+import com.beaconfire.hrserver.response.ApplicationStatusResponse;
 import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,6 +34,8 @@ public class BoardingController {
     public void setContactService(ContactService contactService){this.contactService = contactService;}
     @Autowired
     public void setWorkflowService(WorkflowService workflowService){this.workflowService = workflowService;}
+    @Autowired
+    S3Service s3Service;
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/boarding")
@@ -39,8 +43,19 @@ public class BoardingController {
         String WORKFLOW_STATE = "PENDING";
 //        System.out.println(JsonPack);
         JSONObject objPack = new JSONObject(JsonPack);
-        Employee employee = generateEmployee(objPack);
-        int employeeId = this.employeeService.addEmployee(employee);
+        String userId = objPack.getString("userId");
+        System.out.println(userId);
+        int detectEmployee = deleteOldBoarding(Integer.parseInt(userId));
+        Employee employee = generateEmployee(objPack, Integer.parseInt(userId));
+        int employeeId = 0;
+        if (detectEmployee<0) {
+            employeeId = this.employeeService.addEmployee(employee);
+        }
+        else {
+            employeeId = detectEmployee;
+            employee.setId(employeeId);
+            this.employeeService.updateEmployee(employee);
+        }
         Address address = generateAddress(objPack.getJSONObject("address"), employeeId);
         this.addressService.addAddress(address);
         this.visaService.addVisa(generateVisa(objPack.getJSONObject("visa"), employeeId));
@@ -51,7 +66,7 @@ public class BoardingController {
         for (int i = 0; i < emergencies.length(); i++) {
             this.contactService.addContact(generateEmergencyContact(emergencies.getJSONObject(i), employeeId));
         }
-        this.workflowService.addWorkflow(generateWorkflow(115,employeeId, WORKFLOW_STATE));
+        this.workflowService.addWorkflow(generateWorkflow(Integer.parseInt(userId),employeeId, WORKFLOW_STATE));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -84,12 +99,38 @@ public class BoardingController {
             workflow.setComments(decide.getComment());
             this.workflowService.addWorkflow(workflow);
         }
-
     }
-    public Employee generateEmployee(JSONObject objPack){
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getBoardingStatus/{uid}")
+    public ApplicationStatusResponse getBoardingStatus(@PathVariable String uid){
+        ApplicationStatusResponse resp = new ApplicationStatusResponse();
+        ApplicationWorkFlow workflow = this.workflowService.getWorkflowById(Integer.parseInt(uid));
+        if(workflow==null){
+            resp.setMessage("REJECT");
+            resp.setComment("");
+        }
+        else {
+            resp.setMessage(workflow.getStatus());
+            if (workflow.getComments() == null) resp.setComment("");
+            else resp.setComment(workflow.getComments());
+        }
+        return resp;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/boardingFile/upload/")
+    public void uploadBoardingFile(@RequestParam("file") MultipartFile file,
+                                   @RequestParam("userid") String uid,
+                                   @RequestParam("type") String type){
+        if(uid==null||uid.equals(""))uid = "-1";
+        String keyName = type+"_"+uid;
+        s3Service.uploadFile(keyName, file);
+    }
+    public Employee generateEmployee(JSONObject objPack, int userId){
         Employee employee = new Employee();
         //hardcode
-        employee.setUserId(114);
+        employee.setUserId(userId);
         employee.setTitle("tbd");
         employee.setManagerId(1);
         employee.setStartDate("tbd");
@@ -181,6 +222,18 @@ public class BoardingController {
         workFlow.setEmployeeId(employeeId);
         workFlow.setStatus(state);
         return workFlow;
+    }
+    //except employee
+    public int deleteOldBoarding(Integer uid){
+        List<Employee> oldEmployee = this.employeeService.getEmployeeByUid(uid);
+        if(oldEmployee==null||oldEmployee.size()==0) return -1;
+        for(Employee old:oldEmployee){
+            int eid = old.getId();
+            this.addressService.deleteAddressByEmployeeId(eid);
+            this.contactService.deleteContactByEmployeeId(eid);
+            this.visaService.deleteVisaByEmployeeId(eid);
+        }
+        return oldEmployee.get(0).getId();
     }
 }
 

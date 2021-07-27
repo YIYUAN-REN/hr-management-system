@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   message: string;
   loginForm: any;
-
+  jsonObject:any;
   constructor(private httpService: HttpService, private router: Router) { 
     this.message = "";
     this.loginForm = new FormGroup({
@@ -33,6 +33,7 @@ export class LoginComponent {
           this.message = jsonObject.message;
           this.loginForm.setValue({userName:"", password:""});
         } else {
+          this.jsonObject = jsonObject;
           sessionStorage.setItem("userId", jsonObject.id);
           sessionStorage.setItem("email", jsonObject.email);
           sessionStorage.setItem("userName", jsonObject.userName);
@@ -40,13 +41,36 @@ export class LoginComponent {
           sessionStorage.setItem("token", jsonObject.token);
           sessionStorage.setItem("employeeId", jsonObject.employee.id);
 
-          if (jsonObject.role.roleName == "HR") {
+          this.getBoardingStatus(jsonObject.id);
+          
+        }
+      }
+    );
+  }
+
+  getBoardingStatus(uid:String){
+    this.httpService.getData("http://localhost:8080/getBoardingStatus/" + uid).subscribe(
+      (response) => {
+        var jsonObj = JSON.parse(JSON.stringify(response));
+        var status = jsonObj.message;
+        var comment = jsonObj.comment;
+        console.log(status);
+        if("PENDING"==status){
+          this.router.navigate(["pending"]);
+        }
+        else if("COMPLETE"==status){
+        // else{
+          if (this.jsonObject.role.roleName == "HR") {
             this.router.navigate(["hr"]);
-          } else if (jsonObject.role.roleName == "Employee") {
+          } else if (this.jsonObject.role.roleName == "Employee") {
             this.router.navigate(["employee"]);
           } else {
-            this.router.navigate(["employee/boarding"]);
+            alert("Role not match!");
           }
+        }
+        else if("REJECT"==status){
+          alert("Rejected, HR Comment: " + comment);
+          this.router.navigate(["employee/boarding"]);
         }
       }
     );

@@ -76,6 +76,9 @@ import { MyNavComponent } from './samples/my-nav/my-nav.component';
 import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 import { HrEmailComponent } from './component/hr/email/hr-email.component';
+import { PendingComponent } from './component/home-page/pending/pending.component';
+import { FileUploadComponent } from './component/employee/boarding/file-upload/file-upload.component';
+import { FileUploadService } from './component/employee/boarding/file-upload.service';
 
 @NgModule({
   declarations: [
@@ -126,7 +129,9 @@ import { HrEmailComponent } from './component/hr/email/hr-email.component';
     // MyTableComponent
     HireComponent,
     HireDetailComponent,
-    HrEmailComponent
+    HrEmailComponent,
+    PendingComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -161,7 +166,8 @@ import { HrEmailComponent } from './component/hr/email/hr-email.component';
     OptreceiptService,
     JwtGuardService,
     EmployeeGuardService,
-    HrGuardService
+    HrGuardService,
+    FileUploadService,
   ],
 
   bootstrap: [AppComponent]
