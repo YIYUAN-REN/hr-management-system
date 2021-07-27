@@ -15,6 +15,7 @@ public class ContactDAO extends AbstractHibernateDAO{
     public void addContact(Contact contact){save(contact);}
 
     public Integer addLandlord(String firstName, String lastName, String cellPhone, String email, int employeeId){
+        System.out.println(employeeId);
         Session session = sessionFactory.getCurrentSession();
         Contact contact = new Contact();
         contact.setFirstName(firstName);

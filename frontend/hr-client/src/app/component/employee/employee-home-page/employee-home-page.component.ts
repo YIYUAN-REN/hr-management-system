@@ -19,7 +19,7 @@ export class EmployeeHomePageComponent implements OnInit {
 
   currentPage : string;
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private cookieService: CookieService) {
-    this.currentPage = "Boarding";
+    this.currentPage = "";
   }
 
   ngOnInit(): void {

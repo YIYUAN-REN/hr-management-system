@@ -32,7 +32,7 @@ public class ContactService {
     public Integer addLandlord(String firstName, String lastName, String cellPhone, String email) {
         // find employeeId from Employee table (assume landlord is also an employee)
 //        Employee employee = employeeDAO.findEmployeeByEmail(email);
-        Integer contactId = contactDAO.addLandlord(firstName, lastName, cellPhone, email, 0);
+        Integer contactId = contactDAO.addLandlord(firstName, lastName, cellPhone, email, 1);
         return contactId;
     }
     @Transactional

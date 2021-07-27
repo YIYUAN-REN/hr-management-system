@@ -39,6 +39,7 @@ export class ReportDetailComponent implements OnInit {
   }
 
   getReportAndComments() {
+    console.log(this.reportId);
     this.httpService.getData("/hr/housing/facilityReportDetail/" + this.reportId).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));

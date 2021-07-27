@@ -64,7 +64,7 @@ const routes: Routes = [
 
   // { path:"address", component:MyAddressFormComponent},
   // { path:"table", component:MyTableComponent},
-  { path:"pending", component: PendingComponent, canActivate:[JwtGuardService, EmployeeGuardService]},
+  { path:"pending", component: PendingComponent, canActivate:[JwtGuardService]},
   { path:"login", component: HomePageComponent },
   
   { path:"employee", component:EmployeeHomePageComponent,
@@ -90,7 +90,7 @@ const routes: Routes = [
   { path:"employee/login", component:LoginComponent },
   { path:"employee/login-email", component:LoginEmailComponent },
   { path:"employee/housing", component:HousingComponent, canActivate:[JwtGuardService, EmployeeGuardService] },
-  { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent, canActivate:[JwtGuardService, EmployeeGuardService] },
+  { path:"employee/housing/report-detail/:reportId", component:ReportDetailComponent, canActivate:[JwtGuardService] },
   { path:"hr/houseManagement", component:HrHousingComponent, canActivate:[JwtGuardService, HrGuardService] },
   { path:"hr/houseManagement/detail/:houseId", component:HrHousingDetailComponent, canActivate:[JwtGuardService, HrGuardService] },
   { path:"hr/email", component:HrEmailComponent, canActivate:[JwtGuardService, HrGuardService] },
