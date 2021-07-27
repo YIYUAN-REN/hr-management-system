@@ -40,6 +40,19 @@ public class HouseDAO {
         return houses;
     }
 
+    public List<House> getAvailableHouse(){
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from House where numberOfPerson<4";
+        Query query = session.createQuery(statement);
+        List<House> houses = query.getResultList();
+        return houses;
+    }
+
+    public void updateHouse(House house){
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(house);
+    }
+
     public Integer addHouse(int contactId, String address, int numberOfPerson){
         Session session = sessionFactory.getCurrentSession();
         House house = new House();

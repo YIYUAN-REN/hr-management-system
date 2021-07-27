@@ -30,6 +30,7 @@ public class BoardingController {
     private VisaService visaService;
     private ContactService contactService;
     private WorkflowService workflowService;
+    private HouseService houseService;
     @Autowired
     public void setEmployeeService(EmployeeService employeeService){this.employeeService = employeeService;}
     @Autowired
@@ -40,6 +41,8 @@ public class BoardingController {
     public void setContactService(ContactService contactService){this.contactService = contactService;}
     @Autowired
     public void setWorkflowService(WorkflowService workflowService){this.workflowService = workflowService;}
+    @Autowired
+    public void setHouseService(HouseService houseService){this.houseService = houseService;}
     @Autowired
     S3Service s3Service;
 
@@ -55,9 +58,15 @@ public class BoardingController {
         Employee employee = generateEmployee(objPack, Integer.parseInt(userId));
         int employeeId = 0;
         if (detectEmployee<0) {
+            House house = this.houseService.getHouseById(employee.getHouseId());
+            house.setNumberOfPerson(house.getNumberOfPerson()+1);
+            this.houseService.updateHouse(house);
             employeeId = this.employeeService.addEmployee(employee);
         }
         else {
+            //employee already has a house, get it and set to the houseid
+            House house = this.houseService.getHouseByEmployeeId(detectEmployee);
+            employee.setHouseId(house.getId());
             employeeId = detectEmployee;
             employee.setId(employeeId);
             this.employeeService.updateEmployee(employee);
@@ -155,7 +164,9 @@ public class BoardingController {
         employee.setManagerId(1);
         employee.setStartDate("tbd");
         employee.setEndDate("tbd");
-        employee.setHouseId(1);
+//        employee.setHouseId(1);
+        House house = this.houseService.getAvailableHouse();
+        employee.setHouseId(house.getId());
         //set names
         JSONObject name = objPack.getJSONObject("name");
         employee.setFirstName(name.getString("firstName"));
