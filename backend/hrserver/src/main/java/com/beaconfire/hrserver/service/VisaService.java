@@ -1,8 +1,7 @@
 package com.beaconfire.hrserver.service;
 
 import com.beaconfire.hrserver.dao.VisaDAO;
-import com.beaconfire.hrserver.domain.FacilityReport;
-import com.beaconfire.hrserver.domain.VisaStatus;
+import com.beaconfire.hrserver.domain.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +33,32 @@ public class VisaService {
     @Transactional
     public void deleteVisaByEmployeeId(int id){this.visaDAO.deleteVisaByEmployeeId(id);}
     @Transactional
+    public String getVisaTypeByEmployeeId(int employeeId){
+        Session session = sessionFactory.getCurrentSession();
+        return visaDAO.getVisaType(employeeId);
+    }
+
+    @Transactional
     public void updateVisaType(VisaStatus visaStatus){
         Session session = sessionFactory.getCurrentSession();
         session.update(visaStatus);
     }
 
     @Transactional
+    public ApplicationWorkFlow getWorkflowByEmployeeId(int employeeId){
+        Session session = sessionFactory.getCurrentSession();
+        return visaDAO.getWorkflowByEmployeeId(employeeId);
+    }
+
+    @Transactional
+    public void updateStatusWorkflow(ApplicationWorkFlow applicationWorkFlow){
+        Session session = sessionFactory.getCurrentSession();
+        session.update(applicationWorkFlow);
+    }
+
+    //config employee visa type,user visaType, Today's date, user visaEndDate
+    @Transactional
     public void preProcessVisa(VisaStatus visaStatus){
-        // config employee visa type
-        // user visaType, Today's date, user visaEndDate,
         String visaType = visaStatus.getVisaType();
         LocalDate todayDate = LocalDate.now();
         String visaEndDatetmp = visaStatus.getVisaEndDate();
@@ -58,7 +74,6 @@ public class VisaService {
         // add a new entity to table-workflow
         int employeeId = visaStatus.getEmployeeId();
         boolean isIn = visaDAO.isInSystem(employeeId);
-//        System.out.println(isIn);
         if (!isIn){
             String todayDateS = todayDate.toString();
             visaDAO.insertNewWorkFlow(employeeId,todayDateS,todayDateS);
@@ -66,9 +81,34 @@ public class VisaService {
     }
 
     @Transactional
+    public void insertPersonalDoc(int employeeId, String fileName){
+        LocalDate todayDate = LocalDate.now();
+        String todayDateS = todayDate.toString();
+        visaDAO.insertNewPersonalDoc(employeeId,todayDateS,fileName);
+    }
+
+    @Transactional
     public String getStatus(int employeeId){
         String status = visaDAO.getStatus(employeeId);
         return status;
+    }
+
+    @Transactional
+    public int getEmployeeIdByUserId(int userId){
+        int employeeId = visaDAO.getEmployeeIdByUserId(userId);
+        return employeeId;
+    }
+
+    @Transactional
+    public List<Employee> getAllEmployee(){
+        List<Employee> employees = visaDAO.getAllEmployee();
+        return employees;
+    }
+
+    @Transactional
+    public List<PersonalDocument> getAllDoc(){
+        List<PersonalDocument> docs = visaDAO.getAllDoc();
+        return docs;
     }
 
 }

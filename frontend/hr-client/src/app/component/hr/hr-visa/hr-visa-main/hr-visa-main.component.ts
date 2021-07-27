@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HrVisaMainpageService } from '../../../../service/visa/hrvisa/hr-visa-mainpage.service'
 
 @Component({
   selector: 'app-hr-visa-main',
@@ -8,41 +9,50 @@ import { Router } from '@angular/router';
 })
 export class HrVisaMainComponent implements OnInit {
 
-  name!:String;
-  visaType!:String;
-  startDate!:String;
-  endDate!:String;
-  daysLeft!:number;
-  nextStep!:String;
-
-  filePath!:String;
+  employees:any;
+  workAuth:any;
+  days:any;
+  files:any;
+  status:any;
 
   toggleValue = false;
 
+  constructor(private hrvisamainService: HrVisaMainpageService, private router:Router) { }
 
-
-  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.name = 'Zack';
-    this.visaType = 'F1/OPT';
-    this.startDate = '3/24/2019';
-    this.endDate = '3/25/2020';
-    this.daysLeft = 10;
-    this.nextStep = 'OPT STEM EAD';
-    this.filePath = 'http://fakefilepath.com';
-
+    this.getAllData();
   }
+
+  getAllData(){
+    this.hrvisamainService.getData().subscribe((data)=>{
+      var jsonObject = JSON.parse(JSON.stringify(data));
+      this.employees = data.employees;
+      this.workAuth = data.workAuth;
+      this.days = data.days;
+      this.files = data.files;
+      this.status = data.status;
+      console.log(this.workAuth);
+    }
+    );
+    
+  }
+
+
+  approve(index: string | number){
+    let userId = this.employees[index].userId;
+    console.log(userId);
+    this.hrvisamainService.postData(
+      {
+        userId: userId,
+      }
+    ).subscribe(
+    );
+  }
+
   notify(){
     this.router.navigate(['hr/visa/notify']);
   }
 
-  // toggle(){
-  //   if(this.toggleValue == false){
-  //     this.toggleValue = true;
-  //   }else{
-  //     this.toggleValue = false;
-  //   }
-  // }
 
 }

@@ -1,6 +1,4 @@
 <p>HR Visa Management Main Page</p>
-
-
 <table>
     <thead>
         <tr>
@@ -20,48 +18,66 @@
             <th>
                 Action Required
             </th>
+            <th>
+                Files
+            </th>
+            <th>
+                Status
+            </th>
         </tr>
     </thead>
 
     <tbody>
-        <tr>
-            <button (click)="toggleValue = !toggleValue">Expend</button>
-            <td>
-                {{this.name}}
-            </td>
-            <td>
-                {{this.visaType}}
-            </td>
-            <td>
-                {{this.endDate}}
-            </td>
-            <td>
-                {{this.daysLeft}}
-            </td>
-            <td>
-                <button (click)="notify()">Send Notification</button>
-            </td>
-        </tr>
+        <ng-container *ngFor="let employee of employees; let i=index">
+            <tr>
+                <button (click)="toggleValue = !toggleValue">Expend</button>
+                <td>
+                    {{employee.firstName}}
+                </td>
+                <td>
+                    {{workAuth[i]}}
+                </td>
+                <td>
+                    {{employee.endDate}}
+                </td>
+                <td>
+                    {{days[i]}}
+                </td>
+                <td *ngIf="workAuth[i]!='I-983'">
+                    <button (click)="notify()">Send Notification</button>
+                </td>
+                <td *ngIf="workAuth[i]=='I-983' && status[i]=='waitforhr'">
+                    <button (click)="approve(i)">Approve</button>
+                </td>
+                <td *ngIf="workAuth[i]=='I-983' && status[i]!='waitforhr'">
+                    <button (click)="notify()">Send Notification</button>
+                </td>
+                <td>
+                    <details-upload [fileUpload]='files[i]'></details-upload>
+                </td>
+                <th>
+                    {{status[i]}}
+                </th>
+            </tr>
 
-        <tr>
-            <ng-container *ngIf="!toggleValue">
-            <td></td>
-            <td colspan="2">
-                <p onclick="this.contentEditable=true;this.className='inEdit';
-                "onblur="this.contentEditable=false;this.className=''; "
-                contenteditable="false" class="">
-                    {{this.name}} <br>
-                    {{this.visaType}} <br>
-                    {{this.startDate}} <br>
-                    {{this.endDate}}
-                </p>
-            </td>
-            <td colspan="3">
-                Document Received: <br>
-                {{this.filePath}}
-            </td>
-            </ng-container>
-        </tr>
+        </ng-container>
 
     </tbody>
 </table>
+
+
+<!-- <tr>
+    <ng-container *ngIf="!toggleValue">
+    <td></td>
+    <td colspan="2">
+        <p onclick="this.contentEditable=true;this.className='inEdit';
+        "onblur="this.contentEditable=false;this.className=''; "
+        contenteditable="false" class="">
+
+        </p>
+    </td>
+    <td colspan="3">
+        Document Received: <br>
+    </td>
+    </ng-container>
+</tr> -->

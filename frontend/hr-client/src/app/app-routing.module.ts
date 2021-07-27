@@ -23,7 +23,6 @@ import { OptstemreceiptComponent } from '../app/component/employee/visa/optstemr
 import { UploadStemReceiptComponent } from '../app/component/employee/visa/upload-stem-receipt/upload-stem-receipt.component';
 import { WaitforhrComponent } from '../app/component/employee/visa/waitforhr/waitforhr.component';
 import { VisastartComponent } from '../app/component/employee/visa/visastart/visastart.component';
-import { UploadComponent } from '../app/component/employee/visa/upload/upload.component';
 
 // employee - boarding
 import { AddressComponent } from './component/employee/boarding/address/address.component';
@@ -103,11 +102,7 @@ const routes: Routes = [
 
   // employee - visa
   {path:'employee/visa', component: VisastartComponent},
-  {path:'employee/visa/optreceipt', component:OptreceiptComponent,
-    children:[
-      {path:'upload',component:UploadComponent}
-    ]
-  },
+  {path:'employee/visa/optreceipt', component:OptreceiptComponent},
   {path:'employee/visa/optead', component:OpteadComponent},
   {path:'employee/visa/i983template', component:I983templateComponent},
   {path:'employee/visa/waitforhr', component:WaitforhrComponent},
