@@ -14,8 +14,7 @@ export class VisastartComponent implements OnInit {
 
   msg!:string;
 
-  constructor(private visastartService: VisastartService,
-              private router:Router) { }
+  constructor(private visastartService: VisastartService, private router:Router) { }
 
   check(){
     this.visastartService.getData().subscribe((data)=>{

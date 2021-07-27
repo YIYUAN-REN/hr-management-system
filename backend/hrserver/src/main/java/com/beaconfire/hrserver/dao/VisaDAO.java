@@ -2,6 +2,8 @@ package com.beaconfire.hrserver.dao;
 
 
 import com.beaconfire.hrserver.domain.ApplicationWorkFlow;
+import com.beaconfire.hrserver.domain.Employee;
+import com.beaconfire.hrserver.domain.PersonalDocument;
 import com.beaconfire.hrserver.domain.VisaStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -83,6 +85,15 @@ public class VisaDAO extends AbstractHibernateDAO{
         session.save(applicationWorkFlow);
     }
 
+    public void insertNewPersonalDoc(int employeeId, String createDate, String title){
+        PersonalDocument personalDocument = new PersonalDocument();
+        personalDocument.setEmployeeId(employeeId);
+        personalDocument.setCreateDate(createDate);
+        personalDocument.setTitle(title);
+        Session session = sessionFactory.getCurrentSession();
+        session.save(personalDocument);
+    }
+
     public String getVisaType(int employeeId){
         Session session = sessionFactory.getCurrentSession();
         String statement = "from VisaStatus where employeeId = :employeeId";
@@ -96,4 +107,22 @@ public class VisaDAO extends AbstractHibernateDAO{
         Session session = sessionFactory.getCurrentSession();
         return session.get(ApplicationWorkFlow.class,userId).getEmployeeId();
     }
+
+    public List<Employee> getAllEmployee(){
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from Employee";
+        Query query = session.createQuery(statement);
+        List<Employee> employees = query.getResultList();
+        return employees;
+    }
+
+    public List<PersonalDocument> getAllDoc(){
+        Session session = sessionFactory.getCurrentSession();
+        String statement = "from PersonalDocument";
+        Query query = session.createQuery(statement);
+        List<PersonalDocument> docs = query.getResultList();
+        return docs;
+    }
+
+
 }

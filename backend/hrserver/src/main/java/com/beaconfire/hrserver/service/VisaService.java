@@ -1,9 +1,7 @@
 package com.beaconfire.hrserver.service;
 
 import com.beaconfire.hrserver.dao.VisaDAO;
-import com.beaconfire.hrserver.domain.ApplicationWorkFlow;
-import com.beaconfire.hrserver.domain.FacilityReport;
-import com.beaconfire.hrserver.domain.VisaStatus;
+import com.beaconfire.hrserver.domain.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +29,12 @@ public class VisaService {
     public VisaStatus getVisaByEmployeeId(int employeeId){
         Session session = sessionFactory.getCurrentSession();
         return visaDAO.getVisaByEmployeeId(employeeId);
+    }
+
+    @Transactional
+    public String getVisaTypeByEmployeeId(int employeeId){
+        Session session = sessionFactory.getCurrentSession();
+        return visaDAO.getVisaType(employeeId);
     }
 
     @Transactional
@@ -69,11 +73,17 @@ public class VisaService {
         // add a new entity to table-workflow
         int employeeId = visaStatus.getEmployeeId();
         boolean isIn = visaDAO.isInSystem(employeeId);
-//        System.out.println(isIn);
         if (!isIn){
             String todayDateS = todayDate.toString();
             visaDAO.insertNewWorkFlow(employeeId,todayDateS,todayDateS);
         }
+    }
+
+    @Transactional
+    public void insertPersonalDoc(int employeeId, String fileName){
+        LocalDate todayDate = LocalDate.now();
+        String todayDateS = todayDate.toString();
+        visaDAO.insertNewPersonalDoc(employeeId,todayDateS,fileName);
     }
 
     @Transactional
@@ -86,6 +96,18 @@ public class VisaService {
     public int getEmployeeIdByUserId(int userId){
         int employeeId = visaDAO.getEmployeeIdByUserId(userId);
         return employeeId;
+    }
+
+    @Transactional
+    public List<Employee> getAllEmployee(){
+        List<Employee> employees = visaDAO.getAllEmployee();
+        return employees;
+    }
+
+    @Transactional
+    public List<PersonalDocument> getAllDoc(){
+        List<PersonalDocument> docs = visaDAO.getAllDoc();
+        return docs;
     }
 
 }

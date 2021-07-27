@@ -13,7 +13,7 @@ export class UploadStemreceiptService {
 
     formdata.append('file', file);
 
-    const req = new HttpRequest('POST', 'http://localhost:8080/employee/visa/stemreceiptUpload', formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/employee/visa/stemreceiptUpload'+sessionStorage.getItem("userId"), formdata, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -22,6 +22,6 @@ export class UploadStemreceiptService {
   }
 
   getFiles(): Observable<any> {
-    return this.http.get('http://localhost:8080/employee/visa/stemreceiptUpload/all');
+    return this.http.get('http://localhost:8080/employee/visa/stemreceiptUpload/all'+sessionStorage.getItem("userId"));
   }
 }

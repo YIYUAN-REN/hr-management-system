@@ -8,5 +8,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface S3Services {
     public ByteArrayOutputStream downloadFile(String keyName);
     public void uploadFile(String keyName, MultipartFile file);
-    public List listFiles();
+    public List listFiles(String userId);
 }

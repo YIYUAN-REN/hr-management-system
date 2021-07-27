@@ -90,7 +90,7 @@ public class S3ServicesImpl implements S3Services {
         }
     }
 
-    public List<String> listFiles() {
+    public List<String> listFiles(String userId) {
 
         ListObjectsRequest listObjectsRequest =
                 new ListObjectsRequest()
@@ -108,8 +108,21 @@ public class S3ServicesImpl implements S3Services {
             }
 
             for (S3ObjectSummary item : summaries) {
-                if (!item.getKey().endsWith("/"))
-                    keys.add(item.getKey());
+                Boolean flag;
+                if (!item.getKey().endsWith("/")) {
+                    flag = true;
+                    for (int i = 0; i < userId.length(); i++) {
+                        if (!(userId.charAt(i) == item.getKey().charAt(i))) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag == true) {
+                        keys.add(item.getKey());
+                    } else {
+                        flag = true;
+                    }
+                }
             }
 
             objects = s3client.listNextBatchOfObjects(objects);
