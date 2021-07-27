@@ -51,7 +51,6 @@ export class ReportDetailComponent implements OnInit {
 
   onCreate(form: FormGroup){
     this.httpService.postData("/hr/housing/postComment", {
-      // change from userId to employeeId later
       employeeId: sessionStorage.getItem("employeeId"),
       reportId: this.reportId,
       comments: form.value["comment"]

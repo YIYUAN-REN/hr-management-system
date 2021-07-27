@@ -36,7 +36,6 @@ public class LoginController {
 //    @CrossOrigin(origins="http://localhost:4200")
     @PostMapping(value="/login")
     public LoginResponse login(HttpServletResponse httpServletResponse, @RequestBody LoginRequest request) {
-        System.out.println("11111111111111111111111111111111111111111");
         LoginResponse response = new LoginResponse();
         String userName = request.getUserName();
         String email = request.getEmail();

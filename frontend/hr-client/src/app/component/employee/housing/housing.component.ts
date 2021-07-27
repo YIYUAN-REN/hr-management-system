@@ -22,7 +22,6 @@ export class HousingComponent implements OnInit {
   constructor(private httpService: HttpService) { 
     this.houseId = 0;
     this.address = "";
-    // this.employees = [];
     this.reportForm = new FormGroup({
       title: new FormControl(""),
       description: new FormControl("")
@@ -31,7 +30,6 @@ export class HousingComponent implements OnInit {
   }
 
   getHousingDetail() {
-    // change from userId to employeeId later
     console.log(sessionStorage.getItem("employeeId"));
     this.httpService.getData("/hr/housing/houseDetail/" + sessionStorage.getItem("employeeId")).subscribe(
       (response) => {
