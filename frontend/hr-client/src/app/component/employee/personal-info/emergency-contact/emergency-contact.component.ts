@@ -56,8 +56,8 @@ export class PiEmergencyContactComponent implements OnInit {
     // data.workPhone
   }
 
-  onSubmit(form: any) {
-    console.log(form);
+  onSubmit() {
+
     
     let contacts = this.emergencyContacts;
  

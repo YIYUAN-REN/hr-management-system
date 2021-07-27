@@ -64,6 +64,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { EmployeeHomePageComponent } from './component/employee/employee-home-page/employee-home-page.component';
@@ -75,13 +76,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './component/home-page/register/register.component';
 
 // import { MyAddressFormComponent } from './samples/my-address-form/my-address-form.component';
-import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
-import { MyNavComponent } from './samples/my-nav/my-nav.component';
 import { OptreceiptComponent } from './component/employee/visa/optreceipt/optreceipt.component';
 import { DetailsUploadComponent } from './component/employee/visa/details-upload/details-upload.component';
 import { OptstemreceiptComponent } from './component/employee/visa/optstemreceipt/optstemreceipt.component';
 
 // import { MyTableComponent } from './samples/my-table/my-table.component';
+import { EmployeeBoardingHomeComponent } from './component/employee/boarding/employee-boarding-home/employee-boarding-home.component';
+import { EmployeeHousingHomeComponent } from './component/employee/housing/employee-housing-home/employee-housing-home.component';
+import { EmployeeVisaHomeComponent } from './component/employee/visa/employee-visa-home/employee-visa-home.component';
+
 import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 import { HrEmailComponent } from './component/hr/email/hr-email.component';
@@ -139,15 +142,20 @@ import { FileUploadService } from './component/employee/boarding/file-upload.ser
     RegisterComponent,
 
     // MyAddressFormComponent,
-    MyDashboardComponent,
-    MyNavComponent,
     DetailsUploadComponent,
     // MyTableComponent
     HireComponent,
     HireDetailComponent,
     HrEmailComponent,
     PendingComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    EmployeeBoardingHomeComponent,
+    EmployeeHousingHomeComponent,
+    EmployeeVisaHomeComponent,
+
+    HireComponent,
+    HireDetailComponent
+
   ],
   imports: [
     BrowserModule,
@@ -171,10 +179,8 @@ import { FileUploadService } from './component/employee/boarding/file-upload.ser
     MatDividerModule,
     MatGridListModule,
     MatMenuModule,
-    CommonModule
-
-
-
+    CommonModule,
+    MatExpansionModule
   ],
   providers: [
     HttpService,

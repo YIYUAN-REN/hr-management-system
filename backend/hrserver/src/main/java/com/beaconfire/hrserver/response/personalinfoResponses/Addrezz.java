@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Address {
+public class Addrezz {
     //    private ResponseStatus status;
 //    private Employee employee;
     private String lineOne;

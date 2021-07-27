@@ -53,11 +53,6 @@ import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-noti
 // hr - personal info
 import { EmployeeProfileComponent } from './component/hr/employee-profile/employee-profile.component';
 import { RegisterComponent } from './component/home-page/register/register.component';
-
-
-import { MyDashboardComponent } from './samples/my-dashboard/my-dashboard.component';
-import { MyNavComponent } from './samples/my-nav/my-nav.component';
-
 import { HireComponent } from './component/hr/hire/hire.component';
 import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 import { PendingComponent } from './component/home-page/pending/pending.component';
@@ -68,8 +63,6 @@ const routes: Routes = [
   { path:"", component:HomePageComponent},
 
   // { path:"address", component:MyAddressFormComponent},
-  { path:"dashboard", component:MyDashboardComponent},
-  { path:"nav", component:MyNavComponent},
   // { path:"table", component:MyTableComponent},
   { path:"pending", component: PendingComponent},
   { path:"login", component: HomePageComponent },
