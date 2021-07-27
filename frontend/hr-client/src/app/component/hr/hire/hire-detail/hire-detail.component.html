@@ -47,6 +47,10 @@
     <input type="text" [(ngModel)]="comment" /><br>
     <p>=========================================</p>
 </div>
-
+<b>Review Files</b>
+<a href="http://localhost:8080/DownloadBoarding/{{avatarFile}}">{{avatarFile}}</a><br>
+<a href="http://localhost:8080/DownloadBoarding/{{driverFile}}">{{driverFile}}</a><br>
+<a href="http://localhost:8080/DownloadBoarding/{{visaFile}}">{{visaFile}}</a>
+<p>===============================================================</p>
 <button type="button" (click)="hrDecide('COMPLETE')">Approve</button>
 <button type="button" (click)="hrDecide('REJECT')">Reject</button>

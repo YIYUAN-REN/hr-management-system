@@ -1,15 +1,20 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpService } from 'src/app/service/housing/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
 
-  constructor(private http:HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
-  pushFileToStorage(file: File, type:string): Observable<Object> {
+  constructor(private http:HttpClient, private httpService:HttpService) { }
+
+  pushFileToStorage(file: File, type:string): Observable<any> {
     const formdata: FormData = new FormData();
 
     formdata.append('file', file);
@@ -19,13 +24,7 @@ export class FileUploadService {
     else formdata.append('userId', '-1');
     //Driver Liscense/avatar/visa
     formdata.append('type', type);
-
-    // const req = new HttpRequest('POST', 'http://localhost:8080/boardingFile/upload', formdata, {
-    //   reportProgress: true,
-    //   responseType: 'text'
-    // });
-
-    return this.http.post('http://localhost:8080/boardingFile/upload', formdata);
+    return this.httpService.postData("http://localhost:8080/FileUploadBoarding/", formdata);
   }
 
 }

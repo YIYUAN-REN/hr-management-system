@@ -6,10 +6,14 @@ import com.beaconfire.hrserver.response.ApplicationStatusResponse;
 import com.beaconfire.hrserver.response.FacilityReportDetailResponse;
 import com.beaconfire.hrserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +28,7 @@ public class BoardingController {
     private VisaService visaService;
     private ContactService contactService;
     private WorkflowService workflowService;
+    private HouseService houseService;
     @Autowired
     public void setEmployeeService(EmployeeService employeeService){this.employeeService = employeeService;}
     @Autowired
@@ -34,6 +39,8 @@ public class BoardingController {
     public void setContactService(ContactService contactService){this.contactService = contactService;}
     @Autowired
     public void setWorkflowService(WorkflowService workflowService){this.workflowService = workflowService;}
+    @Autowired
+    public void setHouseService(HouseService houseService){this.houseService = houseService;}
     @Autowired
     S3Service s3Service;
 
@@ -49,9 +56,15 @@ public class BoardingController {
         Employee employee = generateEmployee(objPack, Integer.parseInt(userId));
         int employeeId = 0;
         if (detectEmployee<0) {
+            House house = this.houseService.getHouseById(employee.getHouseId());
+            house.setNumberOfPerson(house.getNumberOfPerson()+1);
+            this.houseService.updateHouse(house);
             employeeId = this.employeeService.addEmployee(employee);
         }
         else {
+            //employee already has a house, get it and set to the houseid
+            House house = this.houseService.getHouseByEmployeeId(detectEmployee);
+            employee.setHouseId(house.getId());
             employeeId = detectEmployee;
             employee.setId(employeeId);
             this.employeeService.updateEmployee(employee);
@@ -119,14 +132,28 @@ public class BoardingController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/boardingFile/upload/")
-    public void uploadBoardingFile(@RequestParam("file") MultipartFile file,
+    @PostMapping("/FileUploadBoarding/")
+    public void uploadBoardingFile(
                                    @RequestParam("userid") String uid,
-                                   @RequestParam("type") String type){
+                                   @RequestParam("type") String type,
+                                   @RequestParam("file") MultipartFile file){
+        System.out.println("here!");
         if(uid==null||uid.equals(""))uid = "-1";
-        String keyName = type+"_"+uid;
+        String keyName = type+"Boarding_"+uid;
         s3Service.uploadFile(keyName, file);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/DownloadBoarding/{keyname}")
+    public ResponseEntity<byte[]> downloadFile(@PathVariable String keyname) {
+        ByteArrayOutputStream downloadInputStream = s3Service.downloadFile(keyname);
+
+        return ResponseEntity.ok()
+                .contentType(contentType(keyname))
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + keyname + "\"")
+                .body(downloadInputStream.toByteArray());
+    }
+
     public Employee generateEmployee(JSONObject objPack, int userId){
         Employee employee = new Employee();
         //hardcode
@@ -135,7 +162,9 @@ public class BoardingController {
         employee.setManagerId(1);
         employee.setStartDate("tbd");
         employee.setEndDate("tbd");
-        employee.setHouseId(1);
+//        employee.setHouseId(1);
+        House house = this.houseService.getAvailableHouse();
+        employee.setHouseId(house.getId());
         //set names
         JSONObject name = objPack.getJSONObject("name");
         employee.setFirstName(name.getString("firstName"));
@@ -234,6 +263,17 @@ public class BoardingController {
             this.visaService.deleteVisaByEmployeeId(eid);
         }
         return oldEmployee.get(0).getId();
+    }
+
+    private MediaType contentType(String keyname) {
+        String[] arr = keyname.split("\\.");
+        String type = arr[arr.length-1];
+        switch(type) {
+            case "txt": return MediaType.TEXT_PLAIN;
+            case "png": return MediaType.IMAGE_PNG;
+            case "jpg": return MediaType.IMAGE_JPEG;
+            default: return MediaType.APPLICATION_OCTET_STREAM;
+        }
     }
 }
 

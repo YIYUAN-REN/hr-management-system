@@ -47,6 +47,18 @@ public class HouseService {
     }
 
     @Transactional
+    public void updateHouse(House house){
+        this.houseDAO.updateHouse(house);
+    }
+
+    @Transactional
+    public House getAvailableHouse(){
+        List<House> houses = this.houseDAO.getAvailableHouse();
+        if(houses==null|| houses.size()==0) return this.houseDAO.getAllHouse().get(0);
+        return houses.get(0);
+    }
+
+    @Transactional
     public Integer addHouse(int contactId, String address, int numberOfPerson) {
         Integer houseId = houseDAO.addHouse(contactId, address, numberOfPerson);
         return houseId;
