@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ContactService {
     private ContactDAO contactDAO;
@@ -17,6 +20,13 @@ public class ContactService {
     public void setContactEntity(ContactDAO contactDAO){this.contactDAO = contactDAO;}
 
     public void addContact(Contact contactToAdd){this.contactDAO.addContact(contactToAdd);}
+
+    @Transactional
+    public List<Contact> getEmergencyContactsByEmployeeId(int employeeId){
+        List<Contact> result = this.contactDAO.getEmergencyContactsByEmployeeId(employeeId)
+                .stream().filter((Contact con)->!con.getRelationship().equals("self")).collect(Collectors.toList());
+        return result;
+    }
 
     @Transactional
     public Integer addLandlord(String firstName, String lastName, String cellPhone, String email) {

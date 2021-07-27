@@ -18,7 +18,7 @@ export class EmployeeHomePageComponent implements OnInit {
 
   currentPage : string;
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {
-    this.currentPage = "Personal Information";
+    this.currentPage = "Boarding";
   }
 
   ngOnInit(): void {
@@ -26,6 +26,7 @@ export class EmployeeHomePageComponent implements OnInit {
 
   userName = sessionStorage.getItem('userName');
   email = sessionStorage.getItem('email');
+  role = sessionStorage.getItem('role');
 
 
   currentPages = [

@@ -38,10 +38,14 @@ export class LoginEmailComponent {
           sessionStorage.setItem("userName", jsonObject.userName);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate([""]);
-
-          // need HR coding
-
+          
+          if (jsonObject.role.roleName == "HR") {
+            this.router.navigate(["hr"]);
+          } else if (jsonObject.role.roleName == "Employee") {
+            this.router.navigate(["employee"]);
+          } else {
+            this.router.navigate(["employee/boarding"]);
+          }
         }
       }
     );

@@ -12,8 +12,9 @@
           <mat-card class="example-card">
   
               <img mat-card-image src="../../../assets/images/avatar-employee.png">
-              <h4 style="color:#0693ba;">{{userName}}Danirl Huang</h4>
-              <h4 style="color:#0693ba;">{{email}} daniel@beaconfire.com</h4>          
+              <h4 style="color:#0693ba;">User Name : {{userName || "Danirl Huang"}}</h4>
+              <h4 style="color:#0693ba;">Email : {{email || "daniel@beaconfire.com"}}</h4>
+              <h4 style="color:#0693ba;">Role : Employee</h4> 
           </mat-card>
         <mat-nav-list>
           <a mat-list-item><div style="width: 100%; text-align: center;"></div></a>
@@ -74,7 +75,7 @@
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-          <span style="text-align:center">Welcom to BeaconFire Solution !</span>
+          <span style="text-align:center">Welcome to BeaconFire Solution !</span>
         </mat-toolbar>
         
         <div>

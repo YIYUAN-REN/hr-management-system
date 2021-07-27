@@ -1,7 +1,8 @@
 package com.beaconfire.hrserver.dao;
 
-
 import com.beaconfire.hrserver.domain.ApplicationWorkFlow;
+import com.beaconfire.hrserver.domain.Address;
+
 import com.beaconfire.hrserver.domain.VisaStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,7 +28,8 @@ public class VisaDAO extends AbstractHibernateDAO{
         Query query = session.createQuery(statement);
         query.setParameter("employeeId", employeeId);
         List<VisaStatus> list = query.getResultList();
-        return list.get(0);
+        if (list.size()>0) return list.get(0);
+        else return null;
 
     }
 

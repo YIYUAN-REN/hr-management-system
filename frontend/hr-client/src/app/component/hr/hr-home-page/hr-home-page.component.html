@@ -1,53 +1,105 @@
 
 <head>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
-  </head>
-  
-  <body>
-    <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #drawer class="sidenav" style="width:200px" fixedInViewport="true"
-          [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-          [mode]="(isHandset$ | async) ? 'over' : 'side'"
-          [opened]="!(isHandset$ | async)">
-          <mat-card class="example-card">
-  
-              <img mat-card-image src="../../../assets/images/avatar-hr.png">
-              <h4 style="color:#0693ba;">{{userName}}</h4>
-              <h4 style="color:#0693ba;">{{email}}</h4>          
-          </mat-card>
-        <mat-nav-list>
-          <a mat-list-item href="#"><div style="width: 100%; text-align: center;"></div></a>
-          <a mat-list-item href="employee/boarding"><div style="width: 100%; text-align: center;">On boarding</div></a>
-          <a mat-list-item href="employee/personalInfo"><div style="width: 100%; text-align: center;">Personal Information</div></a>
-          <a mat-list-item href="employee/visa"><div style="width: 100%; text-align: center;">Visa Status</div></a>
-          <a mat-list-item href="employee/housing"><div style="width: 100%; text-align: center;">Housing</div></a>
-          <a mat-list-item href="#"><div style="width: 100%; text-align: center;"></div></a>
-          <a mat-list-item href="#"><div style="width: 100%; text-align: center;"></div></a>
-  
-        </mat-nav-list>
-        <div><button mat-stroked-button color="primary" >Log Out</button></div>
-  
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <mat-toolbar color="primary">
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async">
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
-          <span style="text-align:center">Welcom to BeaconFire Solution !</span>
-        </mat-toolbar>
-        <!-- Add Content Here -->
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-        <!-- Angular Material Dependencies -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.js"></script>
-        <!-- Angular Material -->
-        <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
-  </body>
-  
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
+</head>
+
+<body>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" style="width:200px" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+        <mat-card class="example-card">
+
+            <img mat-card-image src="../../../assets/images/avatar-hr.png">
+            <h4 style="color:#0693ba;">User Name : {{userName || "Vincent Ho"}}</h4>
+            <h4 style="color:#0693ba;">Email : {{email || "vincent@beaconfire.com"}}</h4>          
+            <h4 style="color:#0693ba;">Role : HR</h4>      
+        </mat-card>
+      <mat-nav-list>
+        <a mat-list-item><div style="width: 100%; text-align: center;"></div></a>
+        <a mat-list-item>
+          <div style="width: 100%; text-align: center;">
+            <div *ngIf = "currentPage!='Employee Profile'">
+              <button mat-raised-button (click)="changeCurrentPage('Employee Profile')">Employee Profile</button>
+            </div>
+            <div *ngIf = "currentPage=='Employee Profile'">
+              <button mat-raised-button color="accent" (click)="changeCurrentPage('Employee Profile')">Employee Profile</button>
+            </div>
+          </div>
+        </a>
+        <a mat-list-item>
+          <div style="width: 100%; text-align: center;">
+            <div *ngIf = "currentPage!='Visa'">
+              <button mat-raised-button (click)="changeCurrentPage('Visa')">Visa</button>
+            </div>
+            <div *ngIf = "currentPage=='Visa'">
+              <button mat-raised-button color="accent" (click)="changeCurrentPage('Visa')">Visa</button>
+            </div>
+          </div>
+        </a>
+        <a mat-list-item>
+          <div style="width: 100%; text-align: center;">
+            <div *ngIf = "currentPage!='Hire'">
+              <button mat-raised-button (click)="changeCurrentPage('Hire')">Hire</button>
+            </div>
+            <div *ngIf = "currentPage=='Hire'">
+              <button mat-raised-button color="accent" (click)="changeCurrentPage('Hire')">Hire</button>
+            </div>
+          </div>
+        </a>
+        <a mat-list-item>
+          <div style="width: 100%; text-align: center;">
+            <div *ngIf = "currentPage!='Housing'">
+              <button mat-raised-button (click)="changeCurrentPage('Housing')">Housing</button>
+            </div>
+            <div *ngIf = "currentPage=='Housing'">
+              <button mat-raised-button color="accent" (click)="changeCurrentPage('Housing')">Housing</button>
+            </div>
+          </div>
+        </a>
+        <a mat-list-item><div style="width: 100%; text-align: center;"></div></a>
+        <a mat-list-item><div style="width: 100%; text-align: center;"></div></a>
+
+      </mat-nav-list>
+      <div><a><button mat-stroked-button color="primary" (click)="logOut()">Log Out</button></a></div>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span style="text-align:center">BeaconFire Solutinon HR Management</span>
+      </mat-toolbar>
+      
+      <div>
+        <div *ngIf = "currentPage=='Employee Profile'">
+          <app-employee-profile></app-employee-profile>
+        </div>
+        <div *ngIf = "currentPage=='Visa'">
+          <app-hr-visa-main></app-hr-visa-main>
+        </div>
+        <div *ngIf = "currentPage=='Hire'">
+          <app-hire></app-hire>
+        </div>
+        <div *ngIf = "currentPage=='Housing'">
+          <app-hr-housing></app-hr-housing>
+        </div>
+      </div>
+      
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+      <!-- Angular Material Dependencies -->
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.js"></script>
+      <!-- Angular Material -->
+      <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+</body>

@@ -50,8 +50,8 @@ import { HrVisaNotificationComponent } from './component/hr/hr-visa/hr-visa-noti
 // hr - personal info
 import { EmployeeProfileComponent } from './component/hr/employee-profile/employee-profile.component';
 import { RegisterComponent } from './component/home-page/register/register.component';
-
-
+import { HireComponent } from './component/hr/hire/hire.component';
+import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
 
 const routes: Routes = [
   // home page
@@ -70,12 +70,12 @@ const routes: Routes = [
   { path:"hr", component:HrHomePageComponent ,
     children : [
       { path:"EmployeeProfile", component:EmployeeProfileComponent },
-      { path:"hire", component:HousingComponent },
+      { path:"hire", component:HireComponent },
       { path:'housing', component: HrHousingComponent},
       { path:"visa", component:HrVisaMainComponent}
   ]},
-
-
+  { path:"hireDetail", component:HireDetailComponent },
+  
   // employee - housing 
   { path:"employee/login", component:LoginComponent },
   { path:"employee/login-email", component:LoginEmailComponent },

@@ -1,17 +1,38 @@
-<mat-form-field appearance="fill">
-    <mat-label>Search By</mat-label>
-    <mat-select [(value)]="selectedValue">
-    <mat-option value="name">Name</mat-option>
-    <mat-option value="id">ID</mat-option>
-    </mat-select>
-</mat-form-field>
-<p>You selected: {{selectedValue}}</p>
-<button mat-raised-button color="primary" (click)="search()">Search</button>
+<mat-card>
+    <mat-card-content>
+        <tr>
+            <th>
+                <mat-form-field appearance="fill">
+                    <mat-label>Search By</mat-label>
+                    <mat-select [(value)]="selectedValue">
+                        <mat-option value="name">Name</mat-option>
+                        <mat-option value="id">ID</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </th> 
+            <th>
+                <mat-form-field appearance="outline">
+                    <mat-label>Type Here to Search</mat-label>
+                    <input matInput type="text" [ngModel]="userInput" (ngModelChange)="userInput=$event"><br>
+                </mat-form-field>
+            </th>
+            <th>
+                <button mat-raised-button color="primary" (click)="search()">Search</button>
+            </th>
+        </tr>
+    </mat-card-content>
+</mat-card>
 
-<div *ngIf = "selected">
-    <app-pi-name></app-pi-name>
-    <app-contact-info>contact info</app-contact-info>
-    <app-pi-address>address</app-pi-address>
-    <app-employment>employment</app-employment>
-    <app-pi-emergency-contact>emergency contact</app-pi-emergency-contact>
-</div>
+
+<mat-card>
+    <mat-card-content>
+        <div *ngIf = "selected" class = "individual">
+            <app-pi-name></app-pi-name>
+            <app-contact-info>contact info</app-contact-info>
+            <app-pi-address>address</app-pi-address>
+            <app-employment>employment</app-employment>
+            <app-pi-emergency-contact>emergency contact</app-pi-emergency-contact>
+        </div>
+    </mat-card-content>
+</mat-card>
+

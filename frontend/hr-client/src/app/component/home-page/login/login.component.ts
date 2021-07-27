@@ -29,8 +29,6 @@ export class LoginComponent {
     }).subscribe(
       (response) => {
         var jsonObject = JSON.parse(JSON.stringify(response));
-        // console.log("111111111");
-        // console.log(jsonObject);
         if (jsonObject.message != "Success!") {
           this.message = jsonObject.message;
           this.loginForm.setValue({userName:"", password:""});
@@ -40,10 +38,14 @@ export class LoginComponent {
           sessionStorage.setItem("userName", jsonObject.userName);
           sessionStorage.setItem("role", jsonObject.role);
           sessionStorage.setItem("token", jsonObject.token);
-          this.router.navigate(["employee"]);
 
-          // need HR coding
-
+          if (jsonObject.role.roleName == "HR") {
+            this.router.navigate(["hr"]);
+          } else if (jsonObject.role.roleName == "Employee") {
+            this.router.navigate(["employee"]);
+          } else {
+            this.router.navigate(["employee/boarding"]);
+          }
         }
       }
     );

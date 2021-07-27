@@ -2,7 +2,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
         <p>
             <mat-form-field>
-                <input placeholder="Username" type="text" matInput formControlName="username" required>
+                <input placeholder="Username" type="text" matInput formControlName="userName" required>
             </mat-form-field>
         </p>
 
@@ -20,7 +20,12 @@
 
         <p>
             <mat-form-field>
-                <input placeholder="Password Confirmation" type="password" matInput formControlName="passwordConfirm" required>
+                <input placeholder="Password Confirmation" type="password" matInput formControlName="confirmPassword" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input placeholder="Registration Token" type="text" matInput formControlName="token" required>
             </mat-form-field>
         </p>
 
@@ -29,7 +34,11 @@
         </p>
 
         <div class="button">
+<<<<<<< HEAD
             <button mat-raised-button color="primary" type="submit" mat-button>Register</button>
+=======
+            <button type="submit" [disabled]="!registerForm.valid" mat-button>Register</button>
+>>>>>>> 45c7716c8f31ec130093309bbcaf36c977b94c1b
         </div>
 
     </form>

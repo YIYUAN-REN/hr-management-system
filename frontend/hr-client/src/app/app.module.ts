@@ -70,6 +70,9 @@ import { EmployeeBoardingHomeComponent } from './component/employee/boarding/emp
 import { EmployeeHousingHomeComponent } from './component/employee/housing/employee-housing-home/employee-housing-home.component';
 import { EmployeeVisaHomeComponent } from './component/employee/visa/employee-visa-home/employee-visa-home.component';
 
+import { HireComponent } from './component/hr/hire/hire.component';
+import { HireDetailComponent } from './component/hr/hire/hire-detail/hire-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,8 +119,10 @@ import { EmployeeVisaHomeComponent } from './component/employee/visa/employee-vi
     // MyAddressFormComponent,
     EmployeeBoardingHomeComponent,
     EmployeeHousingHomeComponent,
-    EmployeeVisaHomeComponent
+    EmployeeVisaHomeComponent,
 
+    HireComponent,
+    HireDetailComponent
 
   ],
   imports: [

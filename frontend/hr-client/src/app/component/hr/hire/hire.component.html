@@ -1,0 +1,9 @@
+
+<h2>This is HR home page</h2>
+<div *ngFor="let workflow of pendingWorkFlows">
+    <div>
+      <!-- <label>Application of Employee {{workflow.employeeId}}</label> -->
+      <button type="button" (click)="viewApplicationDetail(workflow.employeeId, workflow.id)">
+          View Application of Employee {{workflow.employeeId}}</button>
+    </div><br>
+</div>
